@@ -7,14 +7,14 @@ using System.Web;
 namespace Library.Models {
     public class Book {
 
-        public int Id { get; set; }
+        public int BookId { get; set; }
         public string Title { get; set; }
 
         /// <summary>
         /// Useful for adding the book objects directly to a ListBox.
         /// </summary>
         public override string ToString() {
-            return String.Format("[{0}] -- {1}", this.Id, this.Title);
+            return String.Format("[{0}] -- {1}", this.BookId, this.Title);
         }
     }
 }

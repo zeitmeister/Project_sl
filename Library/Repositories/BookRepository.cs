@@ -6,13 +6,19 @@ using Library.Models;
 
 namespace Library.Repositories
 {
-    public class BookRepository
+    public class BookRepository : IRepository<Book, int>
     {
         LibraryContext context;
 
         public BookRepository(LibraryContext c)
         {
             this.context = c;
+        }
+
+        public void Add(Book item)
+        {
+            context.Books.Add(item);
+            context.SaveChanges();
         }
 
         public IEnumerable<Book> All()
@@ -28,6 +34,18 @@ namespace Library.Repositories
             // Then why do we still pass the Book object all the way to the repository? Because the service
             // layer doesn't know we use EF. If in the future we decide to switch EF to something else, 
             // we won't have to change the service layer.
+        }
+
+        public Book Find(int id)
+        {
+            return context.Books.Where(b => b.BookId == id) as Book;
+            // 'as' testar om det går
+        }
+
+        public void Remove(Book item)
+        {
+            context.Books.Remove(item);
+            context.SaveChanges();
         }
     }
 }

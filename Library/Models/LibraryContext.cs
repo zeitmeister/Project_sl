@@ -26,7 +26,7 @@ namespace Library.Models {
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public DbSet<Book> Books { get; set; }
-
+        public DbSet<Author> Authors { get; set; }
 
         // If you want to try or need to (some use cases) use fluent API this is the place!
         // Reference: http://blogs.msdn.com/b/adonet/archive/2010/12/14/ef-feature-ctp5-fluent-api-samples.aspx

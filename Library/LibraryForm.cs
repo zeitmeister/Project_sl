@@ -52,6 +52,17 @@ namespace Library
                 bookService.Edit(b);
             }
         }
-        
+
+        private void LibraryForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var book = new Book();
+            book.Title = "harry harry";
+            bookService.Add(book);
+        }
     }
 }
