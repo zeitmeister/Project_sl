@@ -65,6 +65,7 @@
     <Compile Include="LibraryForm.Designer.cs">
       <DependentUpon>LibraryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Author.cs" />
     <Compile Include="Models\LibraryDbInit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

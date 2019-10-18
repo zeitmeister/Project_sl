@@ -42,7 +42,7 @@ namespace Library
                 lbBooks.Items.Add(book);
             }
         }
-
+        
         private void BTNChangeBook_Click(object sender, EventArgs e)
         {
             Book b = lbBooks.SelectedItem as Book;
@@ -52,6 +52,12 @@ namespace Library
                 bookService.Edit(b);
             }
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Book book = new Book();
+            book.Title = "Harry Pötter";
+            bookService.Add(book);
+        }
     }
 }
