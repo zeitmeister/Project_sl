@@ -32,9 +32,10 @@ namespace Library.Repositories
             return new AuthorRepository(context);
         }
 
-        public MemberRepository CreateMemberRepository()
+
+        public LoanRepository CreateLoanRepository()
         {
-            return new MemberRepository(context);
+            return new LoanRepository(context);
         }
     }
 }
