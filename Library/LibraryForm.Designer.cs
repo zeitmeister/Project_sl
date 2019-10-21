@@ -38,6 +38,8 @@
             this.lb_Member = new System.Windows.Forms.ListBox();
             this.btn_AddMember = new System.Windows.Forms.Button();
             this.btn_MakeLoan = new System.Windows.Forms.Button();
+            this.btn_FindLoanedBooks = new System.Windows.Forms.Button();
+            this.lb_LoanedBooks = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -83,10 +85,10 @@
             // 
             // Add_BookCopy
             // 
-            this.Add_BookCopy.Location = new System.Drawing.Point(816, 712);
+            this.Add_BookCopy.Location = new System.Drawing.Point(672, 673);
             this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Add_BookCopy.Name = "Add_BookCopy";
-            this.Add_BookCopy.Size = new System.Drawing.Size(340, 128);
+            this.Add_BookCopy.Size = new System.Drawing.Size(226, 62);
             this.Add_BookCopy.TabIndex = 4;
             this.Add_BookCopy.Text = "Add BookCopy";
             this.Add_BookCopy.UseVisualStyleBackColor = true;
@@ -126,7 +128,7 @@
             // 
             this.lbAuthors.FormattingEnabled = true;
             this.lbAuthors.ItemHeight = 20;
-            this.lbAuthors.Location = new System.Drawing.Point(22, 409);
+            this.lbAuthors.Location = new System.Drawing.Point(12, 446);
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(640, 84);
             this.lbAuthors.TabIndex = 8;
@@ -166,14 +168,14 @@
             // 
             this.lb_Member.FormattingEnabled = true;
             this.lb_Member.ItemHeight = 20;
-            this.lb_Member.Location = new System.Drawing.Point(862, 504);
+            this.lb_Member.Location = new System.Drawing.Point(862, 471);
             this.lb_Member.Name = "lb_Member";
             this.lb_Member.Size = new System.Drawing.Size(243, 84);
             this.lb_Member.TabIndex = 12;
             // 
             // btn_AddMember
             // 
-            this.btn_AddMember.Location = new System.Drawing.Point(862, 612);
+            this.btn_AddMember.Location = new System.Drawing.Point(957, 582);
             this.btn_AddMember.Name = "btn_AddMember";
             this.btn_AddMember.Size = new System.Drawing.Size(148, 47);
             this.btn_AddMember.TabIndex = 13;
@@ -183,7 +185,7 @@
             // 
             // btn_MakeLoan
             // 
-            this.btn_MakeLoan.Location = new System.Drawing.Point(1138, 504);
+            this.btn_MakeLoan.Location = new System.Drawing.Point(1148, 467);
             this.btn_MakeLoan.Name = "btn_MakeLoan";
             this.btn_MakeLoan.Size = new System.Drawing.Size(146, 63);
             this.btn_MakeLoan.TabIndex = 14;
@@ -191,11 +193,32 @@
             this.btn_MakeLoan.UseVisualStyleBackColor = true;
             this.btn_MakeLoan.Click += new System.EventHandler(this.btn_MakeLoan_Click);
             // 
+            // btn_FindLoanedBooks
+            // 
+            this.btn_FindLoanedBooks.Location = new System.Drawing.Point(1148, 568);
+            this.btn_FindLoanedBooks.Name = "btn_FindLoanedBooks";
+            this.btn_FindLoanedBooks.Size = new System.Drawing.Size(174, 45);
+            this.btn_FindLoanedBooks.TabIndex = 15;
+            this.btn_FindLoanedBooks.Text = "Find Loaned Books";
+            this.btn_FindLoanedBooks.UseVisualStyleBackColor = true;
+            this.btn_FindLoanedBooks.Click += new System.EventHandler(this.btn_FindLoanedBooks_Click);
+            // 
+            // lb_LoanedBooks
+            // 
+            this.lb_LoanedBooks.FormattingEnabled = true;
+            this.lb_LoanedBooks.ItemHeight = 20;
+            this.lb_LoanedBooks.Location = new System.Drawing.Point(957, 653);
+            this.lb_LoanedBooks.Name = "lb_LoanedBooks";
+            this.lb_LoanedBooks.Size = new System.Drawing.Size(365, 84);
+            this.lb_LoanedBooks.TabIndex = 16;
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.lb_LoanedBooks);
+            this.Controls.Add(this.btn_FindLoanedBooks);
             this.Controls.Add(this.btn_MakeLoan);
             this.Controls.Add(this.btn_AddMember);
             this.Controls.Add(this.lb_Member);
@@ -214,6 +237,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LibraryForm";
             this.Text = "7";
+            this.Load += new System.EventHandler(this.LibraryForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,6 +260,8 @@
         private System.Windows.Forms.ListBox lb_Member;
         private System.Windows.Forms.Button btn_AddMember;
         private System.Windows.Forms.Button btn_MakeLoan;
+        private System.Windows.Forms.Button btn_FindLoanedBooks;
+        private System.Windows.Forms.ListBox lb_LoanedBooks;
     }
 }
 

@@ -187,5 +187,19 @@ namespace Library
         {
             loanService.MakeLoan(lbBookCopies.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
+
+        private void LibraryForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
+        {
+            var book = lbBooks.SelectedItem as Book;
+            foreach (var loanedBook in loanService.FindBookCopiesOnLoan(book))
+            {
+                lb_LoanedBooks.Items.Add(loanedBook);
+            }
+        }
     } 
 }

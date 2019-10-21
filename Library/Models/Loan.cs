@@ -15,5 +15,12 @@ namespace Library.Models
         public DateTime TimeOfReturn { get; set; }
         public BookCopy BookCopy { get; set; }
         public Member Member { get; set; }
+
+        public override string ToString()
+        {
+            return BookCopy.Book.Title + " is on loan";
+        }
     }
+
+
 }

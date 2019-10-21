@@ -43,10 +43,5 @@ namespace Library.Services
         {
             return bookCopyRepository.Find(bookCopy.BookCopyId);
         }
-
-        public IEnumerable<BookCopy> FindBookCopiesOnLoan(Book book)
-        {
-            bookCopyRepository.All.
-        }
     }
 }
