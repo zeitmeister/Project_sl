@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library.Models
 {
-    class Loan
+    public class Loan
     {
-        public int LoadId { get; set; }
+        public int LoanId { get; set; }
         public DateTime TimeOfLoan { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime TimeOfReturn { get; set; }
