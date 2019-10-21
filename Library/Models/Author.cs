@@ -8,13 +8,20 @@ namespace Library.Models
 {
     public class Author
     {
-        private List<Book> _books = new List<Book>();
+        
         public int AuthorId { get; set; }
         public string Name { get; set; }
 
-        public List<Book> Books {
-            get { return _books; }
-            set { }
+        public ICollection<Book> Books { get; set; }
+
+        public Author()
+        {
+            Books = new List<Book>();
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
         }
     }
 }
