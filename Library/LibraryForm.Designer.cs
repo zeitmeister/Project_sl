@@ -33,6 +33,8 @@
             this.btnAddAuthor = new System.Windows.Forms.Button();
             this.lbAuthors = new System.Windows.Forms.ListBox();
             this.txtBox_AddAuthor = new System.Windows.Forms.TextBox();
+            this.lb_BooksByAuthor = new System.Windows.Forms.ListBox();
+            this.btn_ViewBooks = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -121,6 +123,7 @@
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(428, 56);
             this.lbAuthors.TabIndex = 8;
+            this.lbAuthors.SelectedIndexChanged += new System.EventHandler(this.lbAuthors_SelectedIndexChanged);
             // 
             // txtBox_AddAuthor
             // 
@@ -130,11 +133,33 @@
             this.txtBox_AddAuthor.TabIndex = 9;
             this.txtBox_AddAuthor.TextChanged += new System.EventHandler(this.txtBox_AddAuthor_TextChanged);
             // 
+            // lb_BooksByAuthor
+            // 
+            this.lb_BooksByAuthor.FormattingEnabled = true;
+            this.lb_BooksByAuthor.Location = new System.Drawing.Point(590, 22);
+            this.lb_BooksByAuthor.Name = "lb_BooksByAuthor";
+            this.lb_BooksByAuthor.Size = new System.Drawing.Size(274, 238);
+            this.lb_BooksByAuthor.TabIndex = 10;
+            this.lb_BooksByAuthor.SelectedIndexChanged += new System.EventHandler(this.lb_BooksByAuthor_SelectedIndexChanged);
+            // 
+            // btn_ViewBooks
+            // 
+            this.btn_ViewBooks.Location = new System.Drawing.Point(448, 323);
+            this.btn_ViewBooks.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_ViewBooks.Name = "btn_ViewBooks";
+            this.btn_ViewBooks.Size = new System.Drawing.Size(122, 34);
+            this.btn_ViewBooks.TabIndex = 11;
+            this.btn_ViewBooks.Text = "View books by selected author";
+            this.btn_ViewBooks.UseVisualStyleBackColor = true;
+            this.btn_ViewBooks.Click += new System.EventHandler(this.btn_ViewBooks_Click);
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 487);
+            this.Controls.Add(this.btn_ViewBooks);
+            this.Controls.Add(this.lb_BooksByAuthor);
             this.Controls.Add(this.txtBox_AddAuthor);
             this.Controls.Add(this.lbAuthors);
             this.Controls.Add(this.btnAddAuthor);
@@ -164,6 +189,8 @@
         private System.Windows.Forms.Button btnAddAuthor;
         private System.Windows.Forms.ListBox lbAuthors;
         private System.Windows.Forms.TextBox txtBox_AddAuthor;
+        private System.Windows.Forms.ListBox lb_BooksByAuthor;
+        private System.Windows.Forms.Button btn_ViewBooks;
     }
 }
 
