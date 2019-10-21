@@ -14,8 +14,10 @@ namespace Library.Models {
         protected override void Seed(LibraryContext context) {
             base.Seed(context);
 
-            Book monteCristo = new Book() {
-                Title = "The Count of Monte Cristo"
+            Book monteCristo = new Book
+            {
+                Title = "The Count of Monte Cristo",
+                Author = new Author { Name = "Alexandre Dumas" }
             };
 
             // Add the book to the DbSet of books.
