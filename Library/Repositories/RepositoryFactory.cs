@@ -31,5 +31,10 @@ namespace Library.Repositories
         {
             return new AuthorRepository(context);
         }
+
+        public MemberRepository CreateMemberRepository()
+        {
+            return new MemberRepository(context);
+        }
     }
 }
