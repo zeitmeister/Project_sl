@@ -11,6 +11,11 @@ namespace Library.Repositories
     {
         LibraryContext context;
 
+        public MemberRepository(LibraryContext c)
+        {
+            this.context = c;
+        }
+
         public void Add(Member item)
         {
             context.Member.Add(item);

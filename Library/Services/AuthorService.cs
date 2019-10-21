@@ -28,5 +28,10 @@ namespace Library.Services
         {
             return authorRepository.All();
         }
+
+        public Author Find(int id)
+        {
+            return authorRepository.Find(id);
+        }
     }
 }

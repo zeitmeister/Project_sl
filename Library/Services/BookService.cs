@@ -48,8 +48,6 @@ namespace Library.Services
             OnUpdated(this, eventArgs);
         }
 
-        
-
         public void Remove(Book book)
         {
             bookRepository.Remove(book);
