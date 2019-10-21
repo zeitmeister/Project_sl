@@ -27,8 +27,11 @@ namespace Library.Models {
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+<<<<<<< HEAD
 
         public DbSet<BookCopy> BookCopies { get; set; }
+=======
+>>>>>>> 5313290710a16ccd916e146f5d35e8bf00e056fd
 
         // If you want to try or need to (some use cases) use fluent API this is the place!
         // Reference: http://blogs.msdn.com/b/adonet/archive/2010/12/14/ef-feature-ctp5-fluent-api-samples.aspx

@@ -59,6 +59,7 @@ namespace Library
             }
         }
 
+<<<<<<< HEAD
         private void button1_Click(object sender, EventArgs e)
         {
             Book book = new Book { 
@@ -102,4 +103,18 @@ namespace Library
             lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;
         }
     } 
+=======
+        private void LibraryForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var book = new Book();
+            book.Title = "harry harry";
+            bookService.Add(book);
+        }
+    }
+>>>>>>> 5313290710a16ccd916e146f5d35e8bf00e056fd
 }

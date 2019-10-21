@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Author.cs" />
     <Compile Include="LibraryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,7 +71,11 @@
     <Compile Include="Models\LibraryDbInit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="Repositories\BookCopyRepository.cs" />
+=======
+    <Compile Include="Repositories\AuthorRepository.cs" />
+>>>>>>> 5313290710a16ccd916e146f5d35e8bf00e056fd
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Models\Book.cs" />

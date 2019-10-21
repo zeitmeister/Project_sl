@@ -7,6 +7,7 @@ using System.Web;
 namespace Library.Models {
     public class Book {
 
+<<<<<<< HEAD
         private Author _author = new Author();
 
         public int BookId { get; set; }
@@ -15,6 +16,9 @@ namespace Library.Models {
         public string Description { get; set; }
         public Author Author { get; set; }
         public ICollection<BookCopy> BookCopies { get; set; }
+=======
+        public int BookId { get; set; }
+>>>>>>> 5313290710a16ccd916e146f5d35e8bf00e056fd
         public string Title { get; set; }
 
         public Book()

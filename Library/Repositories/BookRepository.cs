@@ -38,8 +38,13 @@ namespace Library.Repositories
 
         public Book Find(int id)
         {
+<<<<<<< HEAD
             //Det här kan bli null om inte 'as Book' fungerar.
             return context.Books.Where(b => b.BookId == id) as Book;
+=======
+            return context.Books.Where(b => b.BookId == id) as Book;
+            // 'as' testar om det går
+>>>>>>> 5313290710a16ccd916e146f5d35e8bf00e056fd
         }
 
         public void Remove(Book item)
