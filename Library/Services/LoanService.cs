@@ -51,12 +51,12 @@ namespace Library.Services
             loanRepository.Add(loan);
         }
 
-        public BookCopy FindBookCopiesOnLoan(Book book)
+        public IEnumerable<BookCopy> FindBookCopiesOnLoan(Book book)
         {
-            /* FRÅGA VARFÖR JOIN INTE FUNGERAR!
+            /* FRÅGA VARFÖR JOIN INTE FUNGERAR! */
             var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
-            var join = bookCopies.Join(loans, bc => bc.BookCopyId, l => l.2);*/
+            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new BookCopy(){ BookCopyId = bookCopy.BookCopyId, Condition = bookCopy.Condition, Book = book});
         }
 
     }
