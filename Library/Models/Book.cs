@@ -7,8 +7,26 @@ using System.Web;
 namespace Library.Models {
     public class Book {
 
+        private Author _author = new Author();
+
         public int BookId { get; set; }
+
+        public string ISBN { get; set; }
+        public string Description { get; set; }
+        public Author Author { get; set; }
+        public ICollection<BookCopy> BookCopies { get; set; }
         public string Title { get; set; }
+
+        public Book()
+        {
+            _author.Books.Add(this);
+            BookCopies = new List<BookCopy>();
+        }
+
+        public void AddToCopyList(int condition)
+        {
+
+        }
 
         /// <summary>
         /// Useful for adding the book objects directly to a ListBox.
