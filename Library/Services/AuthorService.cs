@@ -27,6 +27,7 @@ namespace Library.Services
             if (handler != null)
             {
                 handler(this, eventArgs);
+                //Testar
             }
         }
 
