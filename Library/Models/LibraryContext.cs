@@ -30,6 +30,8 @@ namespace Library.Models {
 
         public DbSet<BookCopy> BookCopies { get; set; }
 
+        public DbSet<Member> Member { get; set; }
+
         // If you want to try or need to (some use cases) use fluent API this is the place!
         // Reference: http://blogs.msdn.com/b/adonet/archive/2010/12/14/ef-feature-ctp5-fluent-api-samples.aspx
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {

@@ -68,6 +68,7 @@
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\BookCopy.cs" />
     <Compile Include="Models\LibraryDbInit.cs" />
+    <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\LibraryContext.cs" />
+    <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Services\AuthorService.cs" />
     <Compile Include="Services\BookCopyService.cs" />
