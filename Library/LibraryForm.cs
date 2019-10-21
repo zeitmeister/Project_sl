@@ -18,6 +18,7 @@ namespace Library
         Form formPopup = new Form();
         BookService bookService;
         BookCopyService copyService;
+        AuthorService authorService;
         public LibraryForm()
         {
             InitializeComponent();
@@ -28,8 +29,9 @@ namespace Library
             // sure all the repositories created use the same context.
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
-            this.bookService = new BookService(repFactory);
+            bookService = new BookService(repFactory);
             copyService = new BookCopyService(repFactory);
+            authorService = new AuthorService(repFactory);
             ShowAllBooks(bookService.All());
             bookService.Updated += BookService_Updated;
         }
@@ -61,9 +63,9 @@ namespace Library
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Book book = new Book { 
+            Book book = new Book {
                 Title = "Harry Potter and the Prisoner of Azkaban",
-                Author = new Author { Name = "J.K. Rowling" }
+                Author = lbAuthors.SelectedItem as Author
             };
             bookService.Add(book);
             /*book.AddToCopyList(8);
@@ -100,6 +102,16 @@ namespace Library
                 lbBookCopies.Items.Add(copy);
             }
             lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;
+        }
+
+        private void btnAddAuthor_Click(object sender, EventArgs e)
+        {
+            Author author = new Author()
+            {
+                Name = "J.K Rowling"
+            };
+            authorService.Add(author);
+            lbAuthors.Items.Add(author);
         }
     } 
 }

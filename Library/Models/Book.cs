@@ -7,7 +7,6 @@ using System.Web;
 namespace Library.Models {
     public class Book {
 
-        private Author _author = new Author();
 
         public int BookId { get; set; }
 
@@ -19,7 +18,6 @@ namespace Library.Models {
 
         public Book()
         {
-            _author.Books.Add(this);
             BookCopies = new List<BookCopy>();
         }
 

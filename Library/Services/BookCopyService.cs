@@ -32,5 +32,16 @@ namespace Library.Services
         {
             return bookCopyRepository.SpecificBookCopies(book);
         }
+
+        public void Remove(BookCopy bookCopy)
+        {
+            bookCopyRepository.Remove(bookCopy);
+            
+        }
+
+        public BookCopy Find(BookCopy bookCopy)
+        {
+            return bookCopyRepository.Find(bookCopy.BookCopyId);
+        }
     }
 }

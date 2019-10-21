@@ -33,17 +33,18 @@ namespace Library.Repositories
 
         public void Edit(BookCopy item)
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public BookCopy Find(int id)
         {
-            throw new NotImplementedException();
+            return context.BookCopies.Where(cb => cb.BookCopyId == id) as BookCopy;
         }
 
         public void Remove(BookCopy item)
         {
-            throw new NotImplementedException();
+            context.BookCopies.Remove(item);
+            context.SaveChanges();
         }
     }
 }

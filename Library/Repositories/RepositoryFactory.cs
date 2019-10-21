@@ -26,5 +26,10 @@ namespace Library.Repositories
         {
             return new BookCopyRepository(context);
         }
+
+        public AuthorRepository CreateAuthorRepository()
+        {
+            return new AuthorRepository(context);
+        }
     }
 }
