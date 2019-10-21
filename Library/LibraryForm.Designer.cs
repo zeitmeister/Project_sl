@@ -32,23 +32,23 @@
             this.lblBookCopies = new System.Windows.Forms.Label();
             this.btnAddAuthor = new System.Windows.Forms.Button();
             this.lbAuthors = new System.Windows.Forms.ListBox();
+            this.txtBox_AddAuthor = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbBooks
             // 
             this.lbBooks.FormattingEnabled = true;
-            this.lbBooks.ItemHeight = 20;
-            this.lbBooks.Location = new System.Drawing.Point(18, 18);
-            this.lbBooks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lbBooks.Location = new System.Drawing.Point(12, 12);
             this.lbBooks.Name = "lbBooks";
-            this.lbBooks.Size = new System.Drawing.Size(644, 364);
+            this.lbBooks.Size = new System.Drawing.Size(431, 238);
             this.lbBooks.TabIndex = 0;
             // 
             // BTNChangeBook
             // 
-            this.BTNChangeBook.Location = new System.Drawing.Point(672, 34);
+            this.BTNChangeBook.Location = new System.Drawing.Point(448, 22);
+            this.BTNChangeBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BTNChangeBook.Name = "BTNChangeBook";
-            this.BTNChangeBook.Size = new System.Drawing.Size(122, 91);
+            this.BTNChangeBook.Size = new System.Drawing.Size(81, 59);
             this.BTNChangeBook.TabIndex = 1;
             this.BTNChangeBook.Text = "TEST: Change the book title";
             this.BTNChangeBook.UseVisualStyleBackColor = true;
@@ -56,9 +56,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(672, 192);
+            this.button1.Location = new System.Drawing.Point(448, 125);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(50, 15);
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,10 +67,9 @@
             // 
             // deleteBookBtn
             // 
-            this.deleteBookBtn.Location = new System.Drawing.Point(672, 278);
-            this.deleteBookBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.deleteBookBtn.Location = new System.Drawing.Point(448, 181);
             this.deleteBookBtn.Name = "deleteBookBtn";
-            this.deleteBookBtn.Size = new System.Drawing.Size(112, 35);
+            this.deleteBookBtn.Size = new System.Drawing.Size(75, 23);
             this.deleteBookBtn.TabIndex = 3;
             this.deleteBookBtn.Text = "Delete book";
             this.deleteBookBtn.UseVisualStyleBackColor = true;
@@ -77,10 +77,9 @@
             // 
             // Add_BookCopy
             // 
-            this.Add_BookCopy.Location = new System.Drawing.Point(816, 712);
-            this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Add_BookCopy.Location = new System.Drawing.Point(544, 463);
             this.Add_BookCopy.Name = "Add_BookCopy";
-            this.Add_BookCopy.Size = new System.Drawing.Size(340, 128);
+            this.Add_BookCopy.Size = new System.Drawing.Size(227, 83);
             this.Add_BookCopy.TabIndex = 4;
             this.Add_BookCopy.Text = "Add BookCopy";
             this.Add_BookCopy.UseVisualStyleBackColor = true;
@@ -89,28 +88,26 @@
             // lbBookCopies
             // 
             this.lbBookCopies.FormattingEnabled = true;
-            this.lbBookCopies.ItemHeight = 20;
-            this.lbBookCopies.Location = new System.Drawing.Point(18, 592);
-            this.lbBookCopies.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lbBookCopies.Location = new System.Drawing.Point(12, 385);
             this.lbBookCopies.Name = "lbBookCopies";
-            this.lbBookCopies.Size = new System.Drawing.Size(644, 364);
+            this.lbBookCopies.Size = new System.Drawing.Size(431, 238);
             this.lbBookCopies.TabIndex = 5;
             // 
             // lblBookCopies
             // 
             this.lblBookCopies.AutoSize = true;
-            this.lblBookCopies.Location = new System.Drawing.Point(18, 568);
-            this.lblBookCopies.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBookCopies.Location = new System.Drawing.Point(12, 369);
             this.lblBookCopies.Name = "lblBookCopies";
-            this.lblBookCopies.Size = new System.Drawing.Size(51, 20);
+            this.lblBookCopies.Size = new System.Drawing.Size(35, 13);
             this.lblBookCopies.TabIndex = 6;
             this.lblBookCopies.Text = "label1";
             // 
             // btnAddAuthor
             // 
-            this.btnAddAuthor.Location = new System.Drawing.Point(672, 425);
+            this.btnAddAuthor.Location = new System.Drawing.Point(448, 276);
+            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddAuthor.Name = "btnAddAuthor";
-            this.btnAddAuthor.Size = new System.Drawing.Size(183, 53);
+            this.btnAddAuthor.Size = new System.Drawing.Size(122, 34);
             this.btnAddAuthor.TabIndex = 7;
             this.btnAddAuthor.Text = "Add Author";
             this.btnAddAuthor.UseVisualStyleBackColor = true;
@@ -119,17 +116,26 @@
             // lbAuthors
             // 
             this.lbAuthors.FormattingEnabled = true;
-            this.lbAuthors.ItemHeight = 20;
-            this.lbAuthors.Location = new System.Drawing.Point(22, 409);
+            this.lbAuthors.Location = new System.Drawing.Point(15, 266);
+            this.lbAuthors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbAuthors.Name = "lbAuthors";
-            this.lbAuthors.Size = new System.Drawing.Size(640, 84);
+            this.lbAuthors.Size = new System.Drawing.Size(428, 56);
             this.lbAuthors.TabIndex = 8;
+            // 
+            // txtBox_AddAuthor
+            // 
+            this.txtBox_AddAuthor.Location = new System.Drawing.Point(575, 284);
+            this.txtBox_AddAuthor.Name = "txtBox_AddAuthor";
+            this.txtBox_AddAuthor.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_AddAuthor.TabIndex = 9;
+            this.txtBox_AddAuthor.TextChanged += new System.EventHandler(this.txtBox_AddAuthor_TextChanged);
             // 
             // LibraryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1590, 1050);
+            this.ClientSize = new System.Drawing.Size(913, 487);
+            this.Controls.Add(this.txtBox_AddAuthor);
             this.Controls.Add(this.lbAuthors);
             this.Controls.Add(this.btnAddAuthor);
             this.Controls.Add(this.lblBookCopies);
@@ -139,7 +145,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.BTNChangeBook);
             this.Controls.Add(this.lbBooks);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LibraryForm";
             this.Text = "7";
             this.ResumeLayout(false);
@@ -158,6 +163,7 @@
         private System.Windows.Forms.Label lblBookCopies;
         private System.Windows.Forms.Button btnAddAuthor;
         private System.Windows.Forms.ListBox lbAuthors;
+        private System.Windows.Forms.TextBox txtBox_AddAuthor;
     }
 }
 

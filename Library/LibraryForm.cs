@@ -34,6 +34,13 @@ namespace Library
             authorService = new AuthorService(repFactory);
             ShowAllBooks(bookService.All());
             bookService.Updated += BookService_Updated;
+            authorService.Updated += AuthorService_Updated;
+
+        }
+
+        private void AuthorService_Updated(object sender, EventArgs e)
+        {
+            ShowAllAuthors(authorService.All());
         }
 
         private void BookService_Updated(object sender, EventArgs e)
@@ -47,6 +54,15 @@ namespace Library
             foreach (Book book in books)
             {
                 lbBooks.Items.Add(book);
+            }
+        }
+
+        private void ShowAllAuthors(IEnumerable<Author> authors)
+        {
+            lbAuthors.Items.Clear();
+            foreach (var author in authors)
+            {
+                lbAuthors.Items.Add(author);
             }
         }
         
@@ -108,10 +124,19 @@ namespace Library
         {
             Author author = new Author()
             {
-                Name = "J.K Rowling"
+                Name = txtBox_AddAuthor.Text
             };
             authorService.Add(author);
-            lbAuthors.Items.Add(author);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBox_AddAuthor_TextChanged(object sender, EventArgs e)
+        {
+
         }
     } 
 }
