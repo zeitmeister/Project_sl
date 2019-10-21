@@ -38,5 +38,26 @@ namespace Library.Services
             return loanRepository.Find(id);
         }
 
+        public void MakeLoan(BookCopy bookCopy, Member member)
+        {
+            Loan loan = new Loan()
+            {
+                BookCopy = bookCopy,
+                Member = member,
+                TimeOfLoan = DateTime.Now,
+                DueDate = DateTime.Now.AddDays(15),
+                TimeOfReturn = DateTime.Now
+            };
+            loanRepository.Add(loan);
+        }
+
+        public BookCopy FindBookCopiesOnLoan(Book book)
+        {
+            /* FRÅGA VARFÖR JOIN INTE FUNGERAR!
+            var bookCopies = book.BookCopies.ToList();
+            IEnumerable <Loan> loans = loanRepository.All().ToList();
+            var join = bookCopies.Join(loans, bc => bc.BookCopyId, l => l.2);*/
+        }
+
     }
 }
