@@ -20,5 +20,10 @@ namespace Library.Models
             Loans = new List<Loan>();
         }
 
+        public override string ToString()
+        {
+            return String.Format("{0} became member on: {1}", this.Name, this.DateOfMembership);
+        }
+
     }
 }

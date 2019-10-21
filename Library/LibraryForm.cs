@@ -19,6 +19,9 @@ namespace Library
         BookService bookService;
         BookCopyService copyService;
         AuthorService authorService;
+        MemberService memberService;
+        LoanService loanService;
+
         public LibraryForm()
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace Library
             bookService = new BookService(repFactory);
             copyService = new BookCopyService(repFactory);
             authorService = new AuthorService(repFactory);
+            memberService = new MemberService(repFactory);
+            loanService = new LoanService(repFactory);
             ShowAllBooks(bookService.All());
             bookService.Updated += BookService_Updated;
             authorService.Updated += AuthorService_Updated;
@@ -161,6 +166,26 @@ namespace Library
         private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_AddMember_Click(object sender, EventArgs e)
+        {
+            Member member = new Member()
+            {
+                Name = txtBox_AddAuthor.Text,
+                DateOfMembership = DateTime.Today
+
+            };
+            memberService.Add(member);
+            foreach (var member2 in memberService.All())
+            {
+                lb_Member.Items.Add(member2);
+            }
+        }
+
+        private void btn_MakeLoan_Click(object sender, EventArgs e)
+        {
+            loanService.MakeLoan(lbBookCopies.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
     } 
 }
