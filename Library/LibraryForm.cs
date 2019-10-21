@@ -43,6 +43,8 @@ namespace Library
             ShowAllAuthors(authorService.All());
         }
 
+        
+
         private void BookService_Updated(object sender, EventArgs e)
         {
             ShowAllBooks(bookService.All());
@@ -135,6 +137,28 @@ namespace Library
         }
 
         private void txtBox_AddAuthor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ViewBooks_Click(object sender, EventArgs e)
+        {
+            //Author author = new Author();
+            var itemSelected = lbAuthors.SelectedItem as Author;
+            
+            foreach (var item in authorService.BookByAuthor(itemSelected))
+            {
+                lb_BooksByAuthor.Items.Add(item);
+            }
+
+        }
+
+        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

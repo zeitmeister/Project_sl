@@ -52,5 +52,11 @@ namespace Library.Services
             OnUpdated(this, eventArgs);
         }
 
+        public IEnumerable<Book> BookByAuthor (Author author)
+        {
+            var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
+            return books;
+            
+        }
     }
 }
