@@ -37,18 +37,35 @@ namespace Library
             authorService = new AuthorService(repFactory);
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
+
             ShowAllBooks(bookService.All());
+
             bookService.Updated += BookService_Updated;
             authorService.Updated += AuthorService_Updated;
+            copyService.Updated += CopyService_Updated;
+            memberService.Updated += MemberService_Updated;
+            loanService.Updated += LoanService_Updated;
+        }
 
+        private void LoanService_Updated(object sender, EventArgs e)
+        {
+            ShowAllLoans(loanService.All());
+        }
+
+        private void MemberService_Updated(object sender, EventArgs e)
+        {
+            ShowAllMembers(memberService.All());
+        }
+
+        private void CopyService_Updated(object sender, EventArgs e)
+        {
+            ShowAllBookCopies(copyService.All());
         }
 
         private void AuthorService_Updated(object sender, EventArgs e)
         {
             ShowAllAuthors(authorService.All());
         }
-
-        
 
         private void BookService_Updated(object sender, EventArgs e)
         {
@@ -72,7 +89,34 @@ namespace Library
                 lbAuthors.Items.Add(author);
             }
         }
-        
+
+        private void ShowAllBookCopies(IEnumerable<BookCopy> bookCopies)
+        {
+            lbBookCopies.Items.Clear();
+            foreach (var bookCopy in bookCopies)
+            {
+                lbBookCopies.Items.Add(bookCopies);
+            }
+        }
+
+        private void ShowAllMembers(IEnumerable<Member> members)
+        {
+            lb_Member.Items.Clear();
+            foreach (var member in members)
+            {
+                lb_Member.Items.Add(member);
+            }
+        }
+
+        private void ShowAllLoans(IEnumerable<Loan> Loans)
+        {
+            lb_LoanedBooks.Items.Clear();
+            foreach (var loan in Loans)
+            {
+                lb_LoanedBooks.Items.Add(loan);
+            }
+        }
+
         private void BTNChangeBook_Click(object sender, EventArgs e)
         {
             Book b = lbBooks.SelectedItem as Book;

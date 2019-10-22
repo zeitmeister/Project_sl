@@ -14,9 +14,20 @@ namespace Library.Services
 
         public event EventHandler Updated;
 
+        private EventArgs eventArgs = new EventArgs();
+
         public MemberService(RepositoryFactory rFactory)
         {
             this.memberRepository = rFactory.CreateMemberRepository();
+        }
+
+        protected virtual void OnUpdated(object sender, EventArgs eventArgs)
+        {
+            var handler = Updated;
+            if (handler != null)
+            {
+                handler(this, eventArgs);
+            }
         }
 
         public IEnumerable<Member> All()
@@ -27,13 +38,13 @@ namespace Library.Services
         public void Add(Member member)
         {
             memberRepository.Add(member);
-            //OnUpdated(this, eventArgs);
+            OnUpdated(this, eventArgs);
         }
 
         public void Remove(Member member)
         {
             memberRepository.Remove(member);
-            //OnUpdated(this, eventArgs);
+            OnUpdated(this, eventArgs);
         }
 
         public Member Find(int id)

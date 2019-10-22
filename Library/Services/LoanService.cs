@@ -13,14 +13,26 @@ namespace Library.Services
         LoanRepository loanRepository;
         public event EventHandler Updated;
 
+        private EventArgs eventArgs = new EventArgs();
+
         public LoanService(RepositoryFactory repFactory)
         {
             loanRepository = repFactory.CreateLoanRepository();
         }
 
+        protected virtual void OnUpdated(object sender, EventArgs eventArgs)
+        {
+            var handler = Updated;
+            if (handler != null)
+            {
+                handler(this, eventArgs);
+            }
+        }
+
         public void Add(Loan loan)
         {
             loanRepository.Add(loan);
+            OnUpdated(this, eventArgs);
         }
 
         public IEnumerable<Loan> All()
@@ -31,6 +43,7 @@ namespace Library.Services
         public void Remove(Loan loan)
         {
             loanRepository.Remove(loan);
+            OnUpdated(this, eventArgs);
         }
 
         public Loan Find(int id)
@@ -56,7 +69,7 @@ namespace Library.Services
             /* FRÅGA VARFÖR JOIN INTE FUNGERAR! */
             var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
-            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new BookCopy(){ BookCopyId = bookCopy.BookCopyId, Condition = bookCopy.Condition, Book = book});
+            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => bookCopy); // new BookCopy(){ BookCopyId = bookCopy.BookCopyId, Condition = bookCopy.Condition, Book = book});
         }
 
     }
