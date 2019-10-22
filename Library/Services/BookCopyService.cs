@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    class BookCopyService : IService
+    public class BookCopyService : IService
     {
         public event EventHandler Updated;
 

@@ -7,7 +7,7 @@ using Library.Models;
 
 namespace Library.Repositories
 {
-    class MemberRepository : IRepository<Member, int>
+    public class MemberRepository : IRepository<Member, int>
     {
         LibraryContext context;
 
