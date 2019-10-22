@@ -48,7 +48,16 @@ namespace Library
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
-            ShowAllLoans(loanService.All());
+            //ShowAllLoans(loanService.All());
+            ShowLoanedBooksByMember(memberService.FindAllLoansForMember(lb_Member.SelectedItem as Member));
+        }
+
+        private void ShowLoanedBooksByMember(IEnumerable<Loan> loans)
+        {
+            foreach (var loan in loans)
+            {
+                lb_LoanedBooks.Items.Add(loan);
+            };
         }
 
         private void MemberService_Updated(object sender, EventArgs e)
