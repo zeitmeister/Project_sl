@@ -119,13 +119,15 @@ namespace Library
 
         private void BTNChangeBook_Click(object sender, EventArgs e)
         {
-            Book b = lbBooks.SelectedItem as Book;
+            Form1 form1 = new Form1(bookService);
+            form1.Show();
+            /*Book b = lbBooks.SelectedItem as Book;
             
             if (b != null)
             {
                 b.Title = "Yoyoma koko";
                 bookService.Edit(b);
-            }
+            }*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -259,6 +261,11 @@ namespace Library
             {
                 lb_LoanedBooks.Items.Add(loan.BookCopy);
             }
+        }
+
+        private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
+        {
+
         }
     } 
 }
