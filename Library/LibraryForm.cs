@@ -132,8 +132,11 @@ namespace Library
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
             
+
             AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
             AddBookCopyForm.Show();
+
+
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
@@ -226,8 +229,14 @@ namespace Library
             }
         }
 
+
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
+
+        }
+        private void btn_ReturnBook_Click(object sender, EventArgs e)
+        {
+            loanService.ReturnBook(lb_Member.SelectedItem as Member, lbBookCopies.SelectedItem as BookCopy);
 
         }
     } 
