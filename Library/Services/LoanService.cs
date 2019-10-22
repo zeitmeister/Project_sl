@@ -56,7 +56,7 @@ namespace Library.Services
             /* FRÅGA VARFÖR JOIN INTE FUNGERAR! */
             var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
-            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new BookCopy(){ BookCopyId = bookCopy.BookCopyId, Condition = bookCopy.Condition, Book = book});
+            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => bookCopy);
         }
 
     }

@@ -40,6 +40,7 @@
             this.btn_MakeLoan = new System.Windows.Forms.Button();
             this.btn_FindLoanedBooks = new System.Windows.Forms.Button();
             this.lb_LoanedBooks = new System.Windows.Forms.ListBox();
+            this.btn_FindLoansForMember = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -185,7 +186,7 @@
             // 
             // btn_MakeLoan
             // 
-            this.btn_MakeLoan.Location = new System.Drawing.Point(1148, 467);
+            this.btn_MakeLoan.Location = new System.Drawing.Point(1148, 419);
             this.btn_MakeLoan.Name = "btn_MakeLoan";
             this.btn_MakeLoan.Size = new System.Drawing.Size(146, 63);
             this.btn_MakeLoan.TabIndex = 14;
@@ -195,7 +196,7 @@
             // 
             // btn_FindLoanedBooks
             // 
-            this.btn_FindLoanedBooks.Location = new System.Drawing.Point(1148, 568);
+            this.btn_FindLoanedBooks.Location = new System.Drawing.Point(1148, 501);
             this.btn_FindLoanedBooks.Name = "btn_FindLoanedBooks";
             this.btn_FindLoanedBooks.Size = new System.Drawing.Size(174, 45);
             this.btn_FindLoanedBooks.TabIndex = 15;
@@ -212,11 +213,22 @@
             this.lb_LoanedBooks.Size = new System.Drawing.Size(365, 84);
             this.lb_LoanedBooks.TabIndex = 16;
             // 
+            // btn_FindLoansForMember
+            // 
+            this.btn_FindLoansForMember.Location = new System.Drawing.Point(1148, 573);
+            this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
+            this.btn_FindLoansForMember.Size = new System.Drawing.Size(164, 65);
+            this.btn_FindLoansForMember.TabIndex = 17;
+            this.btn_FindLoansForMember.Text = "Find Loans for Member";
+            this.btn_FindLoansForMember.UseVisualStyleBackColor = true;
+            this.btn_FindLoansForMember.Click += new System.EventHandler(this.btn_FindLoansForMember_Click);
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.btn_FindLoansForMember);
             this.Controls.Add(this.lb_LoanedBooks);
             this.Controls.Add(this.btn_FindLoanedBooks);
             this.Controls.Add(this.btn_MakeLoan);
@@ -262,6 +274,7 @@
         private System.Windows.Forms.Button btn_MakeLoan;
         private System.Windows.Forms.Button btn_FindLoanedBooks;
         private System.Windows.Forms.ListBox lb_LoanedBooks;
+        private System.Windows.Forms.Button btn_FindLoansForMember;
     }
 }
 

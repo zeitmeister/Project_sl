@@ -111,7 +111,7 @@ namespace Library
 
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
-            //formPopup.Show(this);
+            formPopup.Show(this);
             lbBookCopies.Items.Clear();
             var book = lbBooks.SelectedItem as Book;         
             BookCopy bookCopy = new BookCopy()
@@ -199,6 +199,21 @@ namespace Library
             foreach (var loanedBook in loanService.FindBookCopiesOnLoan(book))
             {
                 lb_LoanedBooks.Items.Add(loanedBook);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_FindLoansForMember_Click(object sender, EventArgs e)
+        {
+            lb_LoanedBooks.Items.Clear();
+            var member = lb_Member.SelectedItem as Member;
+            foreach (var loan in memberService.FindAllLoansForMember(member))
+            {
+                lb_LoanedBooks.Items.Add(loan.BookCopy);
             }
         }
     } 
