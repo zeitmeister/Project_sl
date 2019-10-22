@@ -134,20 +134,6 @@ namespace Library
             
             AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
             AddBookCopyForm.Show();
-
-            /*lbBookCopies.Items.Clear();
-            var book = lbBooks.SelectedItem as Book;         
-            BookCopy bookCopy = new BookCopy()
-            {
-                Book = book,
-                Condition = 8
-            };
-            copyService.Add(bookCopy);
-            foreach (var copy in copyService.SpecificBookCopies(book))
-            {
-                lbBookCopies.Items.Add(copy);
-            }
-            lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;*/
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
