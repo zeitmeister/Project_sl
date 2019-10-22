@@ -24,8 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this.lbBooks = new System.Windows.Forms.ListBox();
-            this.BTNChangeBook = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_AddBook = new System.Windows.Forms.Button();
             this.deleteBookBtn = new System.Windows.Forms.Button();
             this.Add_BookCopy = new System.Windows.Forms.Button();
             this.lbBookCopies = new System.Windows.Forms.ListBox();
@@ -53,27 +52,16 @@
             this.lbBooks.Size = new System.Drawing.Size(431, 238);
             this.lbBooks.TabIndex = 0;
             // 
-            // BTNChangeBook
+            // btn_AddBook
             // 
-            this.BTNChangeBook.Location = new System.Drawing.Point(448, 22);
-            this.BTNChangeBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.BTNChangeBook.Name = "BTNChangeBook";
-            this.BTNChangeBook.Size = new System.Drawing.Size(81, 59);
-            this.BTNChangeBook.TabIndex = 1;
-            this.BTNChangeBook.Text = "TEST: Change the book title";
-            this.BTNChangeBook.UseVisualStyleBackColor = true;
-            this.BTNChangeBook.Click += new System.EventHandler(this.BTNChangeBook_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(448, 125);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 15);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_AddBook.Location = new System.Drawing.Point(448, 22);
+            this.btn_AddBook.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_AddBook.Name = "btn_AddBook";
+            this.btn_AddBook.Size = new System.Drawing.Size(81, 59);
+            this.btn_AddBook.TabIndex = 1;
+            this.btn_AddBook.Text = "Add new book";
+            this.btn_AddBook.UseVisualStyleBackColor = true;
+            this.btn_AddBook.Click += new System.EventHandler(this.btn_AddBook_Click);
             // 
             // deleteBookBtn
             // 
@@ -115,7 +103,7 @@
             // btnAddAuthor
             // 
             this.btnAddAuthor.Location = new System.Drawing.Point(448, 276);
-            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAuthor.Name = "btnAddAuthor";
             this.btnAddAuthor.Size = new System.Drawing.Size(122, 34);
             this.btnAddAuthor.TabIndex = 7;
@@ -127,7 +115,7 @@
             // 
             this.lbAuthors.FormattingEnabled = true;
             this.lbAuthors.Location = new System.Drawing.Point(8, 290);
-            this.lbAuthors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbAuthors.Margin = new System.Windows.Forms.Padding(2);
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(428, 56);
             this.lbAuthors.TabIndex = 8;
@@ -153,7 +141,7 @@
             // btn_ViewBooks
             // 
             this.btn_ViewBooks.Location = new System.Drawing.Point(448, 323);
-            this.btn_ViewBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_ViewBooks.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ViewBooks.Name = "btn_ViewBooks";
             this.btn_ViewBooks.Size = new System.Drawing.Size(122, 34);
             this.btn_ViewBooks.TabIndex = 11;
@@ -165,7 +153,7 @@
             // 
             this.lb_Member.FormattingEnabled = true;
             this.lb_Member.Location = new System.Drawing.Point(575, 306);
-            this.lb_Member.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lb_Member.Margin = new System.Windows.Forms.Padding(2);
             this.lb_Member.Name = "lb_Member";
             this.lb_Member.Size = new System.Drawing.Size(163, 56);
             this.lb_Member.TabIndex = 12;
@@ -173,7 +161,7 @@
             // btn_AddMember
             // 
             this.btn_AddMember.Location = new System.Drawing.Point(638, 378);
-            this.btn_AddMember.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AddMember.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AddMember.Name = "btn_AddMember";
             this.btn_AddMember.Size = new System.Drawing.Size(99, 31);
             this.btn_AddMember.TabIndex = 13;
@@ -184,7 +172,7 @@
             // btn_MakeLoan
             // 
             this.btn_MakeLoan.Location = new System.Drawing.Point(765, 272);
-            this.btn_MakeLoan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_MakeLoan.Margin = new System.Windows.Forms.Padding(2);
             this.btn_MakeLoan.Name = "btn_MakeLoan";
             this.btn_MakeLoan.Size = new System.Drawing.Size(97, 41);
             this.btn_MakeLoan.TabIndex = 14;
@@ -195,7 +183,7 @@
             // btn_FindLoanedBooks
             // 
             this.btn_FindLoanedBooks.Location = new System.Drawing.Point(765, 326);
-            this.btn_FindLoanedBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FindLoanedBooks.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FindLoanedBooks.Name = "btn_FindLoanedBooks";
             this.btn_FindLoanedBooks.Size = new System.Drawing.Size(116, 29);
             this.btn_FindLoanedBooks.TabIndex = 15;
@@ -207,7 +195,7 @@
             // 
             this.lb_LoanedBooks.FormattingEnabled = true;
             this.lb_LoanedBooks.Location = new System.Drawing.Point(638, 424);
-            this.lb_LoanedBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lb_LoanedBooks.Margin = new System.Windows.Forms.Padding(2);
             this.lb_LoanedBooks.Name = "lb_LoanedBooks";
             this.lb_LoanedBooks.Size = new System.Drawing.Size(245, 56);
             this.lb_LoanedBooks.TabIndex = 16;
@@ -215,7 +203,7 @@
             // btn_FindLoansForMember
             // 
             this.btn_FindLoansForMember.Location = new System.Drawing.Point(765, 372);
-            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
             this.btn_FindLoansForMember.Size = new System.Drawing.Size(109, 42);
             this.btn_FindLoansForMember.TabIndex = 17;
@@ -249,8 +237,7 @@
             this.Controls.Add(this.lbBookCopies);
             this.Controls.Add(this.Add_BookCopy);
             this.Controls.Add(this.deleteBookBtn);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.BTNChangeBook);
+            this.Controls.Add(this.btn_AddBook);
             this.Controls.Add(this.lbBooks);
             this.Name = "LibraryForm";
             this.Text = "7";
@@ -264,8 +251,7 @@
         #endregion
 
         private System.Windows.Forms.ListBox lbBooks;
-        private System.Windows.Forms.Button BTNChangeBook;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_AddBook;
         private System.Windows.Forms.Button deleteBookBtn;
         private System.Windows.Forms.Button Add_BookCopy;
         private System.Windows.Forms.ListBox lbBookCopies;

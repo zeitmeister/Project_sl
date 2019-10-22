@@ -1,6 +1,6 @@
 ﻿namespace Library
 {
-    partial class Form1
+    partial class AddBookForm
     {
         /// <summary>
         /// Required designer variable.

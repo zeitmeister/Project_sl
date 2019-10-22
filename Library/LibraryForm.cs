@@ -15,7 +15,6 @@ namespace Library
 {
     public partial class LibraryForm : Form
     {
-        Form formPopup = new Form();
         BookService bookService;
         BookCopyService copyService;
         AuthorService authorService;
@@ -95,7 +94,7 @@ namespace Library
             lbBookCopies.Items.Clear();
             foreach (var bookCopy in bookCopies)
             {
-                lbBookCopies.Items.Add(bookCopies);
+                lbBookCopies.Items.Add(bookCopy);
             }
         }
 
@@ -117,38 +116,13 @@ namespace Library
             }
         }
 
-        private void BTNChangeBook_Click(object sender, EventArgs e)
+        private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1(bookService);
-            form1.Show();
-            /*Book b = lbBooks.SelectedItem as Book;
-            
-            if (b != null)
-            {
-                b.Title = "Yoyoma koko";
-                bookService.Edit(b);
-            }*/
+            AddBookForm addBookForm = new AddBookForm(bookService);
+            addBookForm.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Book book = new Book {
-                Title = "Harry Potter and the Prisoner of Azkaban",
-                Author = lbAuthors.SelectedItem as Author
-            };
-            bookService.Add(book);
-            /*book.AddToCopyList(8);
-            book.AddToCopyList(2);
-            book.AddToCopyList(1);
-            book.AddToCopyList(9);
-            foreach (var booktest in bookService.All())
-            {
-                foreach (var bookCopyTest in booktest.BookCopies)
-                {
-                    lbBooks.Items.Add(String.Format("{0} is in condition {1}", bookCopyTest.Book.Title, bookCopyTest.Condition));
-                }
-            }*/
-        }
+
 
         private void deleteBookBtn_Click(object sender, EventArgs e)
         {
@@ -157,8 +131,11 @@ namespace Library
 
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
-            formPopup.Show(this);
-            lbBookCopies.Items.Clear();
+            
+            AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
+            AddBookCopyForm.Show();
+
+            /*lbBookCopies.Items.Clear();
             var book = lbBooks.SelectedItem as Book;         
             BookCopy bookCopy = new BookCopy()
             {
@@ -170,7 +147,7 @@ namespace Library
             {
                 lbBookCopies.Items.Add(copy);
             }
-            lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;
+            lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;*/
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)

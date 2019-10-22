@@ -12,11 +12,11 @@ using Library.Models;
 
 namespace Library
 {
-    public partial class Form1 : Form
+    public partial class AddBookForm : Form
 
     {
         BookService BS;
-        public Form1 (BookService bookService)
+        public AddBookForm (BookService bookService)
         {
             BS = bookService;
             InitializeComponent();
