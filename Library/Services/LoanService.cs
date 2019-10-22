@@ -73,5 +73,21 @@ namespace Library.Services
             return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => bookCopy);
         }
 
+        public void ReturnBook(Member member, BookCopy bookCopy)
+        {
+            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == bookCopy.BookCopyId).FirstOrDefault();
+            if(loan.DueDate < DateTime.Now)
+            {
+                CalculatePrice(loan);
+            }
+            loan.TimeOfReturn = DateTime.Now;
+            
+        }
+
+        private int CalculatePrice(Loan loan)
+        {
+            int days = DateTime.Now.Day - loan.DueDate.Day;
+            return days * 10;
+        }
     }
 }

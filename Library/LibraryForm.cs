@@ -15,7 +15,6 @@ namespace Library
 {
     public partial class LibraryForm : Form
     {
-        Form formPopup = new Form();
         BookService bookService;
         BookCopyService copyService;
         AuthorService authorService;
@@ -95,7 +94,7 @@ namespace Library
             lbBookCopies.Items.Clear();
             foreach (var bookCopy in bookCopies)
             {
-                lbBookCopies.Items.Add(bookCopies);
+                lbBookCopies.Items.Add(bookCopy);
             }
         }
 
@@ -155,7 +154,7 @@ namespace Library
 
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
-            formPopup.Show(this);
+            
             lbBookCopies.Items.Clear();
             var book = lbBooks.SelectedItem as Book;         
             BookCopy bookCopy = new BookCopy()
@@ -164,10 +163,6 @@ namespace Library
                 Condition = 8
             };
             copyService.Add(bookCopy);
-            foreach (var copy in copyService.SpecificBookCopies(book))
-            {
-                lbBookCopies.Items.Add(copy);
-            }
             lblBookCopies.Text = "We currently have " + book.BookCopies.Count() + " copies of " + book.Title;
         }
 
@@ -259,6 +254,11 @@ namespace Library
             {
                 lb_LoanedBooks.Items.Add(loan.BookCopy);
             }
+        }
+
+        private void btn_ReturnBook_Click(object sender, EventArgs e)
+        {
+            loanService.ReturnBook(lb_Member.SelectedItem as Member, lbBookCopies.SelectedItem as BookCopy);
         }
     } 
 }
