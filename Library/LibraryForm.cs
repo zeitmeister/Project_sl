@@ -203,5 +203,19 @@ namespace Library
             loanService.ReturnBook(lb_Member.SelectedItem as Member, lbBookCopies.SelectedItem as BookCopy);
 
         }
+
+        private void btn_FindAvailableBooks_Click(object sender, EventArgs e)
+        {
+            lbBookCopies.Items.Clear();
+            foreach (var bookCopy in loanService.FindAllAvailableBooks(copyService.All(), loanService.All()))
+            {
+                lbBookCopies.Items.Add(bookCopy);
+            }
+        }
+
+        private void btnReturnBook_Click(object sender, EventArgs e)
+        {
+            loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as BookCopy);
+        }
     } 
 }

@@ -10,9 +10,9 @@ namespace Library.Models
     public class Loan
     {
         public int LoanId { get; set; }
-        public DateTime TimeOfLoan { get; set; }
-        public DateTime DueDate { get; set; }
-        public DateTime TimeOfReturn { get; set; }
+        public DateTime? TimeOfLoan { get; set; }
+        public DateTime? DueDate { get; set; }
+        public DateTime? TimeOfReturn { get; set; }
         public BookCopy BookCopy { get; set; }
         public Member Member { get; set; }
 

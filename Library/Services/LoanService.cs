@@ -59,7 +59,7 @@ namespace Library.Services
                 Member = member,
                 TimeOfLoan = DateTime.Now,
                 DueDate = DateTime.Now.AddDays(15),
-                TimeOfReturn = DateTime.Now
+                TimeOfReturn = null
             };
             loanRepository.Add(loan);
         }
@@ -85,8 +85,26 @@ namespace Library.Services
 
         private int CalculatePrice(Loan loan)
         {
-            int days = DateTime.Now.Day - loan.DueDate.Day;
+            int days = 0;
+            if (loan.DueDate.HasValue)
+            {
+                var dueDate = loan.DueDate.Value.Day;
+                days = DateTime.Now.Day - dueDate;
+            }
+            
             return days * 10;
+        }
+
+        public IEnumerable<BookCopy> FindAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
+        {
+            var loanedBookCopies = loans.Select(l => l.BookCopy);
+            var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
+
+            var join = bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bc, l) => new { BookCopy = bc, Loan = l });
+            var timeBooksAndLoans = join.Select(bc => bc).Where(l => l.Loan.TimeOfLoan < DateTime.Now && l.Loan.TimeOfReturn < DateTime.Now);            
+            var timeBooks = timeBooksAndLoans.Select(bc => bc.BookCopy);
+            availableBooks.AddRange(timeBooks);
+            return availableBooks;
         }
     }
 }
