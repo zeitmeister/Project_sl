@@ -66,7 +66,6 @@ namespace Library.Services
 
         public IEnumerable<BookCopy> FindBookCopiesOnLoan(Book book)
         {
-            /* FRÅGA VARFÖR JOIN INTE FUNGERAR! */
             var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
 

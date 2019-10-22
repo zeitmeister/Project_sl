@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    class AuthorService : IService
+    public class AuthorService : IService
     {
         AuthorRepository authorRepository;
 

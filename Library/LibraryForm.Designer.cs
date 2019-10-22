@@ -44,6 +44,7 @@
             this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
             this.btnReturnBook = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,8 +81,11 @@
             // 
             // Add_BookCopy
             // 
+
             this.Add_BookCopy.Location = new System.Drawing.Point(1008, 911);
             this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+
+
             this.Add_BookCopy.Name = "Add_BookCopy";
             this.Add_BookCopy.Size = new System.Drawing.Size(226, 62);
             this.Add_BookCopy.TabIndex = 4;
@@ -127,7 +131,6 @@
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(640, 84);
             this.lbAuthors.TabIndex = 8;
-            this.lbAuthors.SelectedIndexChanged += new System.EventHandler(this.lbAuthors_SelectedIndexChanged);
             // 
             // txtBox_AddAuthor
             // 
@@ -136,7 +139,6 @@
             this.txtBox_AddAuthor.Name = "txtBox_AddAuthor";
             this.txtBox_AddAuthor.Size = new System.Drawing.Size(148, 26);
             this.txtBox_AddAuthor.TabIndex = 9;
-            this.txtBox_AddAuthor.TextChanged += new System.EventHandler(this.txtBox_AddAuthor_TextChanged);
             // 
             // lb_BooksByAuthor
             // 
@@ -147,7 +149,6 @@
             this.lb_BooksByAuthor.Name = "lb_BooksByAuthor";
             this.lb_BooksByAuthor.Size = new System.Drawing.Size(409, 364);
             this.lb_BooksByAuthor.TabIndex = 10;
-            this.lb_BooksByAuthor.SelectedIndexChanged += new System.EventHandler(this.lb_BooksByAuthor_SelectedIndexChanged);
             // 
             // btn_ViewBooks
             // 
@@ -233,6 +234,7 @@
             this.btn_ReturnBook.Text = "Return Book";
             this.btn_ReturnBook.UseVisualStyleBackColor = true;
             this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
+
             // 
             // btn_FindAvailableBooks
             // 
@@ -253,14 +255,17 @@
             this.btnReturnBook.Text = "Return Book";
             this.btnReturnBook.UseVisualStyleBackColor = true;
             this.btnReturnBook.Click += new System.EventHandler(this.btnReturnBook_Click);
+
             // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(1924, 1050);
             this.Controls.Add(this.btnReturnBook);
             this.Controls.Add(this.btn_FindAvailableBooks);
+
             this.Controls.Add(this.btn_ReturnBook);
             this.Controls.Add(this.btn_FindLoansForMember);
             this.Controls.Add(this.lb_LoanedBooks);
