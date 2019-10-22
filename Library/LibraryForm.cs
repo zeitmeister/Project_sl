@@ -118,11 +118,9 @@ namespace Library
 
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            AddBookForm addBookForm = new AddBookForm(bookService);
+            AddBookForm addBookForm = new AddBookForm(bookService, authorService);
             addBookForm.Show();
         }
-
-
 
         private void deleteBookBtn_Click(object sender, EventArgs e)
         {
@@ -131,12 +129,8 @@ namespace Library
 
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
-            
-
             AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
             AddBookCopyForm.Show();
-
-
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
@@ -148,16 +142,6 @@ namespace Library
             authorService.Add(author);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBox_AddAuthor_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
             //Author author = new Author();
@@ -167,32 +151,12 @@ namespace Library
             {
                 lb_BooksByAuthor.Items.Add(item);
             }
-
-        }
-
-        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_AddMember_Click(object sender, EventArgs e)
         {
-            Member member = new Member()
-            {
-                Name = txtBox_AddAuthor.Text,
-                DateOfMembership = DateTime.Today
-
-            };
-            memberService.Add(member);
-            foreach (var member2 in memberService.All())
-            {
-                lb_Member.Items.Add(member2);
-            }
+            AddNewMemberForm addNewMemberForm = new AddNewMemberForm(memberService);
+            addNewMemberForm.Show();
         }
 
         private void btn_MakeLoan_Click(object sender, EventArgs e)
