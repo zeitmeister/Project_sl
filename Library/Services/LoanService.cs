@@ -61,7 +61,7 @@ namespace Library.Services
                 DueDate = DateTime.Now.AddDays(15),
                 TimeOfReturn = null
             };
-            loanRepository.Add(loan);
+            Add(loan);
         }
 
         public IEnumerable<BookCopy> FindBookCopiesOnLoan(Book book)
@@ -85,12 +85,7 @@ namespace Library.Services
 
         private int CalculatePrice(Loan loan)
         {
-            int days = 0;
-            if (loan.DueDate.HasValue)
-            {
-                var dueDate = loan.DueDate.Value.Day;
-                days = DateTime.Now.Day - dueDate;
-            }
+                int days = DateTime.Now.Day - loan.DueDate.Day;
             
             return days * 10;
         }
@@ -100,10 +95,18 @@ namespace Library.Services
             var loanedBookCopies = loans.Select(l => l.BookCopy);
             var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
 
-            var join = bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bc, l) => new { BookCopy = bc, Loan = l });
-            var timeBooksAndLoans = join.Select(bc => bc).Where(l => l.Loan.TimeOfLoan < DateTime.Now && l.Loan.TimeOfReturn < DateTime.Now);            
-            var timeBooks = timeBooksAndLoans.Select(bc => bc.BookCopy);
-            availableBooks.AddRange(timeBooks);
+            
+            var bookCopiesPreviouslyLoaned =  bookCopies.Join(loans,
+                                    bc => bc.BookCopyId,
+                                    l => l.BookCopy.BookCopyId,
+                                    (bc, l) => new { BookCopy = bc, Loan = l })
+                            .Where(lo => lo.Loan.TimeOfReturn > lo.Loan.TimeOfLoan)
+                            .Select(bc => bc.BookCopy);
+            //var test = join.Select(l => l.Loan.TimeOfReturn < date);
+            /*var timeBooksAndLoans = join.Select(bc => bc)
+                .Where(l => l.Loan.TimeOfReturn > l.Loan.TimeOfLoan);            
+            var timeBooks = timeBooksAndLoans.Select(bc => bc.BookCopy);*/
+            availableBooks.AddRange(bookCopiesPreviouslyLoaned);
             return availableBooks;
         }
     }

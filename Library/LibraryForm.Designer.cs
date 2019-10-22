@@ -78,8 +78,10 @@
             // 
             // Add_BookCopy
             // 
-            this.Add_BookCopy.Location = new System.Drawing.Point(672, 592);
-            this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+
+            this.Add_BookCopy.Location = new System.Drawing.Point(1008, 911);
+            this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+
             this.Add_BookCopy.Name = "Add_BookCopy";
             this.Add_BookCopy.Size = new System.Drawing.Size(151, 40);
             this.Add_BookCopy.TabIndex = 4;
@@ -153,8 +155,11 @@
             // lb_Member
             // 
             this.lb_Member.FormattingEnabled = true;
-            this.lb_Member.Location = new System.Drawing.Point(575, 306);
-            this.lb_Member.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+
+            this.lb_Member.HorizontalScrollbar = true;
+            this.lb_Member.ItemHeight = 20;
+            this.lb_Member.Location = new System.Drawing.Point(862, 471);
+
             this.lb_Member.Name = "lb_Member";
             this.lb_Member.Size = new System.Drawing.Size(163, 56);
             this.lb_Member.TabIndex = 12;
@@ -195,8 +200,11 @@
             // lb_LoanedBooks
             // 
             this.lb_LoanedBooks.FormattingEnabled = true;
-            this.lb_LoanedBooks.Location = new System.Drawing.Point(638, 424);
-            this.lb_LoanedBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+
+            this.lb_LoanedBooks.HorizontalScrollbar = true;
+            this.lb_LoanedBooks.ItemHeight = 20;
+            this.lb_LoanedBooks.Location = new System.Drawing.Point(957, 652);
+
             this.lb_LoanedBooks.Name = "lb_LoanedBooks";
             this.lb_LoanedBooks.Size = new System.Drawing.Size(245, 56);
             this.lb_LoanedBooks.TabIndex = 16;
@@ -254,7 +262,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 749);
+
+            this.ClientSize = new System.Drawing.Size(1924, 1050);
+
             this.Controls.Add(this.btnReturnBook);
             this.Controls.Add(this.btn_FindAvailableBooks);
             this.Controls.Add(this.btn_ReturnBook);
