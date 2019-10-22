@@ -13,12 +13,14 @@ using Library.Models;
 namespace Library
 {
     public partial class AddBookForm : Form
-
     {
         BookService BS;
-        public AddBookForm (BookService bookService)
+        AuthorService AS;
+        
+        public AddBookForm (BookService bookService, AuthorService authorService)
         {
             BS = bookService;
+            AS = authorService;
             InitializeComponent();
 
         }
@@ -30,17 +32,34 @@ namespace Library
 
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            Book book = new Book()
+            var author = AS.All().Where(a => a.Name == txt_Author.Text).FirstOrDefault();
+            if (author != null)
             {
-                ISBN = txt_ISBN.Text,
-                Title = txt_Title.Text,
-                Description = txt_Description.Text,
-                Author = new Author
+                Book book = new Book()
                 {
-                    Name = txt_Author.Text
-                }
-            };
-            BS.Add(book);
+                    ISBN = txt_ISBN.Text,
+                    Title = txt_Title.Text,
+                    Description = txt_Description.Text,
+                    Author = author
+                };
+                BS.Add(book);
+            }
+            else
+            {
+                Book book = new Book()
+                {
+                    ISBN = txt_ISBN.Text,
+                    Title = txt_Title.Text,
+                    Description = txt_Description.Text,
+                    Author = new Author()
+                    {
+                        Name = txt_Author.Text
+                    }
+                };
+                BS.Add(book);
+            }
+            
+           
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)

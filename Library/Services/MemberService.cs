@@ -8,7 +8,7 @@ using Library.Repositories;
 
 namespace Library.Services
 {
-    class MemberService : IService
+    public class MemberService : IService
     {
         MemberRepository memberRepository;
 

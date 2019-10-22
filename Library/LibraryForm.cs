@@ -118,7 +118,7 @@ namespace Library
 
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            AddBookForm addBookForm = new AddBookForm(bookService);
+            AddBookForm addBookForm = new AddBookForm(bookService, authorService);
             addBookForm.Show();
         }
 
@@ -182,7 +182,10 @@ namespace Library
 
         private void btn_AddMember_Click(object sender, EventArgs e)
         {
-            Member member = new Member()
+            AddNewMemberForm addNewMemberForm = new AddNewMemberForm(memberService);
+            addNewMemberForm.Show();
+
+            /*Member member = new Member()
             {
                 Name = txtBox_AddAuthor.Text,
                 DateOfMembership = DateTime.Today
@@ -192,7 +195,7 @@ namespace Library
             foreach (var member2 in memberService.All())
             {
                 lb_Member.Items.Add(member2);
-            }
+            }*/
         }
 
         private void btn_MakeLoan_Click(object sender, EventArgs e)
