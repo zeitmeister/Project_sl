@@ -12,15 +12,27 @@ namespace Library.Services
     {
         public event EventHandler Updated;
 
+        private EventArgs eventArgs = new EventArgs();
+
         BookCopyRepository bookCopyRepository;
         public BookCopyService(RepositoryFactory rFactory)
         {
             this.bookCopyRepository = rFactory.CreateBookCopyRepository();
         }
 
+        protected virtual void OnUpdated(object sender, EventArgs eventArgs)
+        {
+            var handler = Updated;
+            if (handler != null)
+            {
+                handler(this, eventArgs);
+            }
+        }
+
         public void Add(BookCopy bookCopy)
         {
             bookCopyRepository.Add(bookCopy);
+            OnUpdated(this, eventArgs);
         }
 
         public IEnumerable<BookCopy> All()
@@ -36,7 +48,8 @@ namespace Library.Services
         public void Remove(BookCopy bookCopy)
         {
             bookCopyRepository.Remove(bookCopy);
-            
+            OnUpdated(this, eventArgs);
+
         }
 
         public BookCopy Find(BookCopy bookCopy)
