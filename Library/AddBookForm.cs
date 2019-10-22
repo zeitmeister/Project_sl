@@ -46,20 +46,20 @@ namespace Library
             }
             else
             {
+                Author author2 = new Author()
+                {
+                    Name = txt_Author.Text
+                };
                 Book book = new Book()
                 {
                     ISBN = txt_ISBN.Text,
                     Title = txt_Title.Text,
                     Description = txt_Description.Text,
-                    Author = new Author()
-                    {
-                        Name = txt_Author.Text
-                    }
+                    Author = author2
                 };
+                AS.Add(author2);
                 BS.Add(book);
-            }
-            
-           
+            }    
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)

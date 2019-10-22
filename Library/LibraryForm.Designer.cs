@@ -121,7 +121,6 @@
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(428, 56);
             this.lbAuthors.TabIndex = 8;
-            this.lbAuthors.SelectedIndexChanged += new System.EventHandler(this.lbAuthors_SelectedIndexChanged);
             // 
             // txtBox_AddAuthor
             // 
@@ -129,7 +128,6 @@
             this.txtBox_AddAuthor.Name = "txtBox_AddAuthor";
             this.txtBox_AddAuthor.Size = new System.Drawing.Size(100, 20);
             this.txtBox_AddAuthor.TabIndex = 9;
-            this.txtBox_AddAuthor.TextChanged += new System.EventHandler(this.txtBox_AddAuthor_TextChanged);
             // 
             // lb_BooksByAuthor
             // 
@@ -138,7 +136,6 @@
             this.lb_BooksByAuthor.Name = "lb_BooksByAuthor";
             this.lb_BooksByAuthor.Size = new System.Drawing.Size(274, 238);
             this.lb_BooksByAuthor.TabIndex = 10;
-            this.lb_BooksByAuthor.SelectedIndexChanged += new System.EventHandler(this.lb_BooksByAuthor_SelectedIndexChanged);
             // 
             // btn_ViewBooks
             // 
