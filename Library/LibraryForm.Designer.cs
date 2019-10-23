@@ -247,16 +247,19 @@
             this.btn_FindAvailableBooks.UseVisualStyleBackColor = true;
             this.btn_FindAvailableBooks.Click += new System.EventHandler(this.btn_FindAvailableBooks_Click);
             // 
-            // btnReturnBook
+
+            // btn_ReturnBook
             // 
-            this.btnReturnBook.Location = new System.Drawing.Point(498, 543);
-            this.btnReturnBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnReturnBook.Name = "btnReturnBook";
-            this.btnReturnBook.Size = new System.Drawing.Size(93, 48);
-            this.btnReturnBook.TabIndex = 20;
-            this.btnReturnBook.Text = "Return Book";
-            this.btnReturnBook.UseVisualStyleBackColor = true;
-            this.btnReturnBook.Click += new System.EventHandler(this.btnReturnBook_Click);
+            this.btn_ReturnBook.Location = new System.Drawing.Point(747, 836);
+            this.btn_ReturnBook.Name = "btn_ReturnBook";
+            this.btn_ReturnBook.Size = new System.Drawing.Size(125, 77);
+            this.btn_ReturnBook.TabIndex = 20;
+            this.btn_ReturnBook.Text = "Return Book";
+            this.btn_ReturnBook.UseVisualStyleBackColor = true;
+            this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
+            // 
+            // lb_AvailableBooks
+
             // 
             // LibraryForm
             // 
@@ -264,8 +267,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 
             this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.Controls.Add(this.lb_AvailableBooks);
+            this.Controls.Add(this.btn_ReturnBook);
 
-            this.Controls.Add(this.btnReturnBook);
+
+
             this.Controls.Add(this.btn_FindAvailableBooks);
             this.Controls.Add(this.btn_ReturnBook);
             this.Controls.Add(this.btn_FindLoansForMember);
