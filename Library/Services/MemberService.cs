@@ -52,10 +52,10 @@ namespace Library.Services
             return memberRepository.Find(id);
         }
 
-        public IEnumerable<Loan> FindAllLoansForMember(Member member)
+        public IEnumerable<Loan> FindAllBooksOnLoanForMember(Member member)
         {
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            return selectedMember.SelectMany(l => l.Loans);
+            return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
         }
 
         public IEnumerable<Loan> FindAllReturnedBooks(Member member)
