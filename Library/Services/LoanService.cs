@@ -79,7 +79,7 @@ namespace Library.Services
             var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
 
-            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => bookCopy);
+            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new { BookCopy = bookCopy, Loan = loan }).Where(l => l.Loan.TimeOfLoan > l.Loan.TimeOfReturn).Select(bc => bc.BookCopy);
         }
         /// <summary>
         /// Sets the loans time of return to now
@@ -95,7 +95,7 @@ namespace Library.Services
             }
             loan.TimeOfReturn = DateTime.Now;
             loanRepository.Edit(loan);
-            OnReturned(this, eventArgs);
+            OnUpdated(this, eventArgs);
         }
 
         private int CalculatePrice(Loan loan)
@@ -117,10 +117,6 @@ namespace Library.Services
                                     (bc, l) => new { BookCopy = bc, Loan = l })
                             .Where(lo => lo.Loan.TimeOfReturn > lo.Loan.TimeOfLoan)
                             .Select(bc => bc.BookCopy);
-            //var test = join.Select(l => l.Loan.TimeOfReturn < date);
-            /*var timeBooksAndLoans = join.Select(bc => bc)
-                .Where(l => l.Loan.TimeOfReturn > l.Loan.TimeOfLoan);            
-            var timeBooks = timeBooksAndLoans.Select(bc => bc.BookCopy);*/
             availableBooks.AddRange(bookCopiesPreviouslyLoaned);
             return availableBooks;
         }
