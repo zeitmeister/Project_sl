@@ -13,6 +13,7 @@ namespace Library.Services
         LoanRepository loanRepository;
         public event EventHandler Updated;
 
+        public event EventHandler Returned;
         private EventArgs eventArgs = new EventArgs();
 
         public LoanService(RepositoryFactory repFactory)
@@ -21,6 +22,15 @@ namespace Library.Services
         }
 
         protected virtual void OnUpdated(object sender, EventArgs eventArgs)
+        {
+            var handler = Updated;
+            if (handler != null)
+            {
+                handler(this, eventArgs);
+            }
+        }
+
+        protected virtual void OnReturned(object sender, EventArgs eventArgs)
         {
             var handler = Updated;
             if (handler != null)
@@ -71,16 +81,21 @@ namespace Library.Services
 
             return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => bookCopy);
         }
-
-        public void ReturnBook(Member member, BookCopy bookCopy)
+        /// <summary>
+        /// Sets the loans time of return to now
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="selectedLoan"></param>
+        public void ReturnBook(Member member, Loan selectedLoan)
         {
-            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == bookCopy.BookCopyId).FirstOrDefault();
-            if(loan.DueDate < DateTime.Now)
+            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).FirstOrDefault();
+            if (loan.DueDate < DateTime.Now)
             {
                 CalculatePrice(loan);
             }
             loan.TimeOfReturn = DateTime.Now;
-            
+            loanRepository.Edit(loan);
+            OnReturned(this, eventArgs);
         }
 
         private int CalculatePrice(Loan loan)

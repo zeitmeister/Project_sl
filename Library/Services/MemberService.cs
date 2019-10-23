@@ -57,5 +57,13 @@ namespace Library.Services
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
             return selectedMember.SelectMany(l => l.Loans);
         }
+
+        public IEnumerable<Loan> FindAllReturnedBooks(Member member)
+        {
+            var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
+            return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfReturn > l.TimeOfLoan);
+        }
+
+
     }
 }
