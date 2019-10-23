@@ -50,7 +50,8 @@ namespace Library
         {
             //ShowAllLoans(loanService.All());
             ShowLoanedBooksByMember(memberService.FindAllBooksOnLoanForMember(lb_Member.SelectedItem as Member));
-            ShowAllAvailableBooks(copyService.All());
+            //ShowLoanedBooksByMember(loanService.FindBookCopiesOnLoan());
+            ShowAllAvailableBooks();
         }
 
         private void ShowLoanedBooksByMember(IEnumerable<Loan> loans)
@@ -70,11 +71,11 @@ namespace Library
         private void CopyService_Updated(object sender, EventArgs e)
         {
             ShowAllBookCopies(copyService.All());
-            ShowAllAvailableBooks(copyService.All());
+            ShowAllAvailableBooks();
            
         }
 
-        private void ShowAllAvailableBooks(IEnumerable<BookCopy> bookCopies)
+        private void ShowAllAvailableBooks()
         {
             lb_AvailableBooks.Items.Clear();
             foreach (var availableBook in loanService.FindAllAvailableBooks(copyService.All(), loanService.All()))
@@ -196,7 +197,7 @@ namespace Library
         private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
         {
             var book = lbBooks.SelectedItem as Book;
-            foreach (var loanedBook in loanService.FindBookCopiesOnLoan(book))
+            foreach (var loanedBook in loanService.FindBookCopiesOnLoan(copyService.All()))
             {
                 lb_LoanedBooks.Items.Add(loanedBook);
             }

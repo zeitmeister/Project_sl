@@ -74,12 +74,12 @@ namespace Library.Services
             Add(loan);
         }
 
-        public IEnumerable<BookCopy> FindBookCopiesOnLoan(Book book)
+        public IEnumerable<BookCopy> FindBookCopiesOnLoan(IEnumerable<BookCopy> bookCopies)
         {
-            var bookCopies = book.BookCopies.ToList();
+            //var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
 
-            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new { BookCopy = bookCopy, Loan = loan }).Where(l => l.Loan.TimeOfLoan > l.Loan.TimeOfReturn).Select(bc => bc.BookCopy);
+            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new { BookCopy = bookCopy, Loan = loan }).Where(l => l.Loan.TimeOfLoan > l.Loan.TimeOfReturn || (l.Loan.TimeOfReturn == null && l.Loan.TimeOfLoan < DateTime.Now)).Select(bc => bc.BookCopy);
         }
         /// <summary>
         /// Sets the loans time of return to now
@@ -88,7 +88,7 @@ namespace Library.Services
         /// <param name="selectedLoan"></param>
         public void ReturnBook(Member member, Loan selectedLoan)
         {
-            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).FirstOrDefault();
+            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).OrderByDescending(l => l.TimeOfLoan).FirstOrDefault();
             if (loan.DueDate < DateTime.Now)
             {
                 CalculatePrice(loan);
