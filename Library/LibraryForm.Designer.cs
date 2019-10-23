@@ -53,6 +53,7 @@
             this.lb_MemberCopy = new System.Windows.Forms.ListBox();
             this.btn_FindLoansForMember = new System.Windows.Forms.Button();
             this.lb_LoansForMember = new System.Windows.Forms.ListBox();
+            this.btn_AboutBook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,7 +112,7 @@
             // lblBookCopies
             // 
             this.lblBookCopies.AutoSize = true;
-            this.lblBookCopies.Location = new System.Drawing.Point(234, 172);
+            this.lblBookCopies.Location = new System.Drawing.Point(235, 188);
             this.lblBookCopies.Name = "lblBookCopies";
             this.lblBookCopies.Size = new System.Drawing.Size(35, 13);
             this.lblBookCopies.TabIndex = 6;
@@ -200,6 +201,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_AboutBook);
             this.tabPage1.Controls.Add(this.lbBooks);
             this.tabPage1.Controls.Add(this.lb_AvailableBooks);
             this.tabPage1.Controls.Add(this.btn_AddBook);
@@ -363,6 +365,16 @@
             this.lb_LoansForMember.Size = new System.Drawing.Size(132, 121);
             this.lb_LoansForMember.TabIndex = 19;
             // 
+            // btn_AboutBook
+            // 
+            this.btn_AboutBook.Location = new System.Drawing.Point(220, 132);
+            this.btn_AboutBook.Name = "btn_AboutBook";
+            this.btn_AboutBook.Size = new System.Drawing.Size(69, 38);
+            this.btn_AboutBook.TabIndex = 20;
+            this.btn_AboutBook.Text = "About book";
+            this.btn_AboutBook.UseVisualStyleBackColor = true;
+            this.btn_AboutBook.Click += new System.EventHandler(this.btn_AboutBook_Click);
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,6 +429,7 @@
         private System.Windows.Forms.ListBox lb_MemberCopy;
         private System.Windows.Forms.Button btn_FindLoansForMember;
         private System.Windows.Forms.ListBox lb_LoansForMember;
+        private System.Windows.Forms.Button btn_AboutBook;
     }
 }
 

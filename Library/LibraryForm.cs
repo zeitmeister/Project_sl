@@ -254,5 +254,11 @@ namespace Library
         {
 
         }
+
+        private void btn_AboutBook_Click(object sender, EventArgs e)
+        {
+            AboutBookForm aboutBookForm = new AboutBookForm(lbBooks.SelectedItem as Book);
+            aboutBookForm.Show();
+        }
     } 
 }
