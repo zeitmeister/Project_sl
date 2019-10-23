@@ -44,6 +44,7 @@
             this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
             this.btnReturnBook = new System.Windows.Forms.Button();
+            this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // btn_AddBook
             // 
             this.btn_AddBook.Location = new System.Drawing.Point(448, 22);
-            this.btn_AddBook.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AddBook.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AddBook.Name = "btn_AddBook";
             this.btn_AddBook.Size = new System.Drawing.Size(81, 59);
             this.btn_AddBook.TabIndex = 1;
@@ -78,10 +79,8 @@
             // 
             // Add_BookCopy
             // 
-
-            this.Add_BookCopy.Location = new System.Drawing.Point(1008, 911);
+            this.Add_BookCopy.Location = new System.Drawing.Point(688, 681);
             this.Add_BookCopy.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-
             this.Add_BookCopy.Name = "Add_BookCopy";
             this.Add_BookCopy.Size = new System.Drawing.Size(151, 40);
             this.Add_BookCopy.TabIndex = 4;
@@ -94,7 +93,7 @@
             this.lbBookCopies.FormattingEnabled = true;
             this.lbBookCopies.Location = new System.Drawing.Point(12, 385);
             this.lbBookCopies.Name = "lbBookCopies";
-            this.lbBookCopies.Size = new System.Drawing.Size(431, 238);
+            this.lbBookCopies.Size = new System.Drawing.Size(424, 199);
             this.lbBookCopies.TabIndex = 5;
             // 
             // lblBookCopies
@@ -109,7 +108,7 @@
             // btnAddAuthor
             // 
             this.btnAddAuthor.Location = new System.Drawing.Point(448, 276);
-            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAuthor.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAuthor.Name = "btnAddAuthor";
             this.btnAddAuthor.Size = new System.Drawing.Size(122, 34);
             this.btnAddAuthor.TabIndex = 7;
@@ -121,7 +120,7 @@
             // 
             this.lbAuthors.FormattingEnabled = true;
             this.lbAuthors.Location = new System.Drawing.Point(8, 290);
-            this.lbAuthors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbAuthors.Margin = new System.Windows.Forms.Padding(2);
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(428, 56);
             this.lbAuthors.TabIndex = 8;
@@ -144,7 +143,7 @@
             // btn_ViewBooks
             // 
             this.btn_ViewBooks.Location = new System.Drawing.Point(448, 323);
-            this.btn_ViewBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_ViewBooks.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ViewBooks.Name = "btn_ViewBooks";
             this.btn_ViewBooks.Size = new System.Drawing.Size(122, 34);
             this.btn_ViewBooks.TabIndex = 11;
@@ -155,11 +154,8 @@
             // lb_Member
             // 
             this.lb_Member.FormattingEnabled = true;
-
             this.lb_Member.HorizontalScrollbar = true;
-            this.lb_Member.ItemHeight = 20;
             this.lb_Member.Location = new System.Drawing.Point(862, 471);
-
             this.lb_Member.Name = "lb_Member";
             this.lb_Member.Size = new System.Drawing.Size(163, 56);
             this.lb_Member.TabIndex = 12;
@@ -167,7 +163,7 @@
             // btn_AddMember
             // 
             this.btn_AddMember.Location = new System.Drawing.Point(638, 378);
-            this.btn_AddMember.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AddMember.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AddMember.Name = "btn_AddMember";
             this.btn_AddMember.Size = new System.Drawing.Size(99, 31);
             this.btn_AddMember.TabIndex = 13;
@@ -178,7 +174,7 @@
             // btn_MakeLoan
             // 
             this.btn_MakeLoan.Location = new System.Drawing.Point(765, 272);
-            this.btn_MakeLoan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_MakeLoan.Margin = new System.Windows.Forms.Padding(2);
             this.btn_MakeLoan.Name = "btn_MakeLoan";
             this.btn_MakeLoan.Size = new System.Drawing.Size(97, 41);
             this.btn_MakeLoan.TabIndex = 14;
@@ -189,7 +185,7 @@
             // btn_FindLoanedBooks
             // 
             this.btn_FindLoanedBooks.Location = new System.Drawing.Point(765, 326);
-            this.btn_FindLoanedBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FindLoanedBooks.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FindLoanedBooks.Name = "btn_FindLoanedBooks";
             this.btn_FindLoanedBooks.Size = new System.Drawing.Size(116, 29);
             this.btn_FindLoanedBooks.TabIndex = 15;
@@ -200,11 +196,8 @@
             // lb_LoanedBooks
             // 
             this.lb_LoanedBooks.FormattingEnabled = true;
-
             this.lb_LoanedBooks.HorizontalScrollbar = true;
-            this.lb_LoanedBooks.ItemHeight = 20;
-            this.lb_LoanedBooks.Location = new System.Drawing.Point(957, 652);
-
+            this.lb_LoanedBooks.Location = new System.Drawing.Point(862, 613);
             this.lb_LoanedBooks.Name = "lb_LoanedBooks";
             this.lb_LoanedBooks.Size = new System.Drawing.Size(245, 56);
             this.lb_LoanedBooks.TabIndex = 16;
@@ -212,7 +205,7 @@
             // btn_FindLoansForMember
             // 
             this.btn_FindLoansForMember.Location = new System.Drawing.Point(765, 372);
-            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
             this.btn_FindLoansForMember.Size = new System.Drawing.Size(109, 42);
             this.btn_FindLoansForMember.TabIndex = 17;
@@ -228,29 +221,7 @@
             // 
             // btn_ReturnBook
             // 
-            this.btn_ReturnBook.Location = new System.Drawing.Point(672, 702);
-            this.btn_ReturnBook.Name = "btn_ReturnBook";
-            this.btn_ReturnBook.Size = new System.Drawing.Size(195, 44);
-            this.btn_ReturnBook.TabIndex = 18;
-            this.btn_ReturnBook.Text = "Return Book";
-            this.btn_ReturnBook.UseVisualStyleBackColor = true;
-            this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
-            // 
-            // btn_FindAvailableBooks
-            // 
-            this.btn_FindAvailableBooks.Location = new System.Drawing.Point(498, 457);
-            this.btn_FindAvailableBooks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btn_FindAvailableBooks.Name = "btn_FindAvailableBooks";
-            this.btn_FindAvailableBooks.Size = new System.Drawing.Size(93, 50);
-            this.btn_FindAvailableBooks.TabIndex = 19;
-            this.btn_FindAvailableBooks.Text = "Find Available Books";
-            this.btn_FindAvailableBooks.UseVisualStyleBackColor = true;
-            this.btn_FindAvailableBooks.Click += new System.EventHandler(this.btn_FindAvailableBooks_Click);
-            // 
-
-            // btn_ReturnBook
-            // 
-            this.btn_ReturnBook.Location = new System.Drawing.Point(747, 836);
+            this.btn_ReturnBook.Location = new System.Drawing.Point(498, 569);
             this.btn_ReturnBook.Name = "btn_ReturnBook";
             this.btn_ReturnBook.Size = new System.Drawing.Size(125, 77);
             this.btn_ReturnBook.TabIndex = 20;
@@ -258,20 +229,37 @@
             this.btn_ReturnBook.UseVisualStyleBackColor = true;
             this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
             // 
+            // btn_FindAvailableBooks
+            // 
+            this.btn_FindAvailableBooks.Location = new System.Drawing.Point(498, 457);
+            this.btn_FindAvailableBooks.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_FindAvailableBooks.Name = "btn_FindAvailableBooks";
+            this.btn_FindAvailableBooks.Size = new System.Drawing.Size(93, 50);
+            this.btn_FindAvailableBooks.TabIndex = 19;
+            this.btn_FindAvailableBooks.Text = "Find Available Books";
+            this.btn_FindAvailableBooks.UseVisualStyleBackColor = true;
+            this.btn_FindAvailableBooks.Click += new System.EventHandler(this.btn_FindAvailableBooks_Click);
+            // 
+            // btnReturnBook
+            // 
+            this.btnReturnBook.Location = new System.Drawing.Point(0, 0);
+            this.btnReturnBook.Name = "btnReturnBook";
+            this.btnReturnBook.Size = new System.Drawing.Size(75, 23);
+            this.btnReturnBook.TabIndex = 0;
+            // 
             // lb_AvailableBooks
-
+            // 
+            this.lb_AvailableBooks.Location = new System.Drawing.Point(12, 613);
+            this.lb_AvailableBooks.Name = "lb_AvailableBooks";
+            this.lb_AvailableBooks.Size = new System.Drawing.Size(424, 95);
+            this.lb_AvailableBooks.TabIndex = 0;
             // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
+            this.ClientSize = new System.Drawing.Size(1908, 1050);
             this.Controls.Add(this.lb_AvailableBooks);
-            this.Controls.Add(this.btn_ReturnBook);
-
-
-
             this.Controls.Add(this.btn_FindAvailableBooks);
             this.Controls.Add(this.btn_ReturnBook);
             this.Controls.Add(this.btn_FindLoansForMember);
@@ -321,7 +309,7 @@
         private System.Windows.Forms.Button btn_FindLoansForMember;
 
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-
+        private System.Windows.Forms.ListBox lb_AvailableBooks;
         private System.Windows.Forms.Button btn_ReturnBook;
         private System.Windows.Forms.Button btn_FindAvailableBooks;
         private System.Windows.Forms.Button btnReturnBook;
