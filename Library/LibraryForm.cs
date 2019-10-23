@@ -123,6 +123,7 @@ namespace Library
         private void ShowAllMembers(IEnumerable<Member> members)
         {
             lb_Member.Items.Clear();
+            lb_MemberCopy.Items.Clear();
             foreach (var member in members)
             {
                 lb_Member.Items.Add(member);
@@ -167,7 +168,6 @@ namespace Library
 
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
-            //Author author = new Author();
             lb_BooksByAuthor.Items.Clear();
             var itemSelected = lbAuthors.SelectedItem as Author;
             
@@ -209,11 +209,13 @@ namespace Library
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
-            lb_LoanedBooks.Items.Clear();
-            var member = lb_Member.SelectedItem as Member;
+
+            lb_LoansForMember.Items.Clear();
+            var member = lb_MemberCopy.SelectedItem as Member;
             foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
             {
-                lb_LoanedBooks.Items.Add(loan);
+                lb_LoansForMember.Items.Add(loan);
+
             }
         }
 
@@ -224,7 +226,9 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
+
             loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as Loan);
+
 
         }
 
@@ -261,6 +265,12 @@ namespace Library
         private void lb_Member_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_AboutBook_Click(object sender, EventArgs e)
+        {
+            AboutBookForm aboutBookForm = new AboutBookForm(lbBooks.SelectedItem as Book);
+            aboutBookForm.Show();
         }
     } 
 }

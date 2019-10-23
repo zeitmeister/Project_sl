@@ -33,7 +33,6 @@
             this.btn_MakeLoan = new System.Windows.Forms.Button();
             this.btn_FindLoanedBooks = new System.Windows.Forms.Button();
             this.lb_LoanedBooks = new System.Windows.Forms.ListBox();
-            this.btn_FindLoansForMember = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
@@ -52,6 +51,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             this.lb_MemberCopy = new System.Windows.Forms.ListBox();
+            this.btn_FindLoansForMember = new System.Windows.Forms.Button();
+            this.lb_LoansForMember = new System.Windows.Forms.ListBox();
+            this.btn_AboutBook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -110,7 +112,7 @@
             // lblBookCopies
             // 
             this.lblBookCopies.AutoSize = true;
-            this.lblBookCopies.Location = new System.Drawing.Point(254, 185);
+            this.lblBookCopies.Location = new System.Drawing.Point(235, 188);
             this.lblBookCopies.Name = "lblBookCopies";
             this.lblBookCopies.Size = new System.Drawing.Size(35, 13);
             this.lblBookCopies.TabIndex = 6;
@@ -157,17 +159,6 @@
             this.lb_LoanedBooks.Size = new System.Drawing.Size(245, 56);
             this.lb_LoanedBooks.TabIndex = 16;
             // 
-            // btn_FindLoansForMember
-            // 
-            this.btn_FindLoansForMember.Location = new System.Drawing.Point(323, 96);
-            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
-            this.btn_FindLoansForMember.Size = new System.Drawing.Size(73, 42);
-            this.btn_FindLoansForMember.TabIndex = 17;
-            this.btn_FindLoansForMember.Text = "Find Loans for Member";
-            this.btn_FindLoansForMember.UseVisualStyleBackColor = true;
-            this.btn_FindLoansForMember.Click += new System.EventHandler(this.btn_FindLoansForMember_Click);
-            // 
             // fileSystemWatcher1
             // 
             this.fileSystemWatcher1.EnableRaisingEvents = true;
@@ -210,6 +201,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_AboutBook);
             this.tabPage1.Controls.Add(this.lbBooks);
             this.tabPage1.Controls.Add(this.lb_AvailableBooks);
             this.tabPage1.Controls.Add(this.btn_AddBook);
@@ -217,7 +209,6 @@
             this.tabPage1.Controls.Add(this.deleteBookBtn);
             this.tabPage1.Controls.Add(this.btn_ReturnBook);
             this.tabPage1.Controls.Add(this.Add_BookCopy);
-            this.tabPage1.Controls.Add(this.btn_FindLoansForMember);
             this.tabPage1.Controls.Add(this.lbBookCopies);
             this.tabPage1.Controls.Add(this.lb_LoanedBooks);
             this.tabPage1.Controls.Add(this.lblBookCopies);
@@ -298,6 +289,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lb_LoansForMember);
+            this.tabPage3.Controls.Add(this.btn_FindLoansForMember);
             this.tabPage3.Controls.Add(this.lb_MemberCopy);
             this.tabPage3.Controls.Add(this.btn_AddMember);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -309,7 +302,7 @@
             // 
             // btn_AddMember
             // 
-            this.btn_AddMember.Location = new System.Drawing.Point(304, 137);
+            this.btn_AddMember.Location = new System.Drawing.Point(19, 41);
             this.btn_AddMember.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AddMember.Name = "btn_AddMember";
             this.btn_AddMember.Size = new System.Drawing.Size(99, 31);
@@ -347,10 +340,40 @@
             // 
             this.lb_MemberCopy.FormattingEnabled = true;
             this.lb_MemberCopy.HorizontalScrollbar = true;
-            this.lb_MemberCopy.Location = new System.Drawing.Point(32, 122);
+            this.lb_MemberCopy.Location = new System.Drawing.Point(156, 19);
             this.lb_MemberCopy.Name = "lb_MemberCopy";
-            this.lb_MemberCopy.Size = new System.Drawing.Size(108, 82);
+            this.lb_MemberCopy.Size = new System.Drawing.Size(143, 82);
             this.lb_MemberCopy.TabIndex = 15;
+            // 
+            // btn_FindLoansForMember
+            // 
+            this.btn_FindLoansForMember.Location = new System.Drawing.Point(340, 35);
+            this.btn_FindLoansForMember.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
+            this.btn_FindLoansForMember.Size = new System.Drawing.Size(73, 42);
+            this.btn_FindLoansForMember.TabIndex = 18;
+            this.btn_FindLoansForMember.Text = "Find Loans for Member";
+            this.btn_FindLoansForMember.UseVisualStyleBackColor = true;
+            this.btn_FindLoansForMember.Click += new System.EventHandler(this.btn_FindLoansForMember_Click);
+            // 
+            // lb_LoansForMember
+            // 
+            this.lb_LoansForMember.FormattingEnabled = true;
+            this.lb_LoansForMember.HorizontalScrollbar = true;
+            this.lb_LoansForMember.Location = new System.Drawing.Point(19, 182);
+            this.lb_LoansForMember.Name = "lb_LoansForMember";
+            this.lb_LoansForMember.Size = new System.Drawing.Size(132, 121);
+            this.lb_LoansForMember.TabIndex = 19;
+            // 
+            // btn_AboutBook
+            // 
+            this.btn_AboutBook.Location = new System.Drawing.Point(220, 132);
+            this.btn_AboutBook.Name = "btn_AboutBook";
+            this.btn_AboutBook.Size = new System.Drawing.Size(69, 38);
+            this.btn_AboutBook.TabIndex = 20;
+            this.btn_AboutBook.Text = "About book";
+            this.btn_AboutBook.UseVisualStyleBackColor = true;
+            this.btn_AboutBook.Click += new System.EventHandler(this.btn_AboutBook_Click);
             // 
             // LibraryForm
             // 
@@ -384,7 +407,6 @@
         private System.Windows.Forms.Button btn_MakeLoan;
         private System.Windows.Forms.Button btn_FindLoanedBooks;
         private System.Windows.Forms.ListBox lb_LoanedBooks;
-        private System.Windows.Forms.Button btn_FindLoansForMember;
 
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.ListBox lb_AvailableBooks;
@@ -405,6 +427,9 @@
         private System.Windows.Forms.Button btn_AddMember;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ListBox lb_MemberCopy;
+        private System.Windows.Forms.Button btn_FindLoansForMember;
+        private System.Windows.Forms.ListBox lb_LoansForMember;
+        private System.Windows.Forms.Button btn_AboutBook;
     }
 }
 
