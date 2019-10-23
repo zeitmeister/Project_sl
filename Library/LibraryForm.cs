@@ -154,6 +154,7 @@ namespace Library
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
             //Author author = new Author();
+            lbAuthors.Items.Clear();
             var itemSelected = lbAuthors.SelectedItem as Author;
             
             foreach (var item in authorService.BookByAuthor(itemSelected))
@@ -225,6 +226,26 @@ namespace Library
         private void btnReturnBook_Click(object sender, EventArgs e)
         {
             loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as BookCopy);
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     } 
 }
