@@ -88,7 +88,7 @@ namespace Library.Services
         /// <param name="selectedLoan"></param>
         public void ReturnBook(Member member, Loan selectedLoan)
         {
-            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).FirstOrDefault();
+            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).OrderByDescending(l => l.TimeOfLoan).FirstOrDefault();
             if (loan.DueDate < DateTime.Now)
             {
                 CalculatePrice(loan);
