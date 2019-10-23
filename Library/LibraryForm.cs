@@ -113,6 +113,7 @@ namespace Library
             foreach (var member in members)
             {
                 lb_Member.Items.Add(member);
+                lb_MemberCopy.Items.Add(member);
             }
         }
 
@@ -154,7 +155,7 @@ namespace Library
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
             //Author author = new Author();
-            lbAuthors.Items.Clear();
+            lb_BooksByAuthor.Items.Clear();
             var itemSelected = lbAuthors.SelectedItem as Author;
             
             foreach (var item in authorService.BookByAuthor(itemSelected))
@@ -244,6 +245,11 @@ namespace Library
         }
 
         private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_Member_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
