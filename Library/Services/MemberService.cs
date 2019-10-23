@@ -14,6 +14,8 @@ namespace Library.Services
 
         public event EventHandler Updated;
 
+        
+
         private EventArgs eventArgs = new EventArgs();
 
         public MemberService(RepositoryFactory rFactory)
@@ -29,6 +31,8 @@ namespace Library.Services
                 handler(this, eventArgs);
             }
         }
+
+     
 
         public IEnumerable<Member> All()
         {
@@ -52,10 +56,15 @@ namespace Library.Services
             return memberRepository.Find(id);
         }
 
-        public IEnumerable<Loan> FindAllLoansForMember(Member member)
+        public IEnumerable<Loan> FindAllReturnedBooksForMember(Member member)
         {
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            return selectedMember.SelectMany(l => l.Loans);
+            return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfReturn > l.TimeOfLoan);
+        }
+
+        public IEnumerable<Loan> FindAllLoansForMember(Member member)
+        {
+            return memberRepository.All().Where(m => m.MemberId == member.MemberId).SelectMany(l => l.Loans);
         }
     }
 }

@@ -41,9 +41,9 @@
             this.lb_LoanedBooks = new System.Windows.Forms.ListBox();
             this.btn_FindLoansForMember = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
-            this.btnReturnBook = new System.Windows.Forms.Button();
+            this.btn_ReturnBook = new System.Windows.Forms.Button();
+            this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
             this.lbBookCopies.Location = new System.Drawing.Point(18, 592);
             this.lbBookCopies.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lbBookCopies.Name = "lbBookCopies";
-            this.lbBookCopies.Size = new System.Drawing.Size(644, 364);
+            this.lbBookCopies.Size = new System.Drawing.Size(634, 384);
             this.lbBookCopies.TabIndex = 5;
             // 
             // lblBookCopies
@@ -222,17 +222,6 @@
             this.fileSystemWatcher1.SynchronizingObject = this;
             this.fileSystemWatcher1.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcher1_Changed);
             // 
-            // btn_ReturnBook
-            // 
-            this.btn_ReturnBook.Location = new System.Drawing.Point(1008, 1080);
-            this.btn_ReturnBook.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btn_ReturnBook.Name = "btn_ReturnBook";
-            this.btn_ReturnBook.Size = new System.Drawing.Size(292, 68);
-            this.btn_ReturnBook.TabIndex = 18;
-            this.btn_ReturnBook.Text = "Return Book";
-            this.btn_ReturnBook.UseVisualStyleBackColor = true;
-            this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
-            // 
             // btn_FindAvailableBooks
             // 
             this.btn_FindAvailableBooks.Location = new System.Drawing.Point(747, 703);
@@ -243,24 +232,33 @@
             this.btn_FindAvailableBooks.UseVisualStyleBackColor = true;
             this.btn_FindAvailableBooks.Click += new System.EventHandler(this.btn_FindAvailableBooks_Click);
             // 
-            // btnReturnBook
+            // btn_ReturnBook
             // 
-            this.btnReturnBook.Location = new System.Drawing.Point(747, 836);
-            this.btnReturnBook.Name = "btnReturnBook";
-            this.btnReturnBook.Size = new System.Drawing.Size(140, 74);
-            this.btnReturnBook.TabIndex = 20;
-            this.btnReturnBook.Text = "Return Book";
-            this.btnReturnBook.UseVisualStyleBackColor = true;
-            this.btnReturnBook.Click += new System.EventHandler(this.btnReturnBook_Click);
+            this.btn_ReturnBook.Location = new System.Drawing.Point(747, 836);
+            this.btn_ReturnBook.Name = "btn_ReturnBook";
+            this.btn_ReturnBook.Size = new System.Drawing.Size(140, 74);
+            this.btn_ReturnBook.TabIndex = 20;
+            this.btn_ReturnBook.Text = "Return Book";
+            this.btn_ReturnBook.UseVisualStyleBackColor = true;
+            this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
+            // 
+            // lb_AvailableBooks
+            // 
+            this.lb_AvailableBooks.FormattingEnabled = true;
+            this.lb_AvailableBooks.ItemHeight = 20;
+            this.lb_AvailableBooks.Location = new System.Drawing.Point(18, 1034);
+            this.lb_AvailableBooks.Name = "lb_AvailableBooks";
+            this.lb_AvailableBooks.Size = new System.Drawing.Size(634, 84);
+            this.lb_AvailableBooks.TabIndex = 21;
             // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1050);
-            this.Controls.Add(this.btnReturnBook);
-            this.Controls.Add(this.btn_FindAvailableBooks);
+            this.ClientSize = new System.Drawing.Size(1924, 1154);
+            this.Controls.Add(this.lb_AvailableBooks);
             this.Controls.Add(this.btn_ReturnBook);
+            this.Controls.Add(this.btn_FindAvailableBooks);
             this.Controls.Add(this.btn_FindLoansForMember);
             this.Controls.Add(this.lb_LoanedBooks);
             this.Controls.Add(this.btn_FindLoanedBooks);
@@ -309,10 +307,9 @@
         private System.Windows.Forms.Button btn_FindLoansForMember;
 
         private System.IO.FileSystemWatcher fileSystemWatcher1;
-
-        private System.Windows.Forms.Button btn_ReturnBook;
         private System.Windows.Forms.Button btn_FindAvailableBooks;
-        private System.Windows.Forms.Button btnReturnBook;
+        private System.Windows.Forms.Button btn_ReturnBook;
+        private System.Windows.Forms.ListBox lb_AvailableBooks;
     }
 }
 
