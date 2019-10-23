@@ -38,6 +38,10 @@ namespace Library
             loanService = new LoanService(repFactory);
 
             ShowAllBooks(bookService.All());
+            ShowAllBookCopies(copyService.All());
+            ShowAllMembers(memberService.All());
+            ShowAllAuthors(authorService.All());
+            ShowAllLoans(loanService.All());
 
             bookService.Updated += BookService_Updated;
             authorService.Updated += AuthorService_Updated;
@@ -271,6 +275,16 @@ namespace Library
         {
             AboutBookForm aboutBookForm = new AboutBookForm(lbBooks.SelectedItem as Book);
             aboutBookForm.Show();
+        }
+
+        private void btn_DeleteMember_Click(object sender, EventArgs e)
+        {
+            memberService.Remove(lb_MemberCopy.SelectedItem as Member);
+        }
+
+        private void btn_DeleteBookCopy_Click(object sender, EventArgs e)
+        {
+            copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
         }
     } 
 }
