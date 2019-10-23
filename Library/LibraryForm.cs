@@ -44,38 +44,20 @@ namespace Library
             copyService.Updated += CopyService_Updated;
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
-            loanService.Returned += MemberService_Returned;
-        }
-
-        private void MemberService_Returned(object sender, EventArgs e)
-        {
-            ShowLoanedBooksByMember(memberService.FindAllReturnedBooksForMember(lb_Member.SelectedItem as Member));
         }
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
             //ShowAllLoans(loanService.All());
             ShowLoanedBooksByMember(memberService.FindAllLoansForMember(lb_Member.SelectedItem as Member));
-            ShowAllAvailableBooks(loanService.FindAllAvailableBooks(copyService.All(), loanService.All()));
         }
 
         private void ShowLoanedBooksByMember(IEnumerable<Loan> loans)
         {
-            lb_LoanedBooks.Items.Clear();
             foreach (var loan in loans)
             {
                 lb_LoanedBooks.Items.Add(loan);
             };
-            
-        }
-
-        private void ShowAllAvailableBooks(IEnumerable<BookCopy> bookCopies)
-        {
-            lb_AvailableBooks.Items.Clear();
-            foreach (var item in bookCopies)
-            {
-                lb_AvailableBooks.Items.Add(item);
-            }
         }
 
         private void MemberService_Updated(object sender, EventArgs e)
@@ -214,7 +196,7 @@ namespace Library
         {
             lb_LoanedBooks.Items.Clear();
             var member = lb_Member.SelectedItem as Member;
-            foreach (var loan in memberService.FindAllReturnedBooksForMember(member))
+            foreach (var loan in memberService.FindAllLoansForMember(member))
             {
                 lb_LoanedBooks.Items.Add(loan.BookCopy);
             }
@@ -227,7 +209,7 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
-            loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as Loan);
+            loanService.ReturnBook(lb_Member.SelectedItem as Member, lbBookCopies.SelectedItem as BookCopy);
 
         }
 
@@ -236,8 +218,13 @@ namespace Library
             lbBookCopies.Items.Clear();
             foreach (var bookCopy in loanService.FindAllAvailableBooks(copyService.All(), loanService.All()))
             {
-                lb_AvailableBooks.Items.Add(bookCopy);
+                lbBookCopies.Items.Add(bookCopy);
             }
+        }
+
+        private void btnReturnBook_Click(object sender, EventArgs e)
+        {
+            loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as BookCopy);
         }
     } 
 }
