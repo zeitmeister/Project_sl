@@ -28,13 +28,20 @@ namespace Library
 
         private void btn_AddNewMember_Click(object sender, EventArgs e)
         {
-            Member member = new Member()
+            int PersonalID;
+            var PersonidIsOK = int.TryParse(txt_PersonalId.Text, out PersonalID);
+            if (PersonidIsOK)
             {
-                Name = txt_Name.Text,
-                PersonId = int.Parse(txt_PersonalId.Text),
-                DateOfMembership = DateTime.Now
-            };
-            MS.Add(member);
+                Member member = new Member()
+                {
+                    Name = txt_Name.Text,
+                    PersonId = PersonalID,
+                    DateOfMembership = DateTime.Now
+                };
+                MS.Add(member);
+            }
+            else
+            MessageBox.Show("Personal ID has to be a number."); 
         }
     }
 }

@@ -52,6 +52,7 @@
             this.cb_Condition.Name = "cb_Condition";
             this.cb_Condition.Size = new System.Drawing.Size(121, 21);
             this.cb_Condition.TabIndex = 0;
+            this.cb_Condition.Text = "1";
             // 
             // lbl_Condition
             // 
