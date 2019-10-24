@@ -11,6 +11,7 @@ namespace Library.Services
     class LoanService : IService
     {
         LoanRepository loanRepository;
+        ReturnedLoanRepository returnedLoanRepository;
         public event EventHandler Updated;
 
         public event EventHandler Returned;
@@ -19,6 +20,7 @@ namespace Library.Services
         public LoanService(RepositoryFactory repFactory)
         {
             loanRepository = repFactory.CreateLoanRepository();
+            returnedLoanRepository = repFactory.CreateReturnedLoanRepository();
         }
 
         protected virtual void OnUpdated(object sender, EventArgs eventArgs)
@@ -97,6 +99,16 @@ namespace Library.Services
             loan.TimeOfReturn = DateTime.Now;
             loanRepository.Edit(loan);
             OnUpdated(this, eventArgs);
+            ReturnedLoan returned = new ReturnedLoan()
+            {
+                BookCopyId = loan.BookCopy.BookCopyId,
+                TimeOfLoan = loan.TimeOfLoan,
+                TimeOfReturn = loan.TimeOfReturn,
+                MemberId = loan.Member.MemberId,
+                DueDate = loan.DueDate
+            };
+            returnedLoanRepository.Add(returned);
+            
             Remove(loan);
         }
 

@@ -41,5 +41,10 @@ namespace Library.Repositories
         {
             return new LoanRepository(context);
         }
+
+        public ReturnedLoanRepository CreateReturnedLoanRepository()
+        {
+            return new ReturnedLoanRepository(context);
+        }
     }
 }
