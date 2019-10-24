@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace Library
 {
@@ -20,6 +21,9 @@ namespace Library
         AuthorService authorService;
         MemberService memberService;
         LoanService loanService;
+        private static System.Windows.Forms.Timer timer;
+        private int i = 0;
+        private int duration = 0;
 
         public LibraryForm()
         {
@@ -31,12 +35,14 @@ namespace Library
             // sure all the repositories created use the same context.
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
+            
+ 
             bookService = new BookService(repFactory);
             copyService = new BookCopyService(repFactory);
             authorService = new AuthorService(repFactory);
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
-
+            timer = new System.Windows.Forms.Timer();
             ShowAllBooks(bookService.All());
             ShowAllBookCopies(copyService.All());
             ShowAllMembers(memberService.All());
@@ -48,7 +54,20 @@ namespace Library
             copyService.Updated += CopyService_Updated;
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
+
+            timer.Tick += Timer_Tick;
+            timer.Interval = 5000;
+            timer.Start();
         }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
+        }
+
+
+
+
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
@@ -65,6 +84,14 @@ namespace Library
             {
                 lb_LoanedBooks.Items.Add(loan);
             };
+        }
+
+        private void ShowAllOverDueBooks(IEnumerable<BookCopy> bookCopies)
+        {
+            foreach (var item in bookCopies)
+            {
+                lb_OverdueBooks.Items.Add(bookCopies);
+            }
         }
 
         private void MemberService_Updated(object sender, EventArgs e)
@@ -286,6 +313,11 @@ namespace Library
         private void btn_DeleteBookCopy_Click(object sender, EventArgs e)
         {
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
+        }
+
+        private void Form1_Show(object sender, EventArgs e)
+        {
+            this.backgroundWorker1.RunWorkerAsync();
         }
     } 
 }
