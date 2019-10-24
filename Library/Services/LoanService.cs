@@ -134,9 +134,11 @@ namespace Library.Services
             return availableBooks;
         }
 
-        public IEnumerable<BookCopy> FindAllOverdueBooks( IEnumerable<Loan> loans)
-        {
-            return loans.Where(l => l.DueDate > DateTime.Now && l.TimeOfReturn == null).Select(l => l.BookCopy).ToList();
+        public IEnumerable<BookCopy> FindAllOverdueBooks(IEnumerable<Loan> loans, IEnumerable<BookCopy> bookCopies)
+        { 
+            //return loans.Select(l => l.BookCopy).Where(l => l.DueDate > DateTime.Now && l.TimeOfReturn == null).Select(l => l.BookCopy).ToList();
+            var join = loans.Join(bookCopies, l => l.BookCopy.BookCopyId, bc => bc.BookCopyId, (ll, lbc) => new { Loan = ll, BookCopy = lbc });
+            return join.Where(j => j.Loan.DueDate.Second >= DateTime.Now.Second && j.Loan.TimeOfReturn == null).Select(j => j.BookCopy).ToList();
         }
     }
 }
