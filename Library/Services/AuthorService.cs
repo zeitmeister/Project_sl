@@ -55,8 +55,15 @@ namespace Library.Services
 
         public IEnumerable<Book> BookByAuthor (Author author)
         {
-            var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
-            return books;
+            if (author != null)
+            {
+                var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
+                return books;
+            }
+            throw new InvalidOperationException("No author selected");
+                
+
+            
             
         }
     }
