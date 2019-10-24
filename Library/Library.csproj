@@ -65,6 +65,12 @@
     <Compile Include="AboutBookForm.Designer.cs">
       <DependentUpon>AboutBookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AboutHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutHistoryForm.Designer.cs">
+      <DependentUpon>AboutHistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddBookCopyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="Services\ReturnedLoanService.cs" />
     <EmbeddedResource Include="AboutBookForm.resx">
       <DependentUpon>AboutBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutHistoryForm.resx">
+      <DependentUpon>AboutHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddBookCopyForm.resx">
       <DependentUpon>AddBookCopyForm.cs</DependentUpon>

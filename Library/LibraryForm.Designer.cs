@@ -63,8 +63,12 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+
+            this.btn_HistoryDetails = new System.Windows.Forms.Button();
+
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -241,7 +245,9 @@
             // 
             // btn_FindOverdueBooks
             // 
+
             this.btn_FindOverdueBooks.Location = new System.Drawing.Point(78, 122);
+
             this.btn_FindOverdueBooks.Name = "btn_FindOverdueBooks";
             this.btn_FindOverdueBooks.Size = new System.Drawing.Size(75, 23);
             this.btn_FindOverdueBooks.TabIndex = 25;
@@ -367,6 +373,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_HistoryDetails);
             this.tabPage3.Controls.Add(this.lb_History);
             this.tabPage3.Controls.Add(this.btn_FindMember);
             this.tabPage3.Controls.Add(this.txt_FindMember);
@@ -390,6 +397,7 @@
             this.lb_History.Name = "lb_History";
             this.lb_History.Size = new System.Drawing.Size(120, 95);
             this.lb_History.TabIndex = 23;
+            this.lb_History.SelectedIndexChanged += new System.EventHandler(this.lb_History_SelectedIndexChanged);
             // 
             // btn_FindMember
             // 
@@ -476,6 +484,17 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+
+            // btn_HistoryDetails
+            // 
+            this.btn_HistoryDetails.Location = new System.Drawing.Point(264, 353);
+            this.btn_HistoryDetails.Name = "btn_HistoryDetails";
+            this.btn_HistoryDetails.Size = new System.Drawing.Size(75, 23);
+            this.btn_HistoryDetails.TabIndex = 24;
+            this.btn_HistoryDetails.Text = "Show details";
+            this.btn_HistoryDetails.UseVisualStyleBackColor = true;
+            this.btn_HistoryDetails.Click += new System.EventHandler(this.btn_HistoryDetails_Click);
+
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -495,6 +514,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(260, 148);
             this.panel2.TabIndex = 23;
+
             // 
             // LibraryForm
             // 
@@ -567,8 +587,12 @@
         private System.Windows.Forms.ListBox lb_History;
 
         private System.Windows.Forms.Button btn_FindOverdueBooks;
+
+        private System.Windows.Forms.Button btn_HistoryDetails;
+
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+
     }
 }
 

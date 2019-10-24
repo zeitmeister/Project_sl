@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    class ReturnedLoanService : IService
+    public class ReturnedLoanService : IService
     {
         ReturnedLoanRepository returnedLoanRepository;
 
