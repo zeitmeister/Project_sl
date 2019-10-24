@@ -30,18 +30,25 @@ namespace Library
         {
             int PersonalID;
             var PersonidIsOK = int.TryParse(txt_PersonalId.Text, out PersonalID);
-            if (PersonidIsOK)
+
+            if (!PersonidIsOK)
+            {
+                MessageBox.Show("Personal ID has to be a number.");
+            }
+            else if (txt_Name.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a name.");
+            }
+            else
             {
                 Member member = new Member()
                 {
-                    Name = txt_Name.Text,
+                    Name = txt_Name.Text.Trim(),
                     PersonId = PersonalID,
                     DateOfMembership = DateTime.Now
                 };
                 MS.Add(member);
             }
-            else
-            MessageBox.Show("Personal ID has to be a number."); 
         }
     }
 }
