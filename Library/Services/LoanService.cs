@@ -90,20 +90,19 @@ namespace Library.Services
         /// </summary>
         /// <param name="member"></param>
         /// <param name="selectedLoan"></param>
-        public void ReturnBook(Member member, Loan selectedLoan)
+        public void ReturnBook(Loan selectedLoan)
         {
-            //var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).OrderByDescending(l => l.TimeOfLoan).FirstOrDefault();
-            var loan = member.Loans.Where(l => l.LoanId == selectedLoan.LoanId).Select(l => l).FirstOrDefault();
-            if (loan.DueDate < DateTime.Now)
+            
+            if (selectedLoan.DueDate < DateTime.Now)
             {
-                CalculatePrice(loan);
+                CalculatePrice(selectedLoan);
             }
-            loan.TimeOfReturn = DateTime.Now;
-            loanRepository.Edit(loan);
+            selectedLoan.TimeOfReturn = DateTime.Now;
+            loanRepository.Edit(selectedLoan);
             OnUpdated(this, eventArgs);
-            CreateReturnenLoan(loan);
+            CreateReturnenLoan(selectedLoan);
 
-            Remove(loan);
+            Remove(selectedLoan);
         }
 
         private void CreateReturnenLoan(Loan loan)

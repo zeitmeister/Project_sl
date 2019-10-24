@@ -324,7 +324,7 @@ namespace Library
                 MessageBox.Show("Please select a loaned book to be able to return it.");
             }
             else
-            loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as Loan);
+            loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
         }
 
         private void btn_FindAvailableBooks_Click(object sender, EventArgs e)
@@ -432,6 +432,11 @@ namespace Library
         }
 
         private void lb_History_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb_MemberCopy_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
