@@ -22,6 +22,12 @@ namespace Library.Services
         {
             returnedLoanRepository.Add(returnedLoan);
         }
+
+        public IEnumerable<ReturnedLoan> All()
+        {
+            return returnedLoanRepository.All();
+        }
+
         
     }
 }

@@ -51,6 +51,9 @@
             this.btn_ViewBooks = new System.Windows.Forms.Button();
             this.lb_BooksByAuthor = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lb_History = new System.Windows.Forms.ListBox();
+            this.btn_FindMember = new System.Windows.Forms.Button();
+            this.txt_FindMember = new System.Windows.Forms.TextBox();
             this.btn_DeleteMember = new System.Windows.Forms.Button();
             this.lb_LoansForMember = new System.Windows.Forms.ListBox();
             this.btn_FindLoansForMember = new System.Windows.Forms.Button();
@@ -59,8 +62,6 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txt_FindMember = new System.Windows.Forms.TextBox();
-            this.btn_FindMember = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -353,6 +354,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lb_History);
             this.tabPage3.Controls.Add(this.btn_FindMember);
             this.tabPage3.Controls.Add(this.txt_FindMember);
             this.tabPage3.Controls.Add(this.btn_DeleteMember);
@@ -366,6 +368,32 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Members";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lb_History
+            // 
+            this.lb_History.FormattingEnabled = true;
+            this.lb_History.HorizontalScrollbar = true;
+            this.lb_History.Location = new System.Drawing.Point(244, 252);
+            this.lb_History.Name = "lb_History";
+            this.lb_History.Size = new System.Drawing.Size(120, 95);
+            this.lb_History.TabIndex = 23;
+            // 
+            // btn_FindMember
+            // 
+            this.btn_FindMember.Location = new System.Drawing.Point(408, 208);
+            this.btn_FindMember.Name = "btn_FindMember";
+            this.btn_FindMember.Size = new System.Drawing.Size(75, 23);
+            this.btn_FindMember.TabIndex = 22;
+            this.btn_FindMember.Text = "Search";
+            this.btn_FindMember.UseVisualStyleBackColor = true;
+            this.btn_FindMember.Click += new System.EventHandler(this.btn_FindMember_Click);
+            // 
+            // txt_FindMember
+            // 
+            this.txt_FindMember.Location = new System.Drawing.Point(394, 182);
+            this.txt_FindMember.Name = "txt_FindMember";
+            this.txt_FindMember.Size = new System.Drawing.Size(100, 20);
+            this.txt_FindMember.TabIndex = 21;
             // 
             // btn_DeleteMember
             // 
@@ -435,23 +463,6 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // txt_FindMember
-            // 
-            this.txt_FindMember.Location = new System.Drawing.Point(394, 182);
-            this.txt_FindMember.Name = "txt_FindMember";
-            this.txt_FindMember.Size = new System.Drawing.Size(100, 20);
-            this.txt_FindMember.TabIndex = 21;
-            // 
-            // btn_FindMember
-            // 
-            this.btn_FindMember.Location = new System.Drawing.Point(408, 208);
-            this.btn_FindMember.Name = "btn_FindMember";
-            this.btn_FindMember.Size = new System.Drawing.Size(75, 23);
-            this.btn_FindMember.TabIndex = 22;
-            this.btn_FindMember.Text = "Search";
-            this.btn_FindMember.UseVisualStyleBackColor = true;
-            this.btn_FindMember.Click += new System.EventHandler(this.btn_FindMember_Click);
-            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,6 +526,7 @@
         private System.Windows.Forms.Label lbl_AvailableBooks;
         private System.Windows.Forms.Button btn_FindMember;
         private System.Windows.Forms.TextBox txt_FindMember;
+        private System.Windows.Forms.ListBox lb_History;
     }
 }
 
