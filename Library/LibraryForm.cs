@@ -21,7 +21,7 @@ namespace Library
         AuthorService authorService;
         MemberService memberService;
         LoanService loanService;
-        private static System.Windows.Forms.Timer timer;
+
         private int i = 0;
         private int duration = 0;
 
@@ -42,30 +42,53 @@ namespace Library
             authorService = new AuthorService(repFactory);
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
-            timer = new System.Windows.Forms.Timer();
             ShowAllBooks(bookService.All());
             ShowAllBookCopies(copyService.All());
             ShowAllMembers(memberService.All());
             ShowAllAuthors(authorService.All());
             ShowAllLoans(loanService.All());
-
+            
             bookService.Updated += BookService_Updated;
             authorService.Updated += AuthorService_Updated;
             copyService.Updated += CopyService_Updated;
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
 
-            timer.Tick += Timer_Tick;
+            
+
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Timer timer = new Timer();
+            timer.Tick += new EventHandler(Timer_Tick);
             timer.Interval = 5000;
-            timer.Start();
+            timer.Enabled = true;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
+            //ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
+            backgroundWorker1.RunWorkerAsync();
+            backgroundWorker1.RunWorkerCompleted += (o, args) => ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
         }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            for (int i = 0; i < 100; ++i)
+            {
+                // report your progres
+                worker.ReportProgress(i);
 
+                // pretend like this a really complex calculation going on eating up CPU time
+                System.Threading.Thread.Sleep(100);
+            }
+
+
+
+        }
 
 
 
@@ -88,9 +111,11 @@ namespace Library
 
         private void ShowAllOverDueBooks(IEnumerable<BookCopy> bookCopies)
         {
+            lb_OverdueBooks.Items.Clear();
             foreach (var item in bookCopies)
             {
-                lb_OverdueBooks.Items.Add(bookCopies);
+                //lb_OverdueBooks.Items.Add(bookCopies);
+                lb_OverdueBooks.Invoke(new Action(() => lb_OverdueBooks.Items.Add(item)));
             }
         }
 
@@ -229,7 +254,7 @@ namespace Library
 
         private void btn_MakeLoan_Click(object sender, EventArgs e)
         {
-            loanService.MakeLoan(lbBookCopies.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
+            loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
 
         private void LibraryForm_Load(object sender, EventArgs e)
@@ -347,9 +372,6 @@ namespace Library
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
         }
 
-        private void Form1_Show(object sender, EventArgs e)
-        {
-            this.backgroundWorker1.RunWorkerAsync();
-        }
+
     } 
 }
