@@ -33,33 +33,43 @@ namespace Library
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
             var author = AS.All().Where(a => a.Name == txt_Author.Text).FirstOrDefault();
-            if (author != null)
+            if (txt_ISBN.Text == "" || txt_Title.Text == "" || txt_Description.Text == "" || txt_Author.Text == "")
             {
-                Book book = new Book()
-                {
-                    ISBN = txt_ISBN.Text,
-                    Title = txt_Title.Text,
-                    Description = txt_Description.Text,
-                    Author = author
-                };
-                BS.Add(book);
+                MessageBox.Show("Please enter all the fields.");
             }
             else
             {
-                Author author2 = new Author()
+                if (author != null)
                 {
-                    Name = txt_Author.Text
-                };
-                Book book = new Book()
+
+
+                    Book book = new Book()
+                    {
+                        ISBN = txt_ISBN.Text,
+                        Title = txt_Title.Text,
+                        Description = txt_Description.Text,
+                        Author = author
+                    };
+                    BS.Add(book);
+
+                }
+                else
                 {
-                    ISBN = txt_ISBN.Text,
-                    Title = txt_Title.Text,
-                    Description = txt_Description.Text,
-                    Author = author2
-                };
-                AS.Add(author2);
-                BS.Add(book);
-            }    
+                    Author author2 = new Author()
+                    {
+                        Name = txt_Author.Text
+                    };
+                    Book book = new Book()
+                    {
+                        ISBN = txt_ISBN.Text,
+                        Title = txt_Title.Text,
+                        Description = txt_Description.Text,
+                        Author = author2
+                    };
+                    AS.Add(author2);
+                    BS.Add(book);
+                }
+            }
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)

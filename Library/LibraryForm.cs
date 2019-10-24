@@ -153,13 +153,25 @@ namespace Library
 
         private void deleteBookBtn_Click(object sender, EventArgs e)
         {
+            if (lbBooks.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a book you would like to delete.");
+            }
+            else
             bookService.Remove(lbBooks.SelectedItem as Book);
         }
 
         private void Add_BookCopy_Click(object sender, EventArgs e)
         {
-            AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
-            AddBookCopyForm.Show();
+            if (lbBooks.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a book to be able to create a book copy.");
+            }
+            else
+            {
+                AddBookCopyForm AddBookCopyForm = new AddBookCopyForm(lbBooks.SelectedItem as Book, copyService);
+                AddBookCopyForm.Show();
+            }
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
@@ -207,10 +219,6 @@ namespace Library
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
@@ -231,10 +239,16 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
-
+            if (lb_Member.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a member to be able to return its book.");
+            }
+            else if (lb_LoanedBooks.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a loaned book to be able to return it.");
+            }
+            else
             loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as Loan);
-
-
         }
 
         private void btn_FindAvailableBooks_Click(object sender, EventArgs e)
@@ -274,17 +288,35 @@ namespace Library
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
         {
-            AboutBookForm aboutBookForm = new AboutBookForm(lbBooks.SelectedItem as Book);
-            aboutBookForm.Show();
+            if (lbBooks.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a book to show detail about it.");
+            }
+            else
+            {
+                AboutBookForm aboutBookForm = new AboutBookForm(lbBooks.SelectedItem as Book);
+                aboutBookForm.Show();
+            }
         }
 
         private void btn_DeleteMember_Click(object sender, EventArgs e)
         {
+            if (lb_MemberCopy.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a member you would like to delete.");
+            }
+            else
             memberService.Remove(lb_MemberCopy.SelectedItem as Member);
+            
         }
 
         private void btn_DeleteBookCopy_Click(object sender, EventArgs e)
         {
+            if (lbBookCopies.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a book copy to delete it.");
+            }
+            else
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
         }
     } 

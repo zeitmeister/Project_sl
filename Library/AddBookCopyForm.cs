@@ -26,19 +26,24 @@ namespace Library
 
         private void btn_AddBookCopy_Click(object sender, EventArgs e)
         {
-            string kalle = cb_Condition.SelectedItem.ToString();
-            int condition;
-            if (int.TryParse(kalle, out condition))
+            if (cb_Condition.SelectedItem == null)
             {
-                BookCopy bookCopy = new BookCopy()
-                {
-                    Book = selectedBook,
-                    Condition = condition
-                };
-                BCS.Add(bookCopy);
+                MessageBox.Show("Please choose a number from the list.");
             }
-            
-            
+            else
+            {
+                string selectedCondition = cb_Condition.SelectedItem.ToString();
+                int condition;
+                if (int.TryParse(selectedCondition, out condition))
+                {
+                    BookCopy bookCopy = new BookCopy()
+                    {
+                        Book = selectedBook,
+                        Condition = condition
+                    };
+                    BCS.Add(bookCopy);
+                }
+            }  
         }
 
         private void AddBookCopyForm_Load(object sender, EventArgs e)
