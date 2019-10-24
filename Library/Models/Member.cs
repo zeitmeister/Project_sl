@@ -14,10 +14,12 @@ namespace Library.Models
         public string Name { get; set; }
         public DateTime DateOfMembership { get; set; }
         public ICollection<Loan> Loans { get; set; }
+        public ICollection<ReturnedLoan> ReturnedLoans { get; set; }
 
         public Member()
         {
             Loans = new List<Loan>();
+            ReturnedLoans = new List<ReturnedLoan>();
         }
 
         public override string ToString()

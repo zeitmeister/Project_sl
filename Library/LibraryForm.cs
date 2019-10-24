@@ -67,11 +67,10 @@ namespace Library
 
 
 
-
-
-    
-
-
+                // pretend like this a really complex calculation going on eating up CPU time
+                System.Threading.Thread.Sleep(100);
+            }
+        }
 
 
         private void LoanService_Updated(object sender, EventArgs e)
@@ -250,7 +249,6 @@ namespace Library
 
         private void btn_MakeLoan_Click(object sender, EventArgs e)
         {
-
             if (lb_AvailableBooks.SelectedItem == null || lb_Member.SelectedItem == null)
             {
                 MessageBox.Show("Please select a book from 'Availible books' and a member to be able to make the loan.");
@@ -279,6 +277,7 @@ namespace Library
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
+            
 
             lb_LoansForMember.Items.Clear();
             if (lb_MemberCopy.SelectedItem == null)
@@ -291,6 +290,10 @@ namespace Library
                 foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
                 {
                     lb_LoansForMember.Items.Add(loan);
+                }
+                foreach (var item in memberService.FindHistory(member))
+                {
+                    lb_History.Items.Add(item.Title);
                 }
             }
         }

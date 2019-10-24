@@ -23,7 +23,7 @@ namespace Library.Repositories
 
         public IEnumerable<ReturnedLoan> All()
         {
-            throw new NotImplementedException();
+            return context.ReturnedLoans;
         }
 
         public void Edit(ReturnedLoan item)
@@ -40,5 +40,7 @@ namespace Library.Repositories
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }
