@@ -286,14 +286,27 @@ namespace Library
             }
             else
             {
-                var member = lb_MemberCopy.SelectedItem as Member;
-                foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
+                try
                 {
-                    lb_LoansForMember.Items.Add(loan);
+                    var member = lb_MemberCopy.SelectedItem as Member;
+                    foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
+                    {
+                        lb_LoansForMember.Items.Add(loan);
+                    }
+                } catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
-                foreach (var item in memberService.FindHistory(member))
+                try 
                 {
-                    lb_History.Items.Add(item.Book.Title);
+                    var member = lb_MemberCopy.SelectedItem as Member;
+                    foreach (var item in memberService.FindHistory(member))
+                    {
+                        lb_History.Items.Add(item.Book.Title);
+                    }
+                } catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -387,10 +400,6 @@ namespace Library
         }
 
 
-        private void Form1_Show(object sender, EventArgs e)
-        {
-            this.backgroundWorker1.RunWorkerAsync();
-        }
 
         private void btn_FindMember_Click(object sender, EventArgs e)
         {   
@@ -401,9 +410,10 @@ namespace Library
             }
             else
             {
-                lb_MemberCopy.Items.Clear();
-                var hejsan = memberService.Find(find).Name;
-                lb_MemberCopy.Items.Add(hejsan);
+                //lb_MemberCopy.Items.Clear();
+                var member = memberService.Find(find);
+
+                lb_MemberCopy.Items.Add(member);
             }
             
         }
