@@ -36,6 +36,8 @@
             this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_AllMembers = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_OverdueBooks = new System.Windows.Forms.Label();
             this.lb_OverdueBooks = new System.Windows.Forms.ListBox();
@@ -64,6 +66,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+
             this.lbl_AllMembers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lb_OverdueBooksForMember = new System.Windows.Forms.ListBox();
@@ -71,6 +74,7 @@
             this.lbl_LoansForMember = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_BooksOverdueForMember = new System.Windows.Forms.Label();
+
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -222,6 +226,24 @@
             this.tabPage1.Text = "Books";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(295, 212);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "All books on loan";
+            // 
+            // lbl_AllMembers
+            // 
+            this.lbl_AllMembers.AutoSize = true;
+            this.lbl_AllMembers.Location = new System.Drawing.Point(310, 16);
+            this.lbl_AllMembers.Name = "lbl_AllMembers";
+            this.lbl_AllMembers.Size = new System.Drawing.Size(63, 13);
+            this.lbl_AllMembers.TabIndex = 27;
+            this.lbl_AllMembers.Text = "All members";
             // 
             // panel2
             // 
@@ -499,6 +521,7 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+
             // lbl_AllMembers
             // 
             this.lbl_AllMembers.AutoSize = true;
@@ -561,6 +584,7 @@
             this.lbl_BooksOverdueForMember.TabIndex = 29;
             this.lbl_BooksOverdueForMember.Text = "Books overdue";
             // 
+
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

@@ -14,6 +14,7 @@ namespace Library
 {
     public partial class AboutHistoryForm : Form
     {
+        
         BookCopy BC;
         ReturnedLoanService RLS;
         public AboutHistoryForm(BookCopy bookcopy, ReturnedLoanService returnedLoanService)
@@ -23,10 +24,18 @@ namespace Library
             InitializeComponent();
             lbl_BookTitle.Text = BC.Book.Title;
             
-            var selectedbook = RLS.All().Where(s => s.BookCopy == BC);
+            var selectedbook = RLS.All().Where(s => s.BookCopy == BC).Select(rls => rls.TimeOfLoan);
+            
+
+            /*var kalle = selectedbook.Select(b => b.TimeOfLoan);
+            var balle = selectedbook.Select(c => c.TimeOfReturn);
+
+            dtm_TimeOfLoan.CustomFormat = "yyyy/MM/dd hh:mm:ss";
+            dtm_TimeOfReturn.CustomFormat = "yyyy/MM/dd hh:mm:ss";
+            dtm_TimeOfLoan.Value = selectedbook;
             //var TimeOfLoan = selectedbook.Select(h => h.TimeOfLoan);
-            txt_Info.Text = selectedbook.ToString();
-            //dateTimePicker1.Value = TimeOfLoan.First();
+            //txt_Info.Text = balle.ToString() + ", " + kalle.ToString();
+            //dateTimePicker1.Value = TimeOfLoan.First();*/
         }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)

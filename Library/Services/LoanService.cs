@@ -92,7 +92,7 @@ namespace Library.Services
         /// <param name="selectedLoan"></param>
         public void ReturnBook(Loan selectedLoan)
         {
-            
+
             if (selectedLoan.DueDate < DateTime.Now)
             {
                 CalculatePrice(selectedLoan);
@@ -103,6 +103,7 @@ namespace Library.Services
             CreateReturnenLoan(selectedLoan);
 
             Remove(selectedLoan);
+
         }
 
         private void CreateReturnenLoan(Loan loan)

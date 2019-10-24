@@ -315,11 +315,7 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
-            if (lb_Member.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a member to be able to return its book.");
-            }
-            else if (lb_LoanedBooks.SelectedItem == null)
+            if (lb_LoanedBooks.SelectedItem == null)
             {
                 MessageBox.Show("Please select a loaned book to be able to return it.");
             }
