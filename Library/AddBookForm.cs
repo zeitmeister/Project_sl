@@ -32,8 +32,8 @@ namespace Library
 
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
-            var author = AS.All().Where(a => a.Name == txt_Author.Text).FirstOrDefault();
-            if (txt_ISBN.Text == "" || txt_Title.Text == "" || txt_Description.Text == "" || txt_Author.Text == "")
+            var author = AS.All().Where(a => a.Name == txt_Author.Text.Trim()).FirstOrDefault();
+            if (txt_ISBN.Text.Trim() == "" || txt_Title.Text.Trim() == "" || txt_Description.Text.Trim() == "" || txt_Author.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter all the fields.");
             }
@@ -41,29 +41,26 @@ namespace Library
             {
                 if (author != null)
                 {
-
-
                     Book book = new Book()
                     {
-                        ISBN = txt_ISBN.Text,
-                        Title = txt_Title.Text,
-                        Description = txt_Description.Text,
+                        ISBN = txt_ISBN.Text.Trim(),
+                        Title = txt_Title.Text.Trim(),
+                        Description = txt_Description.Text.Trim(),
                         Author = author
                     };
                     BS.Add(book);
-
                 }
                 else
                 {
                     Author author2 = new Author()
                     {
-                        Name = txt_Author.Text
+                        Name = txt_Author.Text.Trim()
                     };
                     Book book = new Book()
                     {
-                        ISBN = txt_ISBN.Text,
-                        Title = txt_Title.Text,
-                        Description = txt_Description.Text,
+                        ISBN = txt_ISBN.Text.Trim(),
+                        Title = txt_Title.Text.Trim(),
+                        Description = txt_Description.Text.Trim(),
                         Author = author2
                     };
                     AS.Add(author2);
