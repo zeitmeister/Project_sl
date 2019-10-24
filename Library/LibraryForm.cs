@@ -384,9 +384,15 @@ namespace Library
 
         private void btn_DeleteBookCopy_Click(object sender, EventArgs e)
         {
+            var selected = lbBookCopies.SelectedItem as BookCopy;
+
             if (lbBookCopies.SelectedItem == null)
             {
                 MessageBox.Show("Please select a book copy to delete it.");
+            }
+            else if (selected.BookCopyId == loanService.All().Select(l => l.BookCopy).Where(l => l.BookCopyId == selected.BookCopyId).First().BookCopyId)
+            {
+                MessageBox.Show("You can't remove a book copy that is on loan.");
             }
             else
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);

@@ -36,8 +36,8 @@
             this.btn_ReturnBook = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbl_AllMembers = new System.Windows.Forms.Label();
+            //this.label1 = new System.Windows.Forms.Label();
+            //this.lbl_AllMembers = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_OverdueBooks = new System.Windows.Forms.Label();
             this.lb_OverdueBooks = new System.Windows.Forms.ListBox();
@@ -229,21 +229,21 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+            /*this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(295, 212);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 28;
-            this.label1.Text = "All books on loan";
+            this.label1.Text = "All books on loan";*/
             // 
             // lbl_AllMembers
             // 
-            this.lbl_AllMembers.AutoSize = true;
+            /*this.lbl_AllMembers.AutoSize = true;
             this.lbl_AllMembers.Location = new System.Drawing.Point(310, 16);
             this.lbl_AllMembers.Name = "lbl_AllMembers";
             this.lbl_AllMembers.Size = new System.Drawing.Size(63, 13);
             this.lbl_AllMembers.TabIndex = 27;
-            this.lbl_AllMembers.Text = "All members";
+            this.lbl_AllMembers.Text = "All members";*/
             // 
             // panel2
             // 
