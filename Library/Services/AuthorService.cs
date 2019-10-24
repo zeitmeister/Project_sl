@@ -60,7 +60,7 @@ namespace Library.Services
                 var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
                 return books;
             }
-            throw new InvalidOperationException("No author selected");
+            throw new NullReferenceException("No author selected");
                 
 
             

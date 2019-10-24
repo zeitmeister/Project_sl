@@ -109,10 +109,10 @@ namespace Library.Services
         {
             ReturnedLoan returned = new ReturnedLoan()
             {
-                BookCopyId = loan.BookCopy.BookCopyId,
+                BookCopy = loan.BookCopy as BookCopy,
                 TimeOfLoan = loan.TimeOfLoan,
                 TimeOfReturn = loan.TimeOfReturn,
-                MemberId = loan.Member.MemberId,
+                Member = loan.Member as Member,
                 DueDate = loan.DueDate
             };
             returnedLoanRepository.Add(returned);
