@@ -38,6 +38,7 @@
             this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_DeleteBookCopy = new System.Windows.Forms.Button();
             this.btn_AboutBook = new System.Windows.Forms.Button();
             this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -47,6 +48,7 @@
             this.btn_ViewBooks = new System.Windows.Forms.Button();
             this.lb_BooksByAuthor = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_DeleteMember = new System.Windows.Forms.Button();
             this.lb_LoansForMember = new System.Windows.Forms.ListBox();
             this.btn_FindLoansForMember = new System.Windows.Forms.Button();
             this.lb_MemberCopy = new System.Windows.Forms.ListBox();
@@ -54,8 +56,9 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btn_DeleteMember = new System.Windows.Forms.Button();
-            this.btn_DeleteBookCopy = new System.Windows.Forms.Button();
+            this.lbl_AvailableBooks = new System.Windows.Forms.Label();
+            this.lb_OverdueBooks = new System.Windows.Forms.ListBox();
+            this.lbl_OverdueBooks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -203,6 +206,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbl_OverdueBooks);
+            this.tabPage1.Controls.Add(this.lb_OverdueBooks);
+            this.tabPage1.Controls.Add(this.lbl_AvailableBooks);
             this.tabPage1.Controls.Add(this.btn_DeleteBookCopy);
             this.tabPage1.Controls.Add(this.btn_AboutBook);
             this.tabPage1.Controls.Add(this.lbBooks);
@@ -227,6 +233,16 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // btn_DeleteBookCopy
+            // 
+            this.btn_DeleteBookCopy.Location = new System.Drawing.Point(119, 185);
+            this.btn_DeleteBookCopy.Name = "btn_DeleteBookCopy";
+            this.btn_DeleteBookCopy.Size = new System.Drawing.Size(69, 40);
+            this.btn_DeleteBookCopy.TabIndex = 21;
+            this.btn_DeleteBookCopy.Text = "Delete book copy";
+            this.btn_DeleteBookCopy.UseVisualStyleBackColor = true;
+            this.btn_DeleteBookCopy.Click += new System.EventHandler(this.btn_DeleteBookCopy_Click);
+            // 
             // btn_AboutBook
             // 
             this.btn_AboutBook.Location = new System.Drawing.Point(147, 6);
@@ -239,9 +255,9 @@
             // 
             // lb_AvailableBooks
             // 
-            this.lb_AvailableBooks.Location = new System.Drawing.Point(21, 362);
+            this.lb_AvailableBooks.Location = new System.Drawing.Point(21, 386);
             this.lb_AvailableBooks.Name = "lb_AvailableBooks";
-            this.lb_AvailableBooks.Size = new System.Drawing.Size(424, 95);
+            this.lb_AvailableBooks.Size = new System.Drawing.Size(188, 95);
             this.lb_AvailableBooks.TabIndex = 0;
             // 
             // tabPage2
@@ -321,6 +337,16 @@
             this.tabPage3.Text = "Members";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btn_DeleteMember
+            // 
+            this.btn_DeleteMember.Location = new System.Drawing.Point(180, 107);
+            this.btn_DeleteMember.Name = "btn_DeleteMember";
+            this.btn_DeleteMember.Size = new System.Drawing.Size(97, 30);
+            this.btn_DeleteMember.TabIndex = 20;
+            this.btn_DeleteMember.Text = "Delete Member";
+            this.btn_DeleteMember.UseVisualStyleBackColor = true;
+            this.btn_DeleteMember.Click += new System.EventHandler(this.btn_DeleteMember_Click);
+            // 
             // lb_LoansForMember
             // 
             this.lb_LoansForMember.FormattingEnabled = true;
@@ -379,25 +405,31 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // btn_DeleteMember
+            // lbl_AvailableBooks
             // 
-            this.btn_DeleteMember.Location = new System.Drawing.Point(180, 107);
-            this.btn_DeleteMember.Name = "btn_DeleteMember";
-            this.btn_DeleteMember.Size = new System.Drawing.Size(97, 30);
-            this.btn_DeleteMember.TabIndex = 20;
-            this.btn_DeleteMember.Text = "Delete Member";
-            this.btn_DeleteMember.UseVisualStyleBackColor = true;
-            this.btn_DeleteMember.Click += new System.EventHandler(this.btn_DeleteMember_Click);
+            this.lbl_AvailableBooks.AutoSize = true;
+            this.lbl_AvailableBooks.Location = new System.Drawing.Point(18, 370);
+            this.lbl_AvailableBooks.Name = "lbl_AvailableBooks";
+            this.lbl_AvailableBooks.Size = new System.Drawing.Size(83, 13);
+            this.lbl_AvailableBooks.TabIndex = 22;
+            this.lbl_AvailableBooks.Text = "Available Books";
             // 
-            // btn_DeleteBookCopy
+            // lb_OverdueBooks
             // 
-            this.btn_DeleteBookCopy.Location = new System.Drawing.Point(119, 185);
-            this.btn_DeleteBookCopy.Name = "btn_DeleteBookCopy";
-            this.btn_DeleteBookCopy.Size = new System.Drawing.Size(69, 40);
-            this.btn_DeleteBookCopy.TabIndex = 21;
-            this.btn_DeleteBookCopy.Text = "Delete book copy";
-            this.btn_DeleteBookCopy.UseVisualStyleBackColor = true;
-            this.btn_DeleteBookCopy.Click += new System.EventHandler(this.btn_DeleteBookCopy_Click);
+            this.lb_OverdueBooks.FormattingEnabled = true;
+            this.lb_OverdueBooks.Location = new System.Drawing.Point(310, 386);
+            this.lb_OverdueBooks.Name = "lb_OverdueBooks";
+            this.lb_OverdueBooks.Size = new System.Drawing.Size(217, 95);
+            this.lb_OverdueBooks.TabIndex = 23;
+            // 
+            // lbl_OverdueBooks
+            // 
+            this.lbl_OverdueBooks.AutoSize = true;
+            this.lbl_OverdueBooks.Location = new System.Drawing.Point(310, 370);
+            this.lbl_OverdueBooks.Name = "lbl_OverdueBooks";
+            this.lbl_OverdueBooks.Size = new System.Drawing.Size(81, 13);
+            this.lbl_OverdueBooks.TabIndex = 24;
+            this.lbl_OverdueBooks.Text = "Overdue Books";
             // 
             // LibraryForm
             // 
@@ -456,6 +488,9 @@
         private System.Windows.Forms.Button btn_AboutBook;
         private System.Windows.Forms.Button btn_DeleteMember;
         private System.Windows.Forms.Button btn_DeleteBookCopy;
+        private System.Windows.Forms.Label lbl_OverdueBooks;
+        private System.Windows.Forms.ListBox lb_OverdueBooks;
+        private System.Windows.Forms.Label lbl_AvailableBooks;
     }
 }
 

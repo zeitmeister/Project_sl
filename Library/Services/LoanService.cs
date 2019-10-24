@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Library.Services
 {
     class LoanService : IService
@@ -70,7 +71,7 @@ namespace Library.Services
                 BookCopy = bookCopy,
                 Member = member,
                 TimeOfLoan = DateTime.Now,
-                DueDate = DateTime.Now.AddDays(15),
+                DueDate = DateTime.Now.AddSeconds(10),
                 TimeOfReturn = null
             };
             Add(loan);
@@ -99,6 +100,13 @@ namespace Library.Services
             loan.TimeOfReturn = DateTime.Now;
             loanRepository.Edit(loan);
             OnUpdated(this, eventArgs);
+            CreateReturnenLoan(loan);
+
+            Remove(loan);
+        }
+
+        private void CreateReturnenLoan(Loan loan)
+        {
             ReturnedLoan returned = new ReturnedLoan()
             {
                 BookCopyId = loan.BookCopy.BookCopyId,
@@ -108,8 +116,6 @@ namespace Library.Services
                 DueDate = loan.DueDate
             };
             returnedLoanRepository.Add(returned);
-            
-            Remove(loan);
         }
 
         private int CalculatePrice(Loan loan)
@@ -125,25 +131,12 @@ namespace Library.Services
             var loanedBookCopies = loans.Select(l => l.BookCopy).ToList();
             var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
 
-
-            /*var test = bookCopies.Join(loans,
-                                    bc => bc.BookCopyId,
-                                    l => l.BookCopy.BookCopyId,
-                                    (bc, l) => new { BookCopy = bc, Loan = l })
-                            .Where(lo => lo.Loan.TimeOfReturn > lo.Loan.TimeOfLoan).ToList();*/
-            //.Select(bc => bc.BookCopy);
-
-            //var cp = test.Select(l => l.Loan.BookCopy.BookCopyId).Count();
-            //var test = loans.Where(l => l.TimeOfReturn > l.TimeOfLoan.Date).Count(l => l.BookCopy.BookCopyId > 1);
-            //var test2 = test.Select(l => l.BookCopy);
-            //var test2 = loans.Where(l => l.TimeOfReturn > l.TimeOfLoan);
-            //var availableBooks2 = loans.Where(bc => !test2.Any(l => l.BookCopy.BookCopyId == bc.BookCopy.BookCopyId) || bc.TimeOfReturn > DateTime.Now).Select(l => l.BookCopy).ToList();
-            //foreach (var item in availableBooks2)
-            //{
-            //    availableBooks.Add(item);
-            //}
-            //availableBooks.AddRange(test);
             return availableBooks;
+        }
+
+        public IEnumerable<BookCopy> FindAllOverdueBooks( IEnumerable<Loan> loans)
+        {
+            return loans.Where(l => l.DueDate > DateTime.Now && l.TimeOfReturn == null).Select(l => l.BookCopy).ToList();
         }
     }
 }
