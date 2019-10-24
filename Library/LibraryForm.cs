@@ -315,16 +315,12 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
-            if (lb_Member.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a member to be able to return its book.");
-            }
-            else if (lb_LoanedBooks.SelectedItem == null)
+            if (lb_LoanedBooks.SelectedItem == null)
             {
                 MessageBox.Show("Please select a loaned book to be able to return it.");
             }
             else
-            loanService.ReturnBook(lb_Member.SelectedItem as Member, lb_LoanedBooks.SelectedItem as Loan);
+            loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
         }
 
         private void btn_FindAvailableBooks_Click(object sender, EventArgs e)
