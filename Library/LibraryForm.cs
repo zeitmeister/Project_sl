@@ -431,6 +431,11 @@ namespace Library
         {
 
         }
+
+        private void lb_MemberCopy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     } 
 }
 
