@@ -31,20 +31,20 @@
             this.lblBookCopies = new System.Windows.Forms.Label();
             this.lb_Member = new System.Windows.Forms.ListBox();
             this.btn_MakeLoan = new System.Windows.Forms.Button();
-            this.btn_FindLoanedBooks = new System.Windows.Forms.Button();
             this.lb_LoanedBooks = new System.Windows.Forms.ListBox();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.btn_ReturnBook = new System.Windows.Forms.Button();
-            this.btn_FindAvailableBooks = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btn_FindOverdueBooks = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_OverdueBooks = new System.Windows.Forms.Label();
             this.lb_OverdueBooks = new System.Windows.Forms.ListBox();
+            this.btn_FindOverdueBooks = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_AvailableBooks = new System.Windows.Forms.Label();
+            this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             this.btn_DeleteBookCopy = new System.Windows.Forms.Button();
             this.btn_AboutBook = new System.Windows.Forms.Button();
-            this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnAddAuthor = new System.Windows.Forms.Button();
             this.txtBox_AddAuthor = new System.Windows.Forms.TextBox();
@@ -52,6 +52,7 @@
             this.btn_ViewBooks = new System.Windows.Forms.Button();
             this.lb_BooksByAuthor = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_HistoryDetails = new System.Windows.Forms.Button();
             this.lb_History = new System.Windows.Forms.ListBox();
             this.btn_FindMember = new System.Windows.Forms.Button();
             this.txt_FindMember = new System.Windows.Forms.TextBox();
@@ -63,19 +64,15 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-
-            this.btn_HistoryDetails = new System.Windows.Forms.Button();
-
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-
+            this.lbl_AllMembers = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -156,24 +153,13 @@
             this.btn_MakeLoan.UseVisualStyleBackColor = true;
             this.btn_MakeLoan.Click += new System.EventHandler(this.btn_MakeLoan_Click);
             // 
-            // btn_FindLoanedBooks
-            // 
-            this.btn_FindLoanedBooks.Location = new System.Drawing.Point(398, 285);
-            this.btn_FindLoanedBooks.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_FindLoanedBooks.Name = "btn_FindLoanedBooks";
-            this.btn_FindLoanedBooks.Size = new System.Drawing.Size(55, 48);
-            this.btn_FindLoanedBooks.TabIndex = 15;
-            this.btn_FindLoanedBooks.Text = "Find Loaned Books";
-            this.btn_FindLoanedBooks.UseVisualStyleBackColor = true;
-            this.btn_FindLoanedBooks.Click += new System.EventHandler(this.btn_FindLoanedBooks_Click);
-            // 
             // lb_LoanedBooks
             // 
             this.lb_LoanedBooks.FormattingEnabled = true;
             this.lb_LoanedBooks.HorizontalScrollbar = true;
-            this.lb_LoanedBooks.Location = new System.Drawing.Point(310, 197);
+            this.lb_LoanedBooks.Location = new System.Drawing.Point(295, 231);
             this.lb_LoanedBooks.Name = "lb_LoanedBooks";
-            this.lb_LoanedBooks.Size = new System.Drawing.Size(245, 82);
+            this.lb_LoanedBooks.Size = new System.Drawing.Size(260, 82);
             this.lb_LoanedBooks.TabIndex = 16;
             // 
             // fileSystemWatcher1
@@ -184,24 +170,13 @@
             // 
             // btn_ReturnBook
             // 
-            this.btn_ReturnBook.Location = new System.Drawing.Point(323, 285);
+            this.btn_ReturnBook.Location = new System.Drawing.Point(482, 105);
             this.btn_ReturnBook.Name = "btn_ReturnBook";
-            this.btn_ReturnBook.Size = new System.Drawing.Size(54, 48);
+            this.btn_ReturnBook.Size = new System.Drawing.Size(73, 48);
             this.btn_ReturnBook.TabIndex = 18;
             this.btn_ReturnBook.Text = "Return Book";
             this.btn_ReturnBook.UseVisualStyleBackColor = true;
             this.btn_ReturnBook.Click += new System.EventHandler(this.btn_ReturnBook_Click);
-            // 
-            // btn_FindAvailableBooks
-            // 
-            this.btn_FindAvailableBooks.Location = new System.Drawing.Point(477, 285);
-            this.btn_FindAvailableBooks.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_FindAvailableBooks.Name = "btn_FindAvailableBooks";
-            this.btn_FindAvailableBooks.Size = new System.Drawing.Size(69, 50);
-            this.btn_FindAvailableBooks.TabIndex = 19;
-            this.btn_FindAvailableBooks.Text = "Find Available Books";
-            this.btn_FindAvailableBooks.UseVisualStyleBackColor = true;
-            this.btn_FindAvailableBooks.Click += new System.EventHandler(this.btn_FindAvailableBooks_Click);
             // 
             // tabControl1
             // 
@@ -218,20 +193,20 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lbl_AllMembers);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.btn_DeleteBookCopy);
             this.tabPage1.Controls.Add(this.btn_AboutBook);
             this.tabPage1.Controls.Add(this.lbBooks);
             this.tabPage1.Controls.Add(this.btn_AddBook);
-            this.tabPage1.Controls.Add(this.btn_FindAvailableBooks);
             this.tabPage1.Controls.Add(this.deleteBookBtn);
             this.tabPage1.Controls.Add(this.btn_ReturnBook);
             this.tabPage1.Controls.Add(this.Add_BookCopy);
             this.tabPage1.Controls.Add(this.lbBookCopies);
             this.tabPage1.Controls.Add(this.lb_LoanedBooks);
             this.tabPage1.Controls.Add(this.lblBookCopies);
-            this.tabPage1.Controls.Add(this.btn_FindLoanedBooks);
             this.tabPage1.Controls.Add(this.lb_Member);
             this.tabPage1.Controls.Add(this.btn_MakeLoan);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -243,17 +218,16 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // btn_FindOverdueBooks
+            // panel2
             // 
-
-            this.btn_FindOverdueBooks.Location = new System.Drawing.Point(78, 122);
-
-            this.btn_FindOverdueBooks.Name = "btn_FindOverdueBooks";
-            this.btn_FindOverdueBooks.Size = new System.Drawing.Size(75, 23);
-            this.btn_FindOverdueBooks.TabIndex = 25;
-            this.btn_FindOverdueBooks.Text = "Find";
-            this.btn_FindOverdueBooks.UseVisualStyleBackColor = true;
-            this.btn_FindOverdueBooks.Click += new System.EventHandler(this.btn_FindOverdueBooks_Click);
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lbl_OverdueBooks);
+            this.panel2.Controls.Add(this.lb_OverdueBooks);
+            this.panel2.Controls.Add(this.btn_FindOverdueBooks);
+            this.panel2.Location = new System.Drawing.Point(295, 347);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(260, 148);
+            this.panel2.TabIndex = 23;
             // 
             // lbl_OverdueBooks
             // 
@@ -272,6 +246,26 @@
             this.lb_OverdueBooks.Size = new System.Drawing.Size(217, 95);
             this.lb_OverdueBooks.TabIndex = 23;
             // 
+            // btn_FindOverdueBooks
+            // 
+            this.btn_FindOverdueBooks.Location = new System.Drawing.Point(78, 122);
+            this.btn_FindOverdueBooks.Name = "btn_FindOverdueBooks";
+            this.btn_FindOverdueBooks.Size = new System.Drawing.Size(75, 23);
+            this.btn_FindOverdueBooks.TabIndex = 25;
+            this.btn_FindOverdueBooks.Text = "Find";
+            this.btn_FindOverdueBooks.UseVisualStyleBackColor = true;
+            this.btn_FindOverdueBooks.Click += new System.EventHandler(this.btn_FindOverdueBooks_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lbl_AvailableBooks);
+            this.panel1.Controls.Add(this.lb_AvailableBooks);
+            this.panel1.Location = new System.Drawing.Point(21, 349);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(249, 146);
+            this.panel1.TabIndex = 26;
+            // 
             // lbl_AvailableBooks
             // 
             this.lbl_AvailableBooks.AutoSize = true;
@@ -280,6 +274,13 @@
             this.lbl_AvailableBooks.Size = new System.Drawing.Size(83, 13);
             this.lbl_AvailableBooks.TabIndex = 22;
             this.lbl_AvailableBooks.Text = "Available Books";
+            // 
+            // lb_AvailableBooks
+            // 
+            this.lb_AvailableBooks.Location = new System.Drawing.Point(19, 24);
+            this.lb_AvailableBooks.Name = "lb_AvailableBooks";
+            this.lb_AvailableBooks.Size = new System.Drawing.Size(188, 95);
+            this.lb_AvailableBooks.TabIndex = 0;
             // 
             // btn_DeleteBookCopy
             // 
@@ -300,13 +301,6 @@
             this.btn_AboutBook.Text = "About book";
             this.btn_AboutBook.UseVisualStyleBackColor = true;
             this.btn_AboutBook.Click += new System.EventHandler(this.btn_AboutBook_Click);
-            // 
-            // lb_AvailableBooks
-            // 
-            this.lb_AvailableBooks.Location = new System.Drawing.Point(19, 24);
-            this.lb_AvailableBooks.Name = "lb_AvailableBooks";
-            this.lb_AvailableBooks.Size = new System.Drawing.Size(188, 95);
-            this.lb_AvailableBooks.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -388,6 +382,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Members";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_HistoryDetails
+            // 
+            this.btn_HistoryDetails.Location = new System.Drawing.Point(264, 353);
+            this.btn_HistoryDetails.Name = "btn_HistoryDetails";
+            this.btn_HistoryDetails.Size = new System.Drawing.Size(75, 23);
+            this.btn_HistoryDetails.TabIndex = 24;
+            this.btn_HistoryDetails.Text = "Show details";
+            this.btn_HistoryDetails.UseVisualStyleBackColor = true;
+            this.btn_HistoryDetails.Click += new System.EventHandler(this.btn_HistoryDetails_Click);
             // 
             // lb_History
             // 
@@ -484,37 +488,23 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-
-            // btn_HistoryDetails
+            // lbl_AllMembers
             // 
-            this.btn_HistoryDetails.Location = new System.Drawing.Point(264, 353);
-            this.btn_HistoryDetails.Name = "btn_HistoryDetails";
-            this.btn_HistoryDetails.Size = new System.Drawing.Size(75, 23);
-            this.btn_HistoryDetails.TabIndex = 24;
-            this.btn_HistoryDetails.Text = "Show details";
-            this.btn_HistoryDetails.UseVisualStyleBackColor = true;
-            this.btn_HistoryDetails.Click += new System.EventHandler(this.btn_HistoryDetails_Click);
-
-            // panel1
+            this.lbl_AllMembers.AutoSize = true;
+            this.lbl_AllMembers.Location = new System.Drawing.Point(310, 16);
+            this.lbl_AllMembers.Name = "lbl_AllMembers";
+            this.lbl_AllMembers.Size = new System.Drawing.Size(63, 13);
+            this.lbl_AllMembers.TabIndex = 27;
+            this.lbl_AllMembers.Text = "All members";
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbl_AvailableBooks);
-            this.panel1.Controls.Add(this.lb_AvailableBooks);
-            this.panel1.Location = new System.Drawing.Point(21, 349);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(249, 146);
-            this.panel1.TabIndex = 26;
+            // label1
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lbl_OverdueBooks);
-            this.panel2.Controls.Add(this.lb_OverdueBooks);
-            this.panel2.Controls.Add(this.btn_FindOverdueBooks);
-            this.panel2.Location = new System.Drawing.Point(295, 347);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(260, 148);
-            this.panel2.TabIndex = 23;
-
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(295, 212);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "All books on loan";
             // 
             // LibraryForm
             // 
@@ -529,14 +519,14 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -551,13 +541,11 @@
         private System.Windows.Forms.Label lblBookCopies;
         private System.Windows.Forms.ListBox lb_Member;
         private System.Windows.Forms.Button btn_MakeLoan;
-        private System.Windows.Forms.Button btn_FindLoanedBooks;
         private System.Windows.Forms.ListBox lb_LoanedBooks;
 
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.ListBox lb_AvailableBooks;
         private System.Windows.Forms.Button btn_ReturnBook;
-        private System.Windows.Forms.Button btn_FindAvailableBooks;
         
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -592,7 +580,8 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_AllMembers;
     }
 }
 

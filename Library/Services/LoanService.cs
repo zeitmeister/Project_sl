@@ -126,6 +126,11 @@ namespace Library.Services
             return days * 10;
         }
 
+        public IEnumerable<Loan> FindAllBooksOnLoan()
+        {
+            return loanRepository.All().Select(l => l).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
+        }
+
         public IEnumerable<BookCopy> FindAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
         {
             //var skit = loans.ToList();
