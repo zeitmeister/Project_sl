@@ -21,6 +21,4 @@ namespace Library.Models
             return LoanId + ": " + BookCopy.Book.Title + " is on loan";
         }
     }
-
-
 }

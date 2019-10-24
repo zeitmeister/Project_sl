@@ -111,7 +111,6 @@ namespace Library
         {
             ShowAllBookCopies(copyService.All());
             ShowAllAvailableBooks();
-           
         }
 
         private void ShowAllAvailableBooks()
@@ -258,8 +257,6 @@ namespace Library
             else
 
             loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
-
-
         }
 
         private void LibraryForm_Load(object sender, EventArgs e)
@@ -279,8 +276,7 @@ namespace Library
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
-            
-
+            lb_History.Items.Clear();
             lb_LoansForMember.Items.Clear();
             if (lb_MemberCopy.SelectedItem == null)
             {
@@ -308,15 +304,10 @@ namespace Library
                     }
                 } catch (NullReferenceException ex)
                 {
-
-                    
-
                     MessageBox.Show(ex.Message);
-
                 }
             }
         }
-
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
         {

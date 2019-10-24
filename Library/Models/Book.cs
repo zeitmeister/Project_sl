@@ -6,10 +6,7 @@ using System.Web;
 
 namespace Library.Models {
     public class Book {
-
-
         public int BookId { get; set; }
-
         public string ISBN { get; set; }
         public string Description { get; set; }
         public Author Author { get; set; }
