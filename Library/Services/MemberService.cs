@@ -68,27 +68,12 @@ namespace Library.Services
             return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfReturn > l.TimeOfLoan);
         }
 
-        public IEnumerable<Book> FindHistory(Member member)
+        public IEnumerable<BookCopy> FindHistory(Member member)
         {
-            var bookcopy = bookCopyRepository.All().ToList();
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            var join = selectedMember.Join(returnedLoanService.All(), sm => sm.MemberId, rls => rls.MemberId, (s, l) => new { Test = s.Name, TestTest = l.BookCopyId});
-            var joinjoin = join.Join(bookcopy, jj => jj.TestTest, bc => bc.BookCopyId, (apa, kapa) => new { fitta = apa.Test, britta = kapa.Book });
-            return joinjoin.Select(KLAR => KLAR.britta);
-            /*var bookcopy = bookCopyService.All();
-            var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            var fajt = selectedMember.Select(lp => lp.ReturnedLoans);
-            var testjoin = fajt.Join(bookcopy, sm => sm.BookCopyId, bc => bc.BookCopyId, (s, b) => new { testest = s.PersonId, Namn = b.Book });
-            
-            var returnedloan = returnedLoanService.All();
-            var join = bookcopy.Join(returnedloan, bc => bc.BookCopyId, rl => rl.BookCopyId, (b, r) => new { Name = b.Book, Id = r.BookCopyId }).Join(memberRepository.All().;
-            var galje = join.Select(jh => jh.Name);
-            //var kalle = alla.Join(hej, a => a.BookCopyId, h => h.BookCopyId, (a, h) => new { BookCopy = a, ReturnedLoan = h });
-            
-            var bög = selectedMember.Select(e => e.Loans.Where(asd => asd.BookCopy == galje));
-            return bög;
-            //var kalle = selectedMember.Select(bc => bc.ReturnedLoans.Where(x => x.BookCopyId == alla.Select(gh => gh.BookCopyId).ToList())*/
-
+            var jappa = selectedMember.SelectMany(rm => rm.ReturnedLoans).Select(asdf => asdf.BookCopy);
+            return jappa;
+           
         }
     }
 }

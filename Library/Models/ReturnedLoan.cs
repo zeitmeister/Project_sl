@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Models
 {
@@ -15,7 +16,7 @@ namespace Library.Models
         public DateTime? TimeOfReturn { get; set; }
         
         public BookCopy BookCopy { get; set; }
-
+        [Required]
         public Member Member { get; set; }
 
     }

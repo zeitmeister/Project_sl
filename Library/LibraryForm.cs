@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
+
 
 namespace Library
 {
@@ -68,9 +68,9 @@ namespace Library
 
 
                 // pretend like this a really complex calculation going on eating up CPU time
-                System.Threading.Thread.Sleep(100);
-            }
-        }
+                //System.Threading.Thread.Sleep(100);
+            
+        
 
 
         private void LoanService_Updated(object sender, EventArgs e)
@@ -293,7 +293,7 @@ namespace Library
                 }
                 foreach (var item in memberService.FindHistory(member))
                 {
-                    lb_History.Items.Add(item.Title);
+                    lb_History.Items.Add(item.Book.Title);
                 }
             }
         }
@@ -414,3 +414,4 @@ namespace Library
         }
     } 
 }
+
