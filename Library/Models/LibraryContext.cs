@@ -31,6 +31,8 @@ namespace Library.Models {
         public DbSet<Loan> Loans { get; set; }
         public DbSet<BookCopy> BookCopies { get; set; }
 
+        public DbSet<ReturnedLoan> ReturnedLoans { get; set; }
+
         public DbSet<Member> Member { get; set; }
 
         // If you want to try or need to (some use cases) use fluent API this is the place!
