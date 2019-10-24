@@ -43,6 +43,7 @@ namespace Library
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
             timer = new System.Windows.Forms.Timer();
+
             ShowAllBooks(bookService.All());
             ShowAllBookCopies(copyService.All());
             ShowAllMembers(memberService.All());
@@ -203,16 +204,24 @@ namespace Library
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
         {
-            Author author = new Author()
+            if (txtBox_AddAuthor.Text.Trim() == "")
             {
-                Name = txtBox_AddAuthor.Text
-            };
-            authorService.Add(author);
+                MessageBox.Show("Please enter an author.");
+            }
+            else
+            {
+                Author author = new Author()
+                {
+                    Name = txtBox_AddAuthor.Text.Trim()
+                };
+                authorService.Add(author);
+            }
         }
 
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
             lb_BooksByAuthor.Items.Clear();
+
             var itemSelected = lbAuthors.SelectedItem as Author;
             
             foreach (var item in authorService.BookByAuthor(itemSelected))
@@ -229,7 +238,12 @@ namespace Library
 
         private void btn_MakeLoan_Click(object sender, EventArgs e)
         {
-            loanService.MakeLoan(lbBookCopies.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
+            if (lb_AvailableBooks.SelectedItem == null || lb_Member.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a book from 'Availible books' and a member to be able to make the loan.");
+            }
+            else
+            loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
 
         private void LibraryForm_Load(object sender, EventArgs e)
@@ -255,7 +269,6 @@ namespace Library
             foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
             {
                 lb_LoansForMember.Items.Add(loan);
-
             }
         }
 
@@ -350,6 +363,22 @@ namespace Library
         private void Form1_Show(object sender, EventArgs e)
         {
             this.backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void btn_FindMember_Click(object sender, EventArgs e)
+        {   
+            var find = memberService.All().Where(m => m.Name == txt_FindMember.Text).Select(m => m.MemberId).FirstOrDefault();
+            if (find == 0)
+            {
+                MessageBox.Show("Member could not be found.");
+            }
+            else
+            {
+                lb_MemberCopy.Items.Clear();
+                var hejsan = memberService.Find(find).Name;
+                lb_MemberCopy.Items.Add(hejsan);
+            }
+            
         }
     } 
 }
