@@ -43,7 +43,7 @@ namespace Library
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
 
-            timer = new System.Windows.Forms.Timer();
+            //timer = new System.Windows.Forms.Timer();
 
 
             ShowAllBooks(bookService.All());
@@ -295,10 +295,17 @@ namespace Library
         {
 
             lb_LoansForMember.Items.Clear();
-            var member = lb_MemberCopy.SelectedItem as Member;
-            foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
+            if (lb_MemberCopy.SelectedItem == null)
             {
-                lb_LoansForMember.Items.Add(loan);
+                MessageBox.Show("Please select a member to able to show which books they have on loan");
+            }
+            else
+            {
+                var member = lb_MemberCopy.SelectedItem as Member;
+                foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
+                {
+                    lb_LoansForMember.Items.Add(loan);
+                }
             }
         }
 
