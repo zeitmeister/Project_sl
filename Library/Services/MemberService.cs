@@ -58,8 +58,13 @@ namespace Library.Services
 
         public IEnumerable<Loan> FindAllBooksOnLoanForMember(Member member)
         {
-            var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
+            if (member != null)
+            {
+
+                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
+                return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
+            }
+            throw new NullReferenceException("No member selected");
         }
 
         public IEnumerable<Loan> FindAllReturnedBooks(Member member)
@@ -70,9 +75,13 @@ namespace Library.Services
 
         public IEnumerable<BookCopy> FindHistory(Member member)
         {
-            var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            var jappa = selectedMember.SelectMany(rm => rm.ReturnedLoans).Select(asdf => asdf.BookCopy);
-            return jappa;
+            if (member != null)
+            {
+                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
+                var jappa = selectedMember.SelectMany(rm => rm.ReturnedLoans).Select(asdf => asdf.BookCopy);
+                return jappa;
+            }
+            throw new NullReferenceException("No member selected");
            
         }
     }
