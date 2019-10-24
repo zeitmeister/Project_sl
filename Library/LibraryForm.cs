@@ -300,7 +300,7 @@ namespace Library
                     var member = lb_MemberCopy.SelectedItem as Member;
                     foreach (var item in memberService.FindHistory(member))
                     {
-                        lb_History.Items.Add(item.Book.Title);
+                        lb_History.Items.Add(item);
                     }
                 } catch (NullReferenceException ex)
                 {
