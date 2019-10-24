@@ -21,6 +21,7 @@ namespace Library
         AuthorService authorService;
         MemberService memberService;
         LoanService loanService;
+        ReturnedLoanService returnedLoanService;
 
         private int i = 0;
         private int duration = 0;
@@ -42,6 +43,7 @@ namespace Library
             authorService = new AuthorService(repFactory);
             memberService = new MemberService(repFactory);
             loanService = new LoanService(repFactory);
+            returnedLoanService = new ReturnedLoanService(repFactory);
 
             //timer = new System.Windows.Forms.Timer();
 
@@ -293,7 +295,7 @@ namespace Library
                 }
                 foreach (var item in memberService.FindHistory(member))
                 {
-                    lb_History.Items.Add(item.Book.Title);
+                    lb_History.Items.Add(item);
                 }
             }
         }
@@ -402,15 +404,25 @@ namespace Library
             else
             {
                 lb_MemberCopy.Items.Clear();
-                var hejsan = memberService.Find(find).Name;
-                lb_MemberCopy.Items.Add(hejsan);
+                var hejsan = memberService.Find(find);
+                lb_MemberCopy.Items.Add(hejsan as Member);
             }
-            
         }
 
         private void btn_FindOverdueBooks_Click(object sender, EventArgs e)
         {
             ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All(), copyService.All()));
+        }
+
+        private void btn_HistoryDetails_Click(object sender, EventArgs e)
+        {
+            AboutHistoryForm aboutHistoryForm = new AboutHistoryForm(lb_History.SelectedItem as BookCopy, returnedLoanService);
+            aboutHistoryForm.Show();
+        }
+
+        private void lb_History_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     } 
 }

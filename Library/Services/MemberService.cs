@@ -71,7 +71,7 @@ namespace Library.Services
         public IEnumerable<BookCopy> FindHistory(Member member)
         {
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            var jappa = selectedMember.SelectMany(rm => rm.ReturnedLoans).Select(asdf => asdf.BookCopy);
+            var jappa = selectedMember.SelectMany(sm => sm.ReturnedLoans).Select(asdf => asdf.BookCopy);
             return jappa;
            
         }

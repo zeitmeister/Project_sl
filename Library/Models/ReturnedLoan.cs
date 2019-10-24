@@ -19,5 +19,9 @@ namespace Library.Models
         [Required]
         public Member Member { get; set; }
 
+        public override string ToString()
+        {
+            return String.Format("{0} Was booked on: {1} and returned on {2} by {3}", this.BookCopy.Book.Title, this.TimeOfLoan, this.TimeOfReturn, this.Member.Name);
+        }
     }
 }
