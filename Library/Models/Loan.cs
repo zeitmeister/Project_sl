@@ -18,7 +18,7 @@ namespace Library.Models
 
         public override string ToString()
         {
-            return BookCopy.Book.Title + " is on loan";
+            return LoanId + ": " + BookCopy.Book.Title + " is on loan";
         }
     }
 

@@ -88,7 +88,8 @@ namespace Library.Services
         /// <param name="selectedLoan"></param>
         public void ReturnBook(Member member, Loan selectedLoan)
         {
-            var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).OrderByDescending(l => l.TimeOfLoan).FirstOrDefault();
+            //var loan = member.Loans.Select(l => l).Where(l => l.BookCopy.BookCopyId == selectedLoan.BookCopy.BookCopyId).OrderByDescending(l => l.TimeOfLoan).FirstOrDefault();
+            var loan = member.Loans.Where(l => l.LoanId == selectedLoan.LoanId).Select(l => l).FirstOrDefault();
             if (loan.DueDate < DateTime.Now)
             {
                 CalculatePrice(loan);
@@ -96,6 +97,7 @@ namespace Library.Services
             loan.TimeOfReturn = DateTime.Now;
             loanRepository.Edit(loan);
             OnUpdated(this, eventArgs);
+            Remove(loan);
         }
 
         private int CalculatePrice(Loan loan)
@@ -107,17 +109,28 @@ namespace Library.Services
 
         public IEnumerable<BookCopy> FindAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
         {
-            var loanedBookCopies = loans.Select(l => l.BookCopy);
+            //var skit = loans.ToList();
+            var loanedBookCopies = loans.Select(l => l.BookCopy).ToList();
             var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
 
-            
-            var bookCopiesPreviouslyLoaned =  bookCopies.Join(loans,
+
+            /*var test = bookCopies.Join(loans,
                                     bc => bc.BookCopyId,
                                     l => l.BookCopy.BookCopyId,
                                     (bc, l) => new { BookCopy = bc, Loan = l })
-                            .Where(lo => lo.Loan.TimeOfReturn > lo.Loan.TimeOfLoan)
-                            .Select(bc => bc.BookCopy);
-            availableBooks.AddRange(bookCopiesPreviouslyLoaned);
+                            .Where(lo => lo.Loan.TimeOfReturn > lo.Loan.TimeOfLoan).ToList();*/
+            //.Select(bc => bc.BookCopy);
+
+            //var cp = test.Select(l => l.Loan.BookCopy.BookCopyId).Count();
+            //var test = loans.Where(l => l.TimeOfReturn > l.TimeOfLoan.Date).Count(l => l.BookCopy.BookCopyId > 1);
+            //var test2 = test.Select(l => l.BookCopy);
+            //var test2 = loans.Where(l => l.TimeOfReturn > l.TimeOfLoan);
+            //var availableBooks2 = loans.Where(bc => !test2.Any(l => l.BookCopy.BookCopyId == bc.BookCopy.BookCopyId) || bc.TimeOfReturn > DateTime.Now).Select(l => l.BookCopy).ToList();
+            //foreach (var item in availableBooks2)
+            //{
+            //    availableBooks.Add(item);
+            //}
+            //availableBooks.AddRange(test);
             return availableBooks;
         }
     }
