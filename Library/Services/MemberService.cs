@@ -67,6 +67,8 @@ namespace Library.Services
             throw new NullReferenceException("No member selected");
         }
 
+        
+
         public IEnumerable<Loan> FindAllReturnedBooks(Member member)
         {
             var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
