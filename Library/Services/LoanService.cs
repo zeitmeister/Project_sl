@@ -14,6 +14,8 @@ namespace Library.Services
     {
         LoanRepository loanRepository;
         ReturnedLoanRepository returnedLoanRepository;
+        BookCopyRepository bookCopyRepository;
+
         public event EventHandler Updated;
 
         public event EventHandler Returned;
@@ -23,6 +25,7 @@ namespace Library.Services
         {
             loanRepository = repFactory.CreateLoanRepository();
             returnedLoanRepository = repFactory.CreateReturnedLoanRepository();
+            bookCopyRepository = repFactory.CreateBookCopyRepository();
         }
 
         protected virtual void OnUpdated(object sender, EventArgs eventArgs)
@@ -145,6 +148,16 @@ namespace Library.Services
             //return loans.Select(l => l.BookCopy).Where(l => l.DueDate > DateTime.Now && l.TimeOfReturn == null).Select(l => l.BookCopy).ToList();
             var join = loans.Join(bookCopies, l => l.BookCopy.BookCopyId, bc => bc.BookCopyId, (ll, lbc) => new { Loan = ll, BookCopy = lbc });
             return join.Where(j => j.Loan.DueDate.Second >= DateTime.Now.Second && j.Loan.TimeOfReturn == null).Select(j => j.BookCopy).ToList();
+        }
+
+        public bool CheckIfBookIsOnLoan (BookCopy bookCopy)
+        {
+            if (!FindAllAvailableBooks(bookCopyRepository.All(), All()).Contains(bookCopy))
+            {
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
