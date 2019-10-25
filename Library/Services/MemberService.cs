@@ -79,7 +79,15 @@ namespace Library.Services
             if (IsObjectNotNull(member))
             {
                 var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
-                var jappa = selectedMember.ReturnedLoans.Select(asdf => asdf.BookCopy);
+                selectedMember.ReturnedLoans.Select(k => k.BookCopy);
+                var jappa = selectedMember.Select(rm => rm.ReturnedLoans).Select(k => k.BookCopy).Distinct();
+                if (jappa == null)
+                {
+                    throw new ArgumentNullException("bajs");
+                    /*List<BookCopy> bookcopyList = new List<BookCopy>();
+                    return bookcopyList;*/
+                }
+
                 return jappa;
             }
             throw new ArgumentNullException("No member selected");
@@ -94,5 +102,16 @@ namespace Library.Services
             return booksOverDueDate;
         }
 
+        public bool MemberAlreadyExists(int personalId)
+        {
+            var AllPersonalId = memberRepository.All().Select(id => id.PersonId).ToList();
+
+            if (AllPersonalId.Contains(personalId))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
