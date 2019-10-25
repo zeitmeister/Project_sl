@@ -14,7 +14,6 @@ namespace Library
 {
     public partial class AboutHistoryForm : Form
     {
-        
         BookCopy BC;
         ReturnedLoanService RLS;
         public AboutHistoryForm(BookCopy bookcopy, ReturnedLoanService returnedLoanService)

@@ -14,6 +14,8 @@ namespace Library.Services
     {
         LoanRepository loanRepository;
         ReturnedLoanRepository returnedLoanRepository;
+        BookCopyRepository bookCopyRepository;
+
         public event EventHandler Updated;
 
         public event EventHandler Returned;
@@ -23,6 +25,7 @@ namespace Library.Services
         {
             loanRepository = repFactory.CreateLoanRepository();
             returnedLoanRepository = repFactory.CreateReturnedLoanRepository();
+            bookCopyRepository = repFactory.CreateBookCopyRepository();
         }
 
         protected virtual void OnUpdated(object sender, EventArgs eventArgs)
@@ -159,8 +162,14 @@ namespace Library.Services
         }
 
 
-       
-
-        
+        public bool CheckIfBookIsOnLoan (BookCopy bookCopy)
+        {
+            if (!FindAllAvailableBooks(bookCopyRepository.All(), All()).Contains(bookCopy))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
