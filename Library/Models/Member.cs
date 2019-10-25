@@ -20,6 +20,7 @@ namespace Library.Models
         public Member()
         {
             Loans = new List<Loan>();
+            ReturnedLoans = new List<ReturnedLoan>();
         }
 
         public override string ToString()

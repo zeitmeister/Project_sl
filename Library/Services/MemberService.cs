@@ -78,8 +78,8 @@ namespace Library.Services
 
             if (IsObjectNotNull(member))
             {
-                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-                var jappa = selectedMember.SelectMany(rm => rm.ReturnedLoans).Select(asdf => asdf.BookCopy);
+                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
+                var jappa = selectedMember.ReturnedLoans.Select(asdf => asdf.BookCopy);
                 return jappa;
             }
             throw new ArgumentNullException("No member selected");

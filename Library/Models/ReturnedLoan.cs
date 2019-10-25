@@ -16,7 +16,6 @@ namespace Library.Models
         public DateTime? TimeOfReturn { get; set; }
         
         public BookCopy BookCopy { get; set; }
-        [Required]
         public Member Member { get; set; }
 
         public override string ToString()
