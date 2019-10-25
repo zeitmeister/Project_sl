@@ -37,6 +37,10 @@ namespace Library
             {
                 MessageBox.Show("Please enter all the fields.");
             }
+            else if (BS.BookAlreadyExists(txt_ISBN.Text.Trim()))
+            {
+                MessageBox.Show("This Book already exists");
+            }
             else
             {
                 if (author != null)

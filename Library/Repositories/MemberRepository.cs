@@ -34,7 +34,7 @@ namespace Library.Repositories
 
         public Member Find(int id)
         {
-            return context.Member.Where(m => m.MemberId == id) as Member;
+            return context.Member.Where(m => m.MemberId == id).FirstOrDefault();
         }
 
         public void Remove(Member item)
