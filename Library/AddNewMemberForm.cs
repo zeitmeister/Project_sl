@@ -35,6 +35,10 @@ namespace Library
             {
                 MessageBox.Show("Personal ID has to be a number.");
             }
+            else if (MS.MemberAlreadyExists(PersonalID))
+            {
+                MessageBox.Show("A member with this personal id already exists.");
+            }
             else if (txt_Name.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter a name.");

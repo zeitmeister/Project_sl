@@ -85,7 +85,9 @@ namespace Library
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+
             ShowAllOverDueBooks(copyService.All());
+
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -195,9 +197,14 @@ namespace Library
 
         private void deleteBookBtn_Click(object sender, EventArgs e)
         {
+
             if (lbBooks.SelectedItem == null)
             {
                 MessageBox.Show("Please select a book you would like to delete.");
+            }
+            else if (bookService.BookHasBookCopies(lbBooks.SelectedItem as Book))
+            {
+                MessageBox.Show("You have to remove all the bookcopies related to the book before you can delete the book.");
             }
             else
             bookService.Remove(lbBooks.SelectedItem as Book);
@@ -431,16 +438,9 @@ namespace Library
             }
             else
             {
-
                 lb_MemberCopy.Items.Clear();
                 var hejsan = memberService.Find(find);
-                lb_MemberCopy.Items.Add(hejsan as Member);
-
-                //lb_MemberCopy.Items.Clear();
-                var member = memberService.Find(find);
-
-                lb_MemberCopy.Items.Add(member);
-
+                lb_MemberCopy.Items.Add(hejsan);
             }
         }
 
@@ -495,6 +495,11 @@ namespace Library
                 }
                 ShowAllOverdueBooksForMember(lb_MemberCopy.SelectedItem as Member);
             }*/
+        }
+
+        private void btn_ShowAllMembers_Click(object sender, EventArgs e)
+        {
+            ShowAllMembers(memberService.All());
         }
     } 
 }

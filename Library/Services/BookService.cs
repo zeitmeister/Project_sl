@@ -79,5 +79,27 @@ namespace Library.Services
             bookRepository.Edit(b);
             // TODO: Raise the Updated event.
         }
+
+        public bool BookHasBookCopies (Book book)
+        {
+            if (book.BookCopies.Count != 0)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public bool BookAlreadyExists (string ISBN)
+        {
+            var AllISBN = bookRepository.All().Select(isbn => isbn.ISBN).ToList();
+
+            if (AllISBN.Contains(ISBN))
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
