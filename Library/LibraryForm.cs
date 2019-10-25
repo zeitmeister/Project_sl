@@ -61,10 +61,7 @@ namespace Library
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
             backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
-
-            
-
-            //RunWorker();
+            backgroundWorker1.RunWorkerCompleted += BackgroundWorker1_RunWorkerCompleted;
         }
 
 
@@ -74,32 +71,30 @@ namespace Library
             Timer timer = new Timer();
             timer.Interval = 2000;
             timer.Tick += Timer_Tick;
+            timer.Enabled = true;
 
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            if (!backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            ShowAllOverDueBooks(copyService.All());
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = ShowAllOverDueBooks(copyService.All());
+            System.Threading.Thread.Sleep(2000);
         }
-
-
-
-
-
-        // pretend like this a really complex calculation going on eating up CPU time
-        //System.Threading.Thread.Sleep(100);
-
-
-
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
-            //ShowAllLoans(loanService.All());
             ShowAllLoans(loanService.FindAllBooksOnLoan());
             ShowAllAvailableBooks(copyService.All(), loanService.All());
             ShowAllOverDueBooks(copyService.All());
@@ -109,10 +104,9 @@ namespace Library
         private void ShowAllOverDueBooks(IEnumerable<BookCopy> bookCopies)
         {
             lb_OverdueBooks.Items.Clear();
-            foreach (var item in bookCopies)
+            foreach (var item in loanService.FindAllOverdueBooks(loanService.All()))
             {
                 lb_OverdueBooks.Items.Add(item);
-                //lb_OverdueBooks.Invoke(new Action(() => lb_OverdueBooks.Items.Add(item)));
             }
         }
 
@@ -466,7 +460,39 @@ namespace Library
 
         private void lb_MemberCopy_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            /*lb_History.Items.Clear();
+            lb_LoansForMember.Items.Clear();
+            var member = lb_MemberCopy.SelectedItem as Member;
+            if (member == null)
+            {
+                MessageBox.Show("Please select a member to able to show which books they have on loan");
+            }
+            else
+            {
+                try
+                {
+                    foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
+                    {
+                        lb_LoansForMember.Items.Add(loan);
+                    }
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                try
+                {
+                    foreach (var item in memberService.FindHistory(member))
+                    {
+                        lb_History.Items.Add(item);
+                    }
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                ShowAllOverdueBooksForMember(lb_MemberCopy.SelectedItem as Member);
+            }*/
         }
     } 
 }
