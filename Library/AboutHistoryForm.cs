@@ -23,14 +23,15 @@ namespace Library
             InitializeComponent();
             lbl_BookTitle.Text = BC.Book.Title;
             
-            var selectedbook = RLS.All().Where(s => s.BookCopy == BC).Select(rls => rls.TimeOfLoan);
+            var selectedbook = RLS.All().Where(s => s.BookCopy == BC).FirstOrDefault();
+            txt_Info.Text = selectedbook.ToString();
+
         }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
         {
             AboutBookForm aboutBookForm = new AboutBookForm(BC.Book);
-            aboutBookForm.Show();
-            
+            aboutBookForm.Show(); 
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

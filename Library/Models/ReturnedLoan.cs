@@ -20,7 +20,7 @@ namespace Library.Models
 
         public override string ToString()
         {
-            return String.Format("{0} Was booked on: {1} and returned on", this.TimeOfLoan, this.TimeOfReturn);
+            return String.Format("{0} Was booked on: {1} and returned on: {2}.",this.BookCopy.Book.Title, this.TimeOfLoan, this.TimeOfReturn);
         }
     }
 }
