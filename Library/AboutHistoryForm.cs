@@ -25,6 +25,7 @@ namespace Library
             
             var selectedbook = RLS.All().Where(s => s.BookCopy == BC).FirstOrDefault();
             txt_Info.Text = selectedbook.ToString();
+
         }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
