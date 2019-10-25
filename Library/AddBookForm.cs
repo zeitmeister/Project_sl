@@ -48,7 +48,14 @@ namespace Library
                         Description = txt_Description.Text.Trim(),
                         Author = author
                     };
-                    BS.Add(book);
+                    try
+                    {
+                        BS.Add(book);
+                    } catch (ArgumentNullException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    
                 }
                 else
                 {

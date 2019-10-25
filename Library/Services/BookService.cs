@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    public class BookService : IService
+    public class BookService : BaseService, IService
     {
         /// <summary>
         /// service doesn't need a context but it needs a repository.
@@ -43,9 +43,15 @@ namespace Library.Services
         }
 
         public void Add(Book book)
-        {
-            bookRepository.Add(book);
-            OnUpdated(this, eventArgs);
+        {   if (IsObjectNotNull(book))
+            {
+                bookRepository.Add(book);
+                OnUpdated(this, eventArgs);
+            }
+            else
+            {
+                throw new ArgumentNullException("No book selected");
+            }
         }
 
         public void Remove(Book book)

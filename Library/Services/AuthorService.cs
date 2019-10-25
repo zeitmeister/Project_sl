@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    public class AuthorService : IService
+    public class AuthorService : BaseService, IService
     {
         AuthorRepository authorRepository;
 
@@ -55,16 +55,17 @@ namespace Library.Services
 
         public IEnumerable<Book> BookByAuthor (Author author)
         {
-            if (author != null)
+            if (IsObjectNotNull(author))
             {
                 var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
                 return books;
             }
-            throw new NullReferenceException("No author selected");
+            throw new ArgumentNullException("No author selected");
                 
 
             
             
         }
+
     }
 }

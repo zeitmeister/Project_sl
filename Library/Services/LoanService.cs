@@ -10,7 +10,7 @@ using Library.Services;
 
 namespace Library.Services
 {
-    class LoanService : IService
+    class LoanService : BaseService, IService
     {
         LoanRepository loanRepository;
         ReturnedLoanRepository returnedLoanRepository;
@@ -70,15 +70,22 @@ namespace Library.Services
 
         public void MakeLoan(BookCopy bookCopy, Member member)
         {
-            Loan loan = new Loan()
+            if (IsObjectNotNull(bookCopy, member))
             {
-                BookCopy = bookCopy,
-                Member = member,
-                TimeOfLoan = DateTime.Now,
-                DueDate = DateTime.Now.AddSeconds(10),
-                TimeOfReturn = null
-            };
-            Add(loan);
+                Loan loan = new Loan()
+                {
+                    BookCopy = bookCopy,
+                    Member = member,
+                    TimeOfLoan = DateTime.Now,
+                    DueDate = DateTime.Now.AddSeconds(10),
+                    TimeOfReturn = null
+                };
+                Add(loan);
+            } else
+            {
+                throw new ArgumentNullException("No bookcopy or member selected");
+            }
+           
         }
 
         public IEnumerable<BookCopy> FindBookCopiesOnLoan(IEnumerable<BookCopy> bookCopies)
@@ -95,17 +102,23 @@ namespace Library.Services
         /// <param name="selectedLoan"></param>
         public void ReturnBook(Loan selectedLoan)
         {
-
-            if (selectedLoan.DueDate < DateTime.Now)
+            if (IsObjectNotNull(selectedLoan))
             {
-                CalculatePrice(selectedLoan);
-            }
-            selectedLoan.TimeOfReturn = DateTime.Now;
-            loanRepository.Edit(selectedLoan);
-            OnUpdated(this, eventArgs);
-            CreateReturnenLoan(selectedLoan);
+                if (selectedLoan.DueDate < DateTime.Now)
+                {
+                    CalculatePrice(selectedLoan);
+                }
+                selectedLoan.TimeOfReturn = DateTime.Now;
+                loanRepository.Edit(selectedLoan);
+                OnUpdated(this, eventArgs);
+                CreateReturnenLoan(selectedLoan);
 
-            Remove(selectedLoan);
+                Remove(selectedLoan);
+            } else
+            {
+                throw new NullReferenceException("No loan selected");
+            }
+            
 
         }
 
@@ -136,19 +149,18 @@ namespace Library.Services
 
         public IEnumerable<BookCopy> FindAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
         {
-            //var skit = loans.ToList();
             var loanedBookCopies = loans.Select(l => l.BookCopy).ToList();
             var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
 
             return availableBooks;
         }
 
-        public IEnumerable<BookCopy> FindAllOverdueBooks(IEnumerable<Loan> loans, IEnumerable<BookCopy> bookCopies)
+        public IEnumerable<BookCopy> FindAllOverdueBooks(IEnumerable<Loan> loans)
         { 
-            //return loans.Select(l => l.BookCopy).Where(l => l.DueDate > DateTime.Now && l.TimeOfReturn == null).Select(l => l.BookCopy).ToList();
-            var join = loans.Join(bookCopies, l => l.BookCopy.BookCopyId, bc => bc.BookCopyId, (ll, lbc) => new { Loan = ll, BookCopy = lbc });
-            return join.Where(j => j.Loan.DueDate.Second >= DateTime.Now.Second && j.Loan.TimeOfReturn == null).Select(j => j.BookCopy).ToList();
+            return loans.Where(l => l.DueDate < DateTime.Now && l.TimeOfReturn == null).
+                Select(l => l.BookCopy).ToList();
         }
+
 
         public bool CheckIfBookIsOnLoan (BookCopy bookCopy)
         {
