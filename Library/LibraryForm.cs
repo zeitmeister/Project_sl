@@ -45,7 +45,6 @@ namespace Library
             loanService = new LoanService(repFactory);
             returnedLoanService = new ReturnedLoanService(repFactory);
 
-            //timer = new System.Windows.Forms.Timer();
 
 
             ShowAllBooks(bookService.All());
@@ -53,44 +52,59 @@ namespace Library
             ShowAllMembers(memberService.All());
             ShowAllAuthors(authorService.All());
             ShowAllLoans(loanService.All());
+            ShowAllAvailableBooks(copyService.All(), loanService.All());
+            ShowAllOverDueBooks(copyService.All());
             
             bookService.Updated += BookService_Updated;
             authorService.Updated += AuthorService_Updated;
             copyService.Updated += CopyService_Updated;
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+
             
 
-
             //RunWorker();
+        }
+
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            Timer timer = new Timer();
+            timer.Interval = 2000;
+            timer.Tick += Timer_Tick;
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+        }
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = ShowAllOverDueBooks(copyService.All());
         }
 
 
 
 
 
-                // pretend like this a really complex calculation going on eating up CPU time
-                //System.Threading.Thread.Sleep(100);
-            
-        
+        // pretend like this a really complex calculation going on eating up CPU time
+        //System.Threading.Thread.Sleep(100);
+
+
 
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
             //ShowAllLoans(loanService.All());
             ShowAllLoans(loanService.FindAllBooksOnLoan());
-            //ShowLoanedBooksByMember(loanService.FindBookCopiesOnLoan());
-            ShowAllAvailableBooks();
+            ShowAllAvailableBooks(copyService.All(), loanService.All());
+            ShowAllOverDueBooks(copyService.All());
         }
 
-        private void ShowLoanedBooksByMember(IEnumerable<Loan> loans)
-        {
-            lb_LoanedBooks.Items.Clear();
-            foreach (var loan in loans)
-            {
-                lb_LoanedBooks.Items.Add(loan);
-            };
-        }
 
         private void ShowAllOverDueBooks(IEnumerable<BookCopy> bookCopies)
         {
@@ -110,13 +124,13 @@ namespace Library
         private void CopyService_Updated(object sender, EventArgs e)
         {
             ShowAllBookCopies(copyService.All());
-            ShowAllAvailableBooks();
+            ShowAllAvailableBooks(copyService.All(), loanService.All());
         }
 
-        private void ShowAllAvailableBooks()
+        private void ShowAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
         {
             lb_AvailableBooks.Items.Clear();
-            foreach (var availableBook in loanService.FindAllAvailableBooks(copyService.All(), loanService.All()))
+            foreach (var availableBook in loanService.FindAllAvailableBooks(bookCopies, loans))
             {
                 lb_AvailableBooks.Items.Add(availableBook);
             }
@@ -227,15 +241,14 @@ namespace Library
         private void btn_ViewBooks_Click(object sender, EventArgs e)
         {
             lb_BooksByAuthor.Items.Clear();
+            var authorSelected = lbAuthors.SelectedItem as Author;
             try
             {
-                var itemSelected = lbAuthors.SelectedItem as Author;
-
-                foreach (var item in authorService.BookByAuthor(itemSelected))
+                foreach (var item in authorService.BookByAuthor(authorSelected))
                 {
                     lb_BooksByAuthor.Items.Add(item);
                 }
-            } catch(NullReferenceException ex)
+            } catch(ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -264,21 +277,22 @@ namespace Library
 
         }
 
-        private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
+        /*private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
         {
             var book = lbBooks.SelectedItem as Book;
             foreach (var loanedBook in loanService.FindBookCopiesOnLoan(copyService.All()))
             {
                 lb_LoanedBooks.Items.Add(loanedBook);
             }
-        }
+        }*/
 
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
             lb_History.Items.Clear();
             lb_LoansForMember.Items.Clear();
-            if (lb_MemberCopy.SelectedItem == null)
+            var member = lb_MemberCopy.SelectedItem as Member;
+            if (member == null)
             {
                 MessageBox.Show("Please select a member to able to show which books they have on loan");
             }
@@ -286,27 +300,36 @@ namespace Library
             {
                 try
                 {
-                    var member = lb_MemberCopy.SelectedItem as Member;
                     foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
                     {
                         lb_LoansForMember.Items.Add(loan);
                     }
-                } catch (NullReferenceException ex)
+                } catch (ArgumentNullException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
                 try 
                 {
-                    var member = lb_MemberCopy.SelectedItem as Member;
                     foreach (var item in memberService.FindHistory(member))
                     {
                         lb_History.Items.Add(item);
                     }
-                } catch (NullReferenceException ex)
+                } catch (ArgumentNullException ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                ShowAllOverdueBooksForMember(lb_MemberCopy.SelectedItem as Member);
             }
+        }
+
+        private void ShowAllOverdueBooksForMember(Member member)
+        {
+            member = lb_MemberCopy.SelectedItem as Member;
+            foreach (var bookCopy in memberService.FindAllOverdueBooks(member))
+            {
+                lb_OverdueBooksForMember.Items.Add(bookCopy);
+            }
+            
         }
 
         private void fileSystemWatcher1_Changed(object sender, System.IO.FileSystemEventArgs e)
@@ -315,12 +338,15 @@ namespace Library
         }
         private void btn_ReturnBook_Click(object sender, EventArgs e)
         {
-            if (lb_LoanedBooks.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Please select a loaned book to be able to return it.");
+                loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
+            } catch(NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-            else
-            loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
+            
+            
         }
 
         private void btn_FindAvailableBooks_Click(object sender, EventArgs e)
@@ -418,7 +444,7 @@ namespace Library
 
         private void btn_FindOverdueBooks_Click(object sender, EventArgs e)
         {
-            ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All(), copyService.All()));
+            ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
         }
 
         private void btn_HistoryDetails_Click(object sender, EventArgs e)

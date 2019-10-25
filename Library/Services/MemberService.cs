@@ -8,7 +8,7 @@ using Library.Repositories;
 
 namespace Library.Services
 {
-    public class MemberService : IService
+    public class MemberService : BaseService, IService
     {
         MemberRepository memberRepository;
         BookCopyService bookCopyService;
@@ -58,13 +58,13 @@ namespace Library.Services
 
         public IEnumerable<Loan> FindAllBooksOnLoanForMember(Member member)
         {
-            if (member != null)
+            if (IsObjectNotNull(member))
             {
 
                 var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
                 return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
             }
-            throw new NullReferenceException("No member selected");
+            throw new ArgumentNullException("No member selected");
         }
 
         public IEnumerable<Loan> FindAllReturnedBooks(Member member)
@@ -86,5 +86,13 @@ namespace Library.Services
 
            
         }
+
+        public IEnumerable<BookCopy> FindAllOverdueBooks(Member member)
+        {
+            var booksOverDueDate = member.Loans.Where(l => l.DueDate < DateTime.Now && l.TimeOfReturn == null).
+                Select(l => l.BookCopy).ToList();
+            return booksOverDueDate;
+        }
+
     }
 }

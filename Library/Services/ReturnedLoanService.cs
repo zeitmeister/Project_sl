@@ -27,5 +27,10 @@ namespace Library.Services
         {
             return returnedLoanRepository.All();
         }
+
+        public bool IsObjectNotNull(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

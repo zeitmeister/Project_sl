@@ -11,5 +11,6 @@ namespace Library.Services {
     /// </summary>
     interface IService {
         event EventHandler Updated;
+        
     }
 }

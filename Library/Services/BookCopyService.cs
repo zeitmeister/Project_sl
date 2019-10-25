@@ -56,5 +56,10 @@ namespace Library.Services
         {
             return bookCopyRepository.Find(bookCopy.BookCopyId);
         }
+
+        public bool IsObjectNotNull(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
