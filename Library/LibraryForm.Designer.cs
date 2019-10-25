@@ -228,7 +228,6 @@
             this.panel2.Controls.Add(this.lbl_OverdueBooks);
             this.panel2.Controls.Add(this.lb_OverdueBooks);
 
-            this.panel2.Controls.Add(this.btn_FindOverdueBooks);
 
             this.panel2.Location = new System.Drawing.Point(442, 534);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
