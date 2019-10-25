@@ -284,7 +284,14 @@ namespace Library
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
             lb_History.Items.Clear();
-            lb_LoansForMember.Items.Clear();
+            try
+            {
+                lb_LoansForMember.Items.Clear();
+            } catch(NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
             var member = lb_MemberCopy.SelectedItem as Member;
             if (member == null)
             {
@@ -292,16 +299,11 @@ namespace Library
             }
             else
             {
-                try
-                {
+                
                     foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
                     {
                         lb_LoansForMember.Items.Add(loan);
                     }
-                } catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
                 try 
                 {
                     foreach (var item in memberService.FindHistory(member))
