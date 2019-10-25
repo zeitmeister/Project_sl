@@ -76,7 +76,7 @@ namespace Library.Services
         public IEnumerable<BookCopy> FindHistory(Member member)
         {
 
-            if (member != null)
+            if (IsObjectNotNull(member))
             {
                 var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
                 selectedMember.ReturnedLoans.Select(k => k.BookCopy);
@@ -89,7 +89,7 @@ namespace Library.Services
                 }
                 return jappa;
             }
-            throw new NullReferenceException("No member selected");
+            throw new ArgumentNullException("No member selected");
 
            
         }

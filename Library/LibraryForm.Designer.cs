@@ -39,7 +39,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_OverdueBooks = new System.Windows.Forms.Label();
             this.lb_OverdueBooks = new System.Windows.Forms.ListBox();
-            this.btn_FindOverdueBooks = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_AvailableBooks = new System.Windows.Forms.Label();
             this.lb_AvailableBooks = new System.Windows.Forms.ListBox();
@@ -215,9 +214,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(295, 212);
+
+            this.label1.Location = new System.Drawing.Point(442, 326);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(0, 20);
+
             this.label1.TabIndex = 0;
             // 
             // panel2
@@ -225,8 +227,12 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.lbl_OverdueBooks);
             this.panel2.Controls.Add(this.lb_OverdueBooks);
+
             this.panel2.Controls.Add(this.btn_FindOverdueBooks);
-            this.panel2.Location = new System.Drawing.Point(295, 347);
+
+            this.panel2.Location = new System.Drawing.Point(442, 534);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(260, 148);
             this.panel2.TabIndex = 23;
@@ -234,7 +240,10 @@
             // lbl_OverdueBooks
             // 
             this.lbl_OverdueBooks.AutoSize = true;
-            this.lbl_OverdueBooks.Location = new System.Drawing.Point(87, 13);
+
+            this.lbl_OverdueBooks.Location = new System.Drawing.Point(129, 15);
+            this.lbl_OverdueBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+
             this.lbl_OverdueBooks.Name = "lbl_OverdueBooks";
             this.lbl_OverdueBooks.Size = new System.Drawing.Size(81, 13);
             this.lbl_OverdueBooks.TabIndex = 24;
@@ -243,21 +252,16 @@
             // lb_OverdueBooks
             // 
             this.lb_OverdueBooks.FormattingEnabled = true;
-            this.lb_OverdueBooks.Location = new System.Drawing.Point(12, 26);
+
+
+            this.lb_OverdueBooks.ItemHeight = 20;
+            this.lb_OverdueBooks.Location = new System.Drawing.Point(34, 40);
+            this.lb_OverdueBooks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lb_OverdueBooks.Name = "lb_OverdueBooks";
-            this.lb_OverdueBooks.Size = new System.Drawing.Size(217, 95);
+            this.lb_OverdueBooks.Size = new System.Drawing.Size(327, 144);
             this.lb_OverdueBooks.TabIndex = 23;
             // 
-            // btn_FindOverdueBooks
-            // 
-            this.btn_FindOverdueBooks.Location = new System.Drawing.Point(78, 122);
-            this.btn_FindOverdueBooks.Name = "btn_FindOverdueBooks";
-            this.btn_FindOverdueBooks.Size = new System.Drawing.Size(75, 23);
-            this.btn_FindOverdueBooks.TabIndex = 25;
-            this.btn_FindOverdueBooks.Text = "Find";
-            this.btn_FindOverdueBooks.UseVisualStyleBackColor = true;
-            this.btn_FindOverdueBooks.Click += new System.EventHandler(this.btn_FindOverdueBooks_Click);
-            // 
+
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -279,7 +283,11 @@
             // 
             // lb_AvailableBooks
             // 
-            this.lb_AvailableBooks.Location = new System.Drawing.Point(19, 24);
+
+            this.lb_AvailableBooks.ItemHeight = 20;
+            this.lb_AvailableBooks.Location = new System.Drawing.Point(52, 37);
+            this.lb_AvailableBooks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+
             this.lb_AvailableBooks.Name = "lb_AvailableBooks";
             this.lb_AvailableBooks.Size = new System.Drawing.Size(188, 95);
             this.lb_AvailableBooks.TabIndex = 0;
@@ -421,9 +429,12 @@
             // lbl_MembersCopy
             // 
             this.lbl_MembersCopy.AutoSize = true;
-            this.lbl_MembersCopy.Location = new System.Drawing.Point(218, 25);
+
+            this.lbl_MembersCopy.Location = new System.Drawing.Point(327, 38);
+            this.lbl_MembersCopy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_MembersCopy.Name = "lbl_MembersCopy";
-            this.lbl_MembersCopy.Size = new System.Drawing.Size(50, 13);
+            this.lbl_MembersCopy.Size = new System.Drawing.Size(75, 20);
+
             this.lbl_MembersCopy.TabIndex = 26;
             this.lbl_MembersCopy.Text = "Members";
             // 
@@ -626,8 +637,6 @@
         private System.Windows.Forms.TextBox txt_FindMember;
 
         private System.Windows.Forms.ListBox lb_History;
-
-        private System.Windows.Forms.Button btn_FindOverdueBooks;
 
         private System.Windows.Forms.Button btn_HistoryDetails;
 
