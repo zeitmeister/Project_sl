@@ -91,7 +91,9 @@
             // 
             // btn_AddBook
             // 
+
             this.btn_AddBook.Location = new System.Drawing.Point(32, 8);
+
             this.btn_AddBook.Name = "btn_AddBook";
             this.btn_AddBook.Size = new System.Drawing.Size(90, 58);
             this.btn_AddBook.TabIndex = 1;
@@ -145,7 +147,9 @@
             // 
             // btn_MakeLoan
             // 
+
             this.btn_MakeLoan.Location = new System.Drawing.Point(723, 69);
+
             this.btn_MakeLoan.Name = "btn_MakeLoan";
             this.btn_MakeLoan.Size = new System.Drawing.Size(110, 65);
             this.btn_MakeLoan.TabIndex = 14;
@@ -214,8 +218,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
+
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Size = new System.Drawing.Size(906, 810);
+
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Books";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -224,10 +230,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
+
             this.label1.Location = new System.Drawing.Point(663, 502);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 20);
+
             this.label1.TabIndex = 0;
             // 
             // panel2
@@ -239,8 +247,6 @@
             this.panel2.Location = new System.Drawing.Point(444, 537);
             this.panel2.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
 
-
-
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(401, 224);
             this.panel2.TabIndex = 23;
@@ -248,8 +254,10 @@
             // lbl_OverdueBooks
             // 
             this.lbl_OverdueBooks.AutoSize = true;
+
             this.lbl_OverdueBooks.Location = new System.Drawing.Point(194, 23);
             this.lbl_OverdueBooks.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+
             this.lbl_OverdueBooks.Name = "lbl_OverdueBooks";
             this.lbl_OverdueBooks.Size = new System.Drawing.Size(118, 20);
             this.lbl_OverdueBooks.TabIndex = 24;
@@ -258,11 +266,13 @@
             // lb_OverdueBooks
             // 
             this.lb_OverdueBooks.FormattingEnabled = true;
+
             this.lb_OverdueBooks.ItemHeight = 20;
             this.lb_OverdueBooks.Location = new System.Drawing.Point(39, 57);
             this.lb_OverdueBooks.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.lb_OverdueBooks.Name = "lb_OverdueBooks";
             this.lb_OverdueBooks.Size = new System.Drawing.Size(336, 144);
+
             this.lb_OverdueBooks.TabIndex = 23;
             // 
             // panel1
@@ -288,9 +298,11 @@
             // 
             // lb_AvailableBooks
             // 
+
             this.lb_AvailableBooks.ItemHeight = 20;
             this.lb_AvailableBooks.Location = new System.Drawing.Point(29, 57);
             this.lb_AvailableBooks.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+
             this.lb_AvailableBooks.Name = "lb_AvailableBooks";
             this.lb_AvailableBooks.Size = new System.Drawing.Size(280, 144);
             this.lb_AvailableBooks.TabIndex = 0;
@@ -327,15 +339,19 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
+
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Size = new System.Drawing.Size(890, 784);
+
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Authors";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnAddAuthor
             // 
+
             this.btnAddAuthor.Location = new System.Drawing.Point(54, 97);
+
             this.btnAddAuthor.Name = "btnAddAuthor";
             this.btnAddAuthor.Size = new System.Drawing.Size(106, 52);
             this.btnAddAuthor.TabIndex = 10;
@@ -354,8 +370,10 @@
             // lbAuthors
             // 
             this.lbAuthors.FormattingEnabled = true;
+
             this.lbAuthors.ItemHeight = 20;
             this.lbAuthors.Location = new System.Drawing.Point(208, 43);
+
             this.lbAuthors.Name = "lbAuthors";
             this.lbAuthors.Size = new System.Drawing.Size(259, 104);
             this.lbAuthors.TabIndex = 9;
@@ -363,7 +381,9 @@
             // 
             // btn_ViewBooks
             // 
+
             this.btn_ViewBooks.Location = new System.Drawing.Point(32, 238);
+
             this.btn_ViewBooks.Name = "btn_ViewBooks";
             this.btn_ViewBooks.Size = new System.Drawing.Size(150, 52);
             this.btn_ViewBooks.TabIndex = 12;
@@ -409,10 +429,12 @@
             // 
             // btn_ShowAllMembers
             // 
+
             this.btn_ShowAllMembers.Location = new System.Drawing.Point(585, 154);
             this.btn_ShowAllMembers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ShowAllMembers.Name = "btn_ShowAllMembers";
             this.btn_ShowAllMembers.Size = new System.Drawing.Size(156, 35);
+
             this.btn_ShowAllMembers.TabIndex = 30;
             this.btn_ShowAllMembers.Text = "Show all members";
             this.btn_ShowAllMembers.UseVisualStyleBackColor = true;
@@ -451,10 +473,12 @@
             // lbl_MembersCopy
             // 
             this.lbl_MembersCopy.AutoSize = true;
+
             this.lbl_MembersCopy.Location = new System.Drawing.Point(490, 58);
             this.lbl_MembersCopy.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbl_MembersCopy.Name = "lbl_MembersCopy";
             this.lbl_MembersCopy.Size = new System.Drawing.Size(75, 20);
+
             this.lbl_MembersCopy.TabIndex = 26;
             this.lbl_MembersCopy.Text = "Members";
             // 
@@ -534,7 +558,9 @@
             // 
             // btn_FindLoansForMember
             // 
+
             this.btn_FindLoansForMember.Location = new System.Drawing.Point(585, 63);
+
             this.btn_FindLoansForMember.Name = "btn_FindLoansForMember";
             this.btn_FindLoansForMember.Size = new System.Drawing.Size(156, 63);
             this.btn_FindLoansForMember.TabIndex = 18;
@@ -556,7 +582,9 @@
             // 
             // btn_AddMember
             // 
+
             this.btn_AddMember.Location = new System.Drawing.Point(132, 63);
+
             this.btn_AddMember.Name = "btn_AddMember";
             this.btn_AddMember.Size = new System.Drawing.Size(148, 48);
             this.btn_AddMember.TabIndex = 14;
@@ -597,7 +625,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+
             this.ClientSize = new System.Drawing.Size(908, 848);
+
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LibraryForm";
