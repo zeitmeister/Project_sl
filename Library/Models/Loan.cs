@@ -18,7 +18,14 @@ namespace Library.Models
 
         public override string ToString()
         {
-            return LoanId + ": " + BookCopy.Book.Title + " is on loan";
+            try
+            {
+                return LoanId + ": " + BookCopy.Book.Title + " is on loan";
+            }catch(NullReferenceException ex)
+            {
+                return ex.Message;
+            }
+                
         }
     }
 }

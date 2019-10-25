@@ -61,8 +61,9 @@ namespace Library.Services
             if (IsObjectNotNull(member))
             {
 
-                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-                return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now));
+                var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
+                var result = selectedMember.Loans.Where(l => l.TimeOfLoan > l.TimeOfReturn || (l.TimeOfReturn == null && l.TimeOfLoan < DateTime.Now)).ToList();
+                return result;
             }
             throw new ArgumentNullException("No member selected");
         }
