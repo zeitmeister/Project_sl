@@ -87,6 +87,7 @@ namespace Library.Services
                     /*List<BookCopy> bookcopyList = new List<BookCopy>();
                     return bookcopyList;*/
                 }
+
                 return jappa;
             }
             throw new ArgumentNullException("No member selected");
