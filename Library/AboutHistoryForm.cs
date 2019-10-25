@@ -24,8 +24,8 @@ namespace Library
             lbl_BookTitle.Text = BC.Book.Title;
             
             var selectedbook = RLS.All().Where(s => s.BookCopy == BC).FirstOrDefault();
-            txt_Info.Text = selectedbook.ToString();
-
+            txt_TimeOfLoan.Text = selectedbook.TimeOfLoan.ToString();
+            txt_TimeOfReturn.Text = selectedbook.TimeOfReturn.ToString();
         }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
