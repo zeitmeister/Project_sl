@@ -81,7 +81,7 @@ namespace Library.Services
             {
                 var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
                 selectedMember.ReturnedLoans.Select(k => k.BookCopy);
-                var jappa = selectedMember.Select(rm => rm.ReturnedLoans).Select(k => k.BookCopy).Distinct();
+                var jappa = selectedMember.ReturnedLoans.Select(k => k.BookCopy).Distinct();
                 if (jappa == null)
                 {
                     throw new ArgumentNullException("bajs");
