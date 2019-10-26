@@ -19,8 +19,9 @@ namespace Library.Models
 
         public Member()
         {
-            Loans = new List<Loan>();
             ReturnedLoans = new List<ReturnedLoan>();
+            Loans = new List<Loan>();
+            
         }
 
         public override string ToString()
