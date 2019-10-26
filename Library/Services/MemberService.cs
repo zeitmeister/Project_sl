@@ -88,9 +88,7 @@ namespace Library.Services
                 }
                 return result;
             }
-            throw new ArgumentNullException("No member selected");
-
-           
+            throw new ArgumentNullException("No member selected"); 
         }
 
         public IEnumerable<BookCopy> FindAllOverdueBooks(Member member)
