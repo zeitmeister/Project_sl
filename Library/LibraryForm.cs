@@ -504,6 +504,11 @@ namespace Library
         {
             ShowAllMembers(memberService.All());
         }
+
+        private void lbl_BooksBookCopys_Click(object sender, EventArgs e)
+        {
+
+        }
     } 
 }
 
