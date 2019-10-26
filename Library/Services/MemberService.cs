@@ -12,7 +12,7 @@ namespace Library.Services
     {
         MemberRepository memberRepository;
         BookCopyService bookCopyService;
-        ReturnedLoanService returnedLoanService;
+        ReturnedLoanRepository returnedLoanRepository;
         BookCopyRepository bookCopyRepository;
         
 
@@ -23,6 +23,7 @@ namespace Library.Services
         public MemberService(RepositoryFactory rFactory)
         {
             this.memberRepository = rFactory.CreateMemberRepository();
+            this.returnedLoanRepository = rFactory.CreateReturnedLoanRepository();
         }
 
         protected virtual void OnUpdated(object sender, EventArgs eventArgs)
@@ -74,23 +75,17 @@ namespace Library.Services
             return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfReturn > l.TimeOfLoan);
         }
 
-        public IEnumerable<BookCopy> FindHistory(Member member)
+        public IEnumerable<ReturnedLoan> FindHistory(Member member)
         {
-
             if (IsObjectNotNull(member))
             {
                 var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId).FirstOrDefault();
-
-                selectedMember.ReturnedLoans.Select(k => k.BookCopy);
-                var jappa = selectedMember.ReturnedLoans.Select(k => k.BookCopy).Distinct();
-                if (jappa == null)
-
+                var result = returnedLoanRepository.All().Where(s => s.Member.MemberId == selectedMember.MemberId);
+              
+                if (result == null)
                 {
                     throw new ArgumentNullException("bajs");
-                    /*List<BookCopy> bookcopyList = new List<BookCopy>();
-                    return bookcopyList;*/
                 }
-
                 return result;
             }
             throw new ArgumentNullException("No member selected");

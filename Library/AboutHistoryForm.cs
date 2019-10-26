@@ -14,23 +14,22 @@ namespace Library
 {
     public partial class AboutHistoryForm : Form
     {
-        BookCopy BC;
+        ReturnedLoan RL;
         ReturnedLoanService RLS;
-        public AboutHistoryForm(BookCopy bookcopy, ReturnedLoanService returnedLoanService)
+        public AboutHistoryForm(ReturnedLoan returnedLoan, ReturnedLoanService returnedLoanService)
         {
             RLS = returnedLoanService;
-            BC = bookcopy;
+            RL = returnedLoan;
             InitializeComponent();
-            lbl_BookTitle.Text = BC.Book.Title;
-            
-            var selectedbook = RLS.All().Where(s => s.BookCopy == BC).FirstOrDefault();
-            txt_TimeOfLoan.Text = selectedbook.TimeOfLoan.ToString();
-            txt_TimeOfReturn.Text = selectedbook.TimeOfReturn.ToString();
+            lbl_BookTitle.Text = RL.BookCopy.Book.Title;
+
+            txt_TimeOfLoan.Text = RL.TimeOfLoan.ToString();
+            txt_TimeOfReturn.Text = RL.TimeOfReturn.ToString();
         }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
         {
-            AboutBookForm aboutBookForm = new AboutBookForm(BC.Book);
+            AboutBookForm aboutBookForm = new AboutBookForm(RL.BookCopy.Book);
             aboutBookForm.Show(); 
         }
 

@@ -451,8 +451,15 @@ namespace Library
 
         private void btn_HistoryDetails_Click(object sender, EventArgs e)
         {
-            AboutHistoryForm aboutHistoryForm = new AboutHistoryForm(lb_History.SelectedItem as BookCopy, returnedLoanService);
-            aboutHistoryForm.Show();
+            if (lb_History.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a loan from the history to view its details.");
+            }
+            else
+            {
+                AboutHistoryForm aboutHistoryForm = new AboutHistoryForm(lb_History.SelectedItem as ReturnedLoan, returnedLoanService);
+                aboutHistoryForm.Show();
+            } 
         }
 
         private void lb_History_SelectedIndexChanged(object sender, EventArgs e)
