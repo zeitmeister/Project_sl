@@ -91,7 +91,7 @@ namespace Library.Services
                     return bookcopyList;*/
                 }
 
-                return result;
+                return jappa;
             }
             throw new ArgumentNullException("No member selected");
 

@@ -291,13 +291,9 @@ namespace Library
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
             lb_History.Items.Clear();
-            try
-            {
-                lb_LoansForMember.Items.Clear();
-            } catch(NullReferenceException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            lb_LoansForMember.Items.Clear();
+            lb_OverdueBooksForMember.Items.Clear();
+
             
             var member = lb_MemberCopy.SelectedItem as Member;
             if (member == null)
