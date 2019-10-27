@@ -28,7 +28,7 @@ namespace Library.Repositories
 
         public IEnumerable<BookCopy> SpecificBookCopies(Book book)
         {
-            return context.BookCopies.Where(bc => bc.Book.BookId == book.BookId);
+            return context.BookCopies.Where(bc => bc.Book.Id == book.Id);
         }
 
         public void Edit(BookCopy item)
@@ -38,13 +38,20 @@ namespace Library.Repositories
 
         public BookCopy Find(int id)
         {
-            return context.BookCopies.Where(cb => cb.BookCopyId == id) as BookCopy;
+            return context.BookCopies.Where(cb => cb.Id == id) as BookCopy;
         }
 
         public void Remove(BookCopy item)
         {
             context.BookCopies.Remove(item);
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
     }
 }

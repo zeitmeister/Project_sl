@@ -54,7 +54,7 @@ namespace Library.Services
 
         public BookCopy Find(BookCopy bookCopy)
         {
-            return bookCopyRepository.Find(bookCopy.BookCopyId);
+            return bookCopyRepository.Find(bookCopy.Id);
         }
 
         public bool IsObjectNotNull(object obj)

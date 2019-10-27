@@ -57,7 +57,7 @@ namespace Library.Services
         {
             if (IsObjectNotNull(author))
             {
-                var books = authorRepository.All().Where(a => a.AuthorId == author.AuthorId).SelectMany(b => b.Books);
+                var books = authorRepository.All().Where(a => a.Id == author.Id).SelectMany(b => b.Books);
                 return books;
             }
             throw new ArgumentNullException("No author selected");

@@ -8,7 +8,7 @@ namespace Library.Models
 {
     public class BookCopy
     {
-        public int BookCopyId { get; set; }
+        public int Id { get; set; }
 
         public Book Book { get; set; }
         
@@ -17,7 +17,15 @@ namespace Library.Models
 
         public override string ToString()
         {
-            return String.Format("{0} is in condition {1}", this.Book.Title, this.Condition);
+            try
+            {
+                return String.Format("{0} is in condition {1}", this.Book.Title, this.Condition);
+            } catch(NullReferenceException e)
+            {
+                return e.Message;
+            }
+
+            
         }
     }
 }
