@@ -339,7 +339,8 @@ namespace Library
         {
             try
             {
-                loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
+                string message = loanService.ReturnBook(lb_LoanedBooks.SelectedItem as Loan);
+                MessageBox.Show(message);
             } catch(NullReferenceException ex)
             {
                 MessageBox.Show(ex.Message);

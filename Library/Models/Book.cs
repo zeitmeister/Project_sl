@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Library.Models {
     public class Book {
-        public int BookId { get; set; }
+        public int Id { get; set; }
         public string ISBN { get; set; }
         public string Description { get; set; }
         public Author Author { get; set; }
@@ -27,7 +27,7 @@ namespace Library.Models {
         /// Useful for adding the book objects directly to a ListBox.
         /// </summary>
         public override string ToString() {
-            return String.Format("[{0}] -- {1}", this.BookId, this.Title);
+            return String.Format("[{0}] -- {1}", this.Id, this.Title);
         }
     }
 }

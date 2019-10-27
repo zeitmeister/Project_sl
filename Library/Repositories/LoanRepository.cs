@@ -33,7 +33,7 @@ namespace Library.Repositories
 
         public Loan Find(int id)
         {
-            return context.Loans.Where(l => l.LoanId == id) as Loan;
+            return context.Loans.Where(l => l.Id == id) as Loan;
         }
 
         public void Remove(Loan item)

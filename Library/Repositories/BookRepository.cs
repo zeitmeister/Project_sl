@@ -39,7 +39,7 @@ namespace Library.Repositories
         public Book Find(int id)
         {
             //Det här kan bli null om inte 'as Book' fungerar.
-            return context.Books.Where(b => b.BookId == id) as Book;
+            return context.Books.Where(b => b.Id == id) as Book;
         }
 
         public void Remove(Book item)

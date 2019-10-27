@@ -33,7 +33,7 @@ namespace Library.Repositories
 
         public Author Find(int id)
         {
-            return context.Authors.Where(a => a.AuthorId == id) as Author;
+            return context.Authors.Where(a => a.Id == id) as Author;
         }
 
         public void Remove(Author item)

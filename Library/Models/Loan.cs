@@ -9,7 +9,7 @@ namespace Library.Models
 {
     public class Loan
     {
-        public int LoanId { get; set; }
+        public int Id { get; set; }
         public DateTime TimeOfLoan { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? TimeOfReturn { get; set; }
@@ -21,7 +21,7 @@ namespace Library.Models
 
             try
             {
-                return LoanId + ": " + BookCopy.Book.Title + " is on loan";
+                return Id + ": " + BookCopy.Book.Title + " is on loan";
             }catch(NullReferenceException ex)
             {
                 return ex.Message;

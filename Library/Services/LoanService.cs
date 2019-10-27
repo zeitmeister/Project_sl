@@ -93,33 +93,49 @@ namespace Library.Services
             //var bookCopies = book.BookCopies.ToList();
             IEnumerable <Loan> loans = loanRepository.All().ToList();
 
-            return bookCopies.Join(loans, bc => bc.BookCopyId, l => l.BookCopy.BookCopyId, (bookCopy, loan) => new { BookCopy = bookCopy, Loan = loan }).Where(l => l.Loan.TimeOfLoan > l.Loan.TimeOfReturn || (l.Loan.TimeOfReturn == null && l.Loan.TimeOfLoan < DateTime.Now)).Select(bc => bc.BookCopy);
+            return bookCopies.Join(loans, bc => bc.Id, l => l.BookCopy.Id, (bookCopy, loan) => new { BookCopy = bookCopy, Loan = loan }).Where(l => l.Loan.TimeOfLoan > l.Loan.TimeOfReturn || (l.Loan.TimeOfReturn == null && l.Loan.TimeOfLoan < DateTime.Now)).Select(bc => bc.BookCopy);
         }
         /// <summary>
         /// Sets the loans time of return to now
         /// </summary>
         /// <param name="member"></param>
         /// <param name="selectedLoan"></param>
-        public void ReturnBook(Loan selectedLoan)
+        public string ReturnBook(Loan selectedLoan)
         {
+            int penalty = 0;
             if (IsObjectNotNull(selectedLoan))
             {
+                
                 if (selectedLoan.DueDate < DateTime.Now)
                 {
-                    CalculatePrice(selectedLoan);
+                    penalty = CalculatePrice(selectedLoan);
                 }
                 selectedLoan.TimeOfReturn = DateTime.Now;
                 loanRepository.Edit(selectedLoan);
                 OnUpdated(this, eventArgs);
                 CreateReturnenLoan(selectedLoan);
-
+                Loan tempLoan = new Loan()
+                {
+                    BookCopy = selectedLoan.BookCopy,
+                    Member = selectedLoan.Member
+                }; 
                 Remove(selectedLoan);
+                return PenaltyMessage(penalty, tempLoan);
             } else
             {
                 throw new NullReferenceException("No loan selected");
             }
-            
+        }
 
+        public string PenaltyMessage(int penalty, Loan loan)
+        {
+            string returnMessage = String.Format("{0} returned by {1}!", loan.BookCopy.Book.Title, loan.Member.Name);
+            if (penalty < 0)
+            {
+                return returnMessage;
+            }
+            returnMessage += String.Format(" {0}'s penalty fee is {1}!", loan.Member.Name, penalty.ToString());
+            return returnMessage;
         }
 
         private void CreateReturnenLoan(Loan loan)
@@ -137,9 +153,14 @@ namespace Library.Services
 
         private int CalculatePrice(Loan loan)
         {
-                int days = DateTime.Now.Day - loan.DueDate.Day;
-            
-            return days * 10;
+            //Just for test. 
+            int now = DateTime.Now.Second;
+            int due = loan.DueDate.Second;
+            int result = now - due;
+            //The real statement
+            //int days = DateTime.Now.Day - loan.DueDate.Day;
+
+            return result * 10;
         }
 
         public IEnumerable<Loan> FindAllBooksOnLoan()
@@ -150,7 +171,7 @@ namespace Library.Services
         public IEnumerable<BookCopy> FindAllAvailableBooks(IEnumerable<BookCopy> bookCopies, IEnumerable<Loan> loans)
         {
             var loanedBookCopies = loans.Select(l => l.BookCopy).ToList();
-            var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.BookCopyId == bc.BookCopyId)).ToList();
+            var availableBooks = bookCopies.Where(bc => !loanedBookCopies.Any(lbc => lbc.Id == bc.Id)).ToList();
 
             return availableBooks;
         }

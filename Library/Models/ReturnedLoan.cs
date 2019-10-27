@@ -10,12 +10,12 @@ namespace Library.Models
 {
     public class ReturnedLoan
     {
-        public int ReturnedLoanId { get; set; }
+        public int Id { get; set; }
         public DateTime TimeOfLoan { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? TimeOfReturn { get; set; }
-        
         public BookCopy BookCopy { get; set; }
+        [Required]
         public Member Member { get; set; }
 
         public override string ToString()
