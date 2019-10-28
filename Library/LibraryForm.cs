@@ -42,8 +42,9 @@ namespace Library
             copyService = new BookCopyService(repFactory);
             authorService = new AuthorService(repFactory);
             memberService = new MemberService(repFactory);
-            loanService = new LoanService(repFactory);
             returnedLoanService = new ReturnedLoanService(repFactory);
+            loanService = new LoanService(repFactory, returnedLoanService);
+            
 
 
 
