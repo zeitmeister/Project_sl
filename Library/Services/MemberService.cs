@@ -8,14 +8,17 @@ using Library.Repositories;
 
 namespace Library.Services
 {
+    /// <summary>
+    /// Contains the logic for situations regarding Members
+    /// </summary>
     public class MemberService : BaseService, IService
     {
-        MemberRepository memberRepository;
-        BookCopyService bookCopyService;
-        ReturnedLoanRepository returnedLoanRepository;
-        BookCopyRepository bookCopyRepository;
-        
+        private MemberRepository memberRepository;
+        private ReturnedLoanRepository returnedLoanRepository;
 
+        /// <summary>
+        /// The event that updates the GUI when the database has changed
+        /// </summary>
         public event EventHandler Updated;
 
         private EventArgs eventArgs = new EventArgs();
@@ -35,28 +38,50 @@ namespace Library.Services
             }
         }
 
+        /// <summary>
+        /// Returns all members from the database.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Member> All()
         {
             return memberRepository.All();
         }
 
+        /// <summary>
+        /// Adds a member to the repository.
+        /// </summary>
+        /// <param name="member"></param>
         public void Add(Member member)
         {
             memberRepository.Add(member);
             OnUpdated(this, eventArgs);
         }
 
+        /// <summary>
+        /// Removes a member from the repository.
+        /// </summary>
+        /// <param name="member">The member to remove</param>
         public void Remove(Member member)
         {
             memberRepository.Remove(member);
             OnUpdated(this, eventArgs);
         }
 
+        /// <summary>
+        /// Finds a specific member from the repository.
+        /// </summary>
+        /// <param name="id">The Id to search for.</param>
+        /// <returns>A member</returns>
         public Member Find(int id)
         {
             return memberRepository.Find(id);
         }
 
+        /// <summary>
+        /// Returns all the active loans for a specific member
+        /// </summary>
+        /// <param name="member">The member to check for loans for.</param>
+        /// <returns>A collection for loans.</returns>
         public IEnumerable<Loan> FindAllBooksOnLoanForMember(Member member)
         {
             if (IsObjectNotNull(member))
@@ -69,12 +94,11 @@ namespace Library.Services
             throw new ArgumentNullException("No member selected");
         }
 
-        public IEnumerable<Loan> FindAllReturnedBooks(Member member)
-        {
-            var selectedMember = memberRepository.All().Where(m => m.MemberId == member.MemberId);
-            return selectedMember.SelectMany(l => l.Loans).Where(l => l.TimeOfReturn > l.TimeOfLoan);
-        }
-
+        /// <summary>
+        /// Finds all returned loans for a member
+        /// </summary>
+        /// <param name="member">The member to find returned loans for</param>
+        /// <returns>A collection of returned loans</returns>
         public IEnumerable<ReturnedLoan> FindHistory(Member member)
         {
             if (IsObjectNotNull(member))
@@ -84,13 +108,18 @@ namespace Library.Services
               
                 if (result == null)
                 {
-                    throw new ArgumentNullException("bajs");
+                    throw new ArgumentNullException("No result found");
                 }
                 return result;
             }
             throw new ArgumentNullException("No member selected"); 
         }
 
+        /// <summary>
+        /// Finds all the book copies that is overdue for a specific member
+        /// </summary>
+        /// <param name="member">The member to search for overdue books for.</param>
+        /// <returns>A collection of overdue Book Copies</returns>
         public IEnumerable<BookCopy> FindAllOverdueBooks(Member member)
         {
             var booksOverDueDate = member.Loans.Where(l => l.DueDate < DateTime.Now && l.TimeOfReturn == null).
@@ -98,16 +127,17 @@ namespace Library.Services
             return booksOverDueDate;
         }
 
+        /// <summary>
+        /// Checks if a user with the same personal ID already exists.
+        /// </summary>
+        /// <param name="personalId">The ID to compare with the database</param>
+        /// <returns>True if the member already exists, false otherwise.</returns>
         public bool MemberAlreadyExists(int personalId)
         {
             var AllPersonalId = memberRepository.All().Select(id => id.PersonId).ToList();
 
-            if (AllPersonalId.Contains(personalId))
-            {
-                return true;
-            }
-            else
-                return false;
+            return AllPersonalId.Contains(personalId);
+          
         }
     }
 }
