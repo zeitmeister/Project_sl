@@ -54,11 +54,6 @@ namespace Library.Services
             return bookCopyRepository.All();
         }
 
-        public IEnumerable<BookCopy> SpecificBookCopies(Book book)
-        {
-            return bookCopyRepository.SpecificBookCopies(book);
-        }
-
         /// <summary>
         /// Removes a specific BookCopy from the repository
         /// </summary>
