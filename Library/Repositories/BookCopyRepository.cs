@@ -15,32 +15,49 @@ namespace Library.Repositories
         {
             context = c;
         }
+
+        /// <summary>
+        /// Adds a book copy to the database
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(BookCopy item)
         {
             context.BookCopies.Add(item);
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// Returns all the bookcopies from the database
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BookCopy> All()
         {
             return context.BookCopies;
         }
 
-        public IEnumerable<BookCopy> SpecificBookCopies(Book book)
-        {
-            return context.BookCopies.Where(bc => bc.Book.Id == book.Id);
-        }
-
+        /// <summary>
+        /// Edits a book copy
+        /// </summary>
+        /// <param name="item"></param>
         public void Edit(BookCopy item)
         {
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BookCopy Find(int id)
         {
             return context.BookCopies.Where(cb => cb.Id == id) as BookCopy;
         }
 
+        /// <summary>
+        /// Deletes a book copy from the database
+        /// </summary>
+        /// <param name="item"></param>
         public void Remove(BookCopy item)
         {
             context.BookCopies.Remove(item);
