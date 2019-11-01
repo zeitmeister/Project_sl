@@ -9,9 +9,9 @@ namespace Library.Services
     /// <summary>
     /// A Baseservice class that implements a null check
     /// </summary>
-    public class BaseService
+    public abstract class BaseService
     {
-        protected bool IsObjectNotNull(params object[] list)
+        protected virtual bool IsObjectNotNull(params object[] list)
         {
             if (list.Any(item => item == null))
             {

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Library.Repositories
 {
+    /// <summary>
+    /// A repository for CRUD-operations for the ReturnedLoand-class. Makes it easier to find returned books.
+    /// </summary>
     public class ReturnedLoanRepository : IRepository<ReturnedLoan, int>
     {
         LibraryContext context;
