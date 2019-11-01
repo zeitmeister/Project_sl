@@ -1,4 +1,7 @@
-﻿namespace Library
+﻿using Library.Models;
+using System;
+
+namespace Library
 {
     partial class AddBookCopyForm
     {
@@ -35,24 +38,13 @@
             // 
             // cb_Condition
             // 
-            this.cb_Condition.FormattingEnabled = true;
-            this.cb_Condition.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
+            this.cb_Condition.FormattingEnabled = true; 
             this.cb_Condition.Location = new System.Drawing.Point(100, 165);
             this.cb_Condition.MaxDropDownItems = 10;
             this.cb_Condition.Name = "cb_Condition";
-            this.cb_Condition.Size = new System.Drawing.Size(121, 21);
+            this.cb_Condition.Size = new System.Drawing.Size(136, 21);
             this.cb_Condition.TabIndex = 0;
-            this.cb_Condition.Text = "1";
+            this.cb_Condition.Text = "Please select condition";
             // 
             // lbl_Condition
             // 

@@ -63,6 +63,22 @@ namespace Library.Services
         }
 
         /// <summary>
+        /// The Edit method makes sure that the given Loan object is saved to the database and raises the Updated() event.
+        /// </summary>
+        /// <param name="l">The edited loan</param>
+        public void Edit(Loan l)
+        {
+            if (IsObjectNotNull(l))
+            {
+                loanRepository.Edit(l);
+                OnUpdated(this, eventArgs);
+            }
+            throw new ArgumentNullException("No loan selected");
+            
+        }
+
+
+        /// <summary>
         /// Removes a specific loan from the repository.
         /// </summary>
         /// <param name="loan">The loan to remove.</param>
@@ -96,7 +112,7 @@ namespace Library.Services
                     BookCopy = bookCopy,
                     Member = member,
                     TimeOfLoan = DateTime.Now,
-                    DueDate = DateTime.Now.AddSeconds(10),
+                    DueDate = DateTime.Now.AddDays(15),
                     TimeOfReturn = null
                 };
                 Add(loan);
@@ -181,12 +197,8 @@ namespace Library.Services
 
         private int CalculatePrice(Loan loan)
         {
-            //Just for test. 
-            int now = DateTime.Now.Second;
-            int due = loan.DueDate.Second;
-            int result = now - due;
-            //The real statement
-            //int days = DateTime.Now.Day - loan.DueDate.Day;
+            
+            int result = DateTime.Now.Day - loan.DueDate.Day;
 
             return result * 10;
         }
