@@ -24,9 +24,6 @@ namespace Library
         LoanService loanService;
         ReturnedLoanService returnedLoanService;
 
-        private int i = 0;
-        private int duration = 0;
-
         public LibraryForm()
         {
             InitializeComponent();
@@ -37,8 +34,6 @@ namespace Library
             // sure all the repositories created use the same context.
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
-            
- 
             bookService = new BookService(repFactory);
             copyService = new BookCopyService(repFactory);
             authorService = new AuthorService(repFactory);
@@ -46,9 +41,6 @@ namespace Library
             returnedLoanService = new ReturnedLoanService(repFactory);
             loanService = new LoanService(repFactory, returnedLoanService);
             
-
-
-
             ShowAllBooks(bookService.All());
             ShowAllBookCopies(copyService.All());
             ShowAllMembers(memberService.All());
@@ -66,7 +58,10 @@ namespace Library
             backgroundWorker1.RunWorkerCompleted += BackgroundWorker1_RunWorkerCompleted;
         }
 
-
+        /// <summary>
+        /// OnLoad starts a timer.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -74,7 +69,6 @@ namespace Library
             timer.Interval = 2000;
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
-
         }
 
         /// <summary>
@@ -290,16 +284,18 @@ namespace Library
             loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
 
-
-
-
+        /// <summary>
+        /// Finds all currently books on loan, books that have been loaned
+        /// and calls the function that show books that are overdue for a specific member.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
             lb_History.Items.Clear();
             lb_LoansForMember.Items.Clear();
             lb_OverdueBooksForMember.Items.Clear();
 
-            
             var member = lb_MemberCopy.SelectedItem as Member;
             if (member == null)
             {
@@ -307,7 +303,6 @@ namespace Library
             }
             else
             {
-                
                     foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
                     {
                         lb_LoansForMember.Items.Add(loan);
@@ -424,6 +419,11 @@ namespace Library
             ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
         }
 
+        /// <summary>
+        /// Finds details about a book that has been on loan.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_HistoryDetails_Click(object sender, EventArgs e)
         {
             if (lb_History.SelectedItem == null)
@@ -442,7 +442,11 @@ namespace Library
             ShowAllMembers(memberService.All());
         }
 
-
+        /// <summary>
+        /// Sets a loan a month back.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_EditLoan_Click(object sender, EventArgs e)
         {
             try
@@ -456,7 +460,7 @@ namespace Library
                 MessageBox.Show(ex.Message);
             } catch(NullReferenceException ex)
             {
-                MessageBox.Show("No loan selected");
+                MessageBox.Show(ex.Message);
             }
             
         }

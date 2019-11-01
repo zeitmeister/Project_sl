@@ -12,10 +12,18 @@ using Library.Services;
 
 namespace Library
 {
+    /// <summary>
+    /// The from that show details about a book that has been on loan.
+    /// </summary>
     public partial class AboutHistoryForm : Form
     {
         ReturnedLoan RL;
         ReturnedLoanService RLS;
+        /// <summary>
+        /// Sets the fields to their proper values.
+        /// </summary>
+        /// <param name="returnedLoan"></param>
+        /// <param name="returnedLoanService"></param>
         public AboutHistoryForm(ReturnedLoan returnedLoan, ReturnedLoanService returnedLoanService)
         {
             RLS = returnedLoanService;
