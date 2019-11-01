@@ -12,6 +12,9 @@ using Library.Models;
 
 namespace Library
 {
+    /// <summary>
+    /// The form that let a user add a book.
+    /// </summary>
     public partial class AddBookForm : Form
     {
         BookService BS;
@@ -30,6 +33,11 @@ namespace Library
       
         }
 
+        /// <summary>
+        /// The button that adds the book and check all the fields.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AddBook_Click(object sender, EventArgs e)
         {
             var author = AS.All().Where(a => a.Name == txt_Author.Text.Trim()).FirstOrDefault();
@@ -76,8 +84,10 @@ namespace Library
                     };
                     AS.Add(author2);
                     BS.Add(book);
+                    this.Close();
                 }
             }
+            
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)

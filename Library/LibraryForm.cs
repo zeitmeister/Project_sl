@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -23,9 +24,6 @@ namespace Library
         LoanService loanService;
         ReturnedLoanService returnedLoanService;
 
-        private int i = 0;
-        private int duration = 0;
-
         public LibraryForm()
         {
             InitializeComponent();
@@ -36,8 +34,6 @@ namespace Library
             // sure all the repositories created use the same context.
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
-            
- 
             bookService = new BookService(repFactory);
             copyService = new BookCopyService(repFactory);
             authorService = new AuthorService(repFactory);
@@ -45,9 +41,6 @@ namespace Library
             returnedLoanService = new ReturnedLoanService(repFactory);
             loanService = new LoanService(repFactory, returnedLoanService);
             
-
-
-
             ShowAllBooks(bookService.All());
             ShowAllBookCopies(copyService.All());
             ShowAllMembers(memberService.All());
@@ -65,17 +58,24 @@ namespace Library
             backgroundWorker1.RunWorkerCompleted += BackgroundWorker1_RunWorkerCompleted;
         }
 
-
+        /// <summary>
+        /// OnLoad starts a timer.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Timer timer = new Timer();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 2000;
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
-
         }
 
+        /// <summary>
+        /// Calls the backgroundworker everytime the timer interval (2000 ms) hits. Backgroundworker is here devided in two tasks: DoWork and RunWorkerCompleted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (!backgroundWorker1.IsBusy)
@@ -84,6 +84,11 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// The second runworker-method. Calls the ShowAllOverdueBooks-function.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
@@ -91,6 +96,11 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// The first runworker-method. Sleeps the thread for 2 seconds. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             System.Threading.Thread.Sleep(2000);
@@ -274,28 +284,18 @@ namespace Library
             loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
 
-        private void LibraryForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        /*private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
-        {
-            var book = lbBooks.SelectedItem as Book;
-            foreach (var loanedBook in loanService.FindBookCopiesOnLoan(copyService.All()))
-            {
-                lb_LoanedBooks.Items.Add(loanedBook);
-            }
-        }*/
-
-
+        /// <summary>
+        /// Finds all currently books on loan, books that have been loaned
+        /// and calls the function that show books that are overdue for a specific member.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
         {
             lb_History.Items.Clear();
             lb_LoansForMember.Items.Clear();
             lb_OverdueBooksForMember.Items.Clear();
 
-            
             var member = lb_MemberCopy.SelectedItem as Member;
             if (member == null)
             {
@@ -303,7 +303,6 @@ namespace Library
             }
             else
             {
-                
                     foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
                     {
                         lb_LoansForMember.Items.Add(loan);
@@ -360,31 +359,6 @@ namespace Library
         }
 
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Member_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_AboutBook_Click(object sender, EventArgs e)
         {
             if (lbBooks.SelectedItem == null)
@@ -425,10 +399,8 @@ namespace Library
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
         }
 
-
-
         private void btn_FindMember_Click(object sender, EventArgs e)
-        {   
+        {
             var find = memberService.All().Where(m => m.Name == txt_FindMember.Text).Select(m => m.MemberId).FirstOrDefault();
             if (find == 0)
             {
@@ -447,6 +419,11 @@ namespace Library
             ShowAllOverDueBooks(loanService.FindAllOverdueBooks(loanService.All()));
         }
 
+        /// <summary>
+        /// Finds details about a book that has been on loan.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_HistoryDetails_Click(object sender, EventArgs e)
         {
             if (lb_History.SelectedItem == null)
@@ -460,56 +437,32 @@ namespace Library
             } 
         }
 
-        private void lb_History_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_MemberCopy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*lb_History.Items.Clear();
-            lb_LoansForMember.Items.Clear();
-            var member = lb_MemberCopy.SelectedItem as Member;
-            if (member == null)
-            {
-                MessageBox.Show("Please select a member to able to show which books they have on loan");
-            }
-            else
-            {
-                try
-                {
-                    foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
-                    {
-                        lb_LoansForMember.Items.Add(loan);
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                try
-                {
-                    foreach (var item in memberService.FindHistory(member))
-                    {
-                        lb_History.Items.Add(item);
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                ShowAllOverdueBooksForMember(lb_MemberCopy.SelectedItem as Member);
-            }*/
-        }
-
         private void btn_ShowAllMembers_Click(object sender, EventArgs e)
         {
             ShowAllMembers(memberService.All());
         }
 
-        private void lbl_BooksBookCopys_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Sets a loan a month back.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_EditLoan_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Loan loan = lb_LoanedBooks.SelectedItem as Loan;
+                loan.TimeOfLoan = DateTime.Now.AddDays(-30);
+                loan.DueDate = loan.TimeOfLoan.AddDays(15);
+                loanService.Edit(loan);
+            } catch(ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+            } catch(NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     } 
 }

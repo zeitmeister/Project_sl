@@ -12,6 +12,9 @@ using Library.Models;
 
 namespace Library
 {
+    /// <summary>
+    /// The form that let the user add a new member.
+    /// </summary>
     public partial class AddNewMemberForm : Form
     {
         MemberService MS;
@@ -26,6 +29,11 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// The button that adds a new member and checks if a member already exists.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AddNewMember_Click(object sender, EventArgs e)
         {
             int PersonalID;
