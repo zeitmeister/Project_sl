@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 
 namespace Library.Models
@@ -12,7 +13,7 @@ namespace Library.Models
     public class BookCopy
     {
         public int Id { get; set; }
-
+        [Required]
         public Book Book { get; set; }
         
         public int Condition { get; set; }
