@@ -77,6 +77,11 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// Calls the backgroundworker everytime the timer interval (2000 ms) hits. Backgroundworker is here devided in two tasks: DoWork and RunWorkerCompleted
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (!backgroundWorker1.IsBusy)
@@ -85,6 +90,11 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// The second runworker-method. Calls the ShowAllOverdueBooks-function.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
@@ -92,6 +102,11 @@ namespace Library
 
         }
 
+        /// <summary>
+        /// The first runworker-method. Sleeps the thread for 2 seconds. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             System.Threading.Thread.Sleep(2000);
