@@ -22,7 +22,7 @@ namespace Library.Models
         {
             try
             {
-                return String.Format("{0} is in condition {1}", this.Book.Title, this.Condition);
+                return String.Format("[{0}] -- {1} is in condition {2}",this.Id, this.Book.Title, this.Condition);
             } catch(NullReferenceException e)
             {
                 return e.Message;

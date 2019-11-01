@@ -21,8 +21,9 @@ namespace Library.Models
 
             try
             {
-                return Id + ": " + BookCopy.Book.Title + " is on loan";
-            }catch(NullReferenceException ex)
+                return String.Format("[{0}] -- {1} is on loan.", this.Id, this.BookCopy.Book.Title); 
+            }
+            catch(NullReferenceException ex)
             {
                 return ex.Message;
             }

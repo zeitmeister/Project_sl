@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -69,7 +70,7 @@ namespace Library
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Timer timer = new Timer();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 2000;
             timer.Tick += Timer_Tick;
             timer.Enabled = true;
@@ -388,10 +389,8 @@ namespace Library
             copyService.Remove(lbBookCopies.SelectedItem as BookCopy);
         }
 
-
-
         private void btn_FindMember_Click(object sender, EventArgs e)
-        {   
+        {
             var find = memberService.All().Where(m => m.Name == txt_FindMember.Text).Select(m => m.MemberId).FirstOrDefault();
             if (find == 0)
             {

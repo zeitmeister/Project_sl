@@ -73,7 +73,11 @@ namespace Library.Services
                 loanRepository.Edit(l);
                 OnUpdated(this, eventArgs);
             }
-            throw new ArgumentNullException("No loan selected");
+            else
+            {
+                throw new ArgumentNullException("No loan selected");
+            }
+            
             
         }
 
@@ -174,7 +178,7 @@ namespace Library.Services
         private string PenaltyMessage(int penalty, Loan loan)
         {
             string returnMessage = String.Format("{0} returned by {1}!", loan.BookCopy.Book.Title, loan.Member.Name);
-            if (penalty < 0)
+            if (penalty <= 0)
             {
                 return returnMessage;
             }
@@ -198,7 +202,7 @@ namespace Library.Services
         private int CalculatePrice(Loan loan)
         {
             
-            int result = DateTime.Now.Day - loan.DueDate.Day;
+            int result = loan.DueDate.Day - DateTime.Now.Day;
 
             return result * 10;
         }
