@@ -76,9 +76,10 @@ namespace Library
                     };
                     AS.Add(author2);
                     BS.Add(book);
+                    this.Close();
                 }
             }
-            this.Close();
+            
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)
