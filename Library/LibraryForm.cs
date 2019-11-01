@@ -274,19 +274,7 @@ namespace Library
             loanService.MakeLoan(lb_AvailableBooks.SelectedItem as BookCopy, lb_Member.SelectedItem as Member);
         }
 
-        private void LibraryForm_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        /*private void btn_FindLoanedBooks_Click(object sender, EventArgs e)
-        {
-            var book = lbBooks.SelectedItem as Book;
-            foreach (var loanedBook in loanService.FindBookCopiesOnLoan(copyService.All()))
-            {
-                lb_LoanedBooks.Items.Add(loanedBook);
-            }
-        }*/
 
 
         private void btn_FindLoansForMember_Click(object sender, EventArgs e)
@@ -359,31 +347,6 @@ namespace Library
             }
         }
 
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_BooksByAuthor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Member_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_AboutBook_Click(object sender, EventArgs e)
         {
@@ -460,56 +423,28 @@ namespace Library
             } 
         }
 
-        private void lb_History_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_MemberCopy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*lb_History.Items.Clear();
-            lb_LoansForMember.Items.Clear();
-            var member = lb_MemberCopy.SelectedItem as Member;
-            if (member == null)
-            {
-                MessageBox.Show("Please select a member to able to show which books they have on loan");
-            }
-            else
-            {
-                try
-                {
-                    foreach (var loan in memberService.FindAllBooksOnLoanForMember(member))
-                    {
-                        lb_LoansForMember.Items.Add(loan);
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                try
-                {
-                    foreach (var item in memberService.FindHistory(member))
-                    {
-                        lb_History.Items.Add(item);
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                ShowAllOverdueBooksForMember(lb_MemberCopy.SelectedItem as Member);
-            }*/
-        }
-
         private void btn_ShowAllMembers_Click(object sender, EventArgs e)
         {
             ShowAllMembers(memberService.All());
         }
 
-        private void lbl_BooksBookCopys_Click(object sender, EventArgs e)
-        {
 
+        private void btn_EditLoan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Loan loan = lb_LoanedBooks.SelectedItem as Loan;
+                loan.TimeOfLoan = DateTime.Now.AddDays(-30);
+                loan.DueDate = loan.TimeOfLoan.AddDays(15);
+                loanService.Edit(loan);
+            } catch(ArgumentNullException ex)
+            {
+                MessageBox.Show(ex.Message);
+            } catch(NullReferenceException ex)
+            {
+                MessageBox.Show("No loan selected");
+            }
+            
         }
     } 
 }

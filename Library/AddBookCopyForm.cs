@@ -28,18 +28,18 @@ namespace Library
         {
             if (cb_Condition.SelectedItem == null)
             {
-                MessageBox.Show("Please choose a number from the list.");
+                MessageBox.Show("Please choose a condition from the list.");
             }
             else
             {
-                string selectedCondition = cb_Condition.SelectedItem.ToString();
-                int condition;
-                if (int.TryParse(selectedCondition, out condition))
+                int bookCondition;
+
+                if (int.TryParse(cb_Condition.SelectedItem.ToString(), out bookCondition))
                 {
                     BookCopy bookCopy = new BookCopy()
                     {
                         Book = selectedBook,
-                        Condition = condition
+                        Condition = bookCondition
                     };
                     BCS.Add(bookCopy);
                 }
@@ -48,7 +48,11 @@ namespace Library
 
         private void AddBookCopyForm_Load(object sender, EventArgs e)
         {
-
+            IEnumerable<int> conditions = Enumerable.Range(1, 10);
+            foreach (var item in conditions)
+            {
+                cb_Condition.Items.Add(item);
+            }
         }
     }
 }

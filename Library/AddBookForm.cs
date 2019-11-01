@@ -78,6 +78,7 @@ namespace Library
                     BS.Add(book);
                 }
             }
+            this.Close();
         }
 
         private void txt_ISBN_TextChanged(object sender, EventArgs e)

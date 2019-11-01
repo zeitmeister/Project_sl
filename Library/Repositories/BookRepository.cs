@@ -55,7 +55,6 @@ namespace Library.Repositories
         /// <returns></returns>
         public Book Find(int id)
         {
-            //Det här kan bli null om inte 'as Book' fungerar.
             return context.Books.Where(b => b.Id == id) as Book;
         }
 
