@@ -61,13 +61,13 @@ namespace Library.Repositories
         public void Remove(BookCopy item)
         {
             context.BookCopies.Remove(item);
-            try
-            {
+            /*try
+            {*/
                 context.SaveChanges();
-            } catch (Exception e)
+            /*} catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
+            }*/
             
         }
     }
