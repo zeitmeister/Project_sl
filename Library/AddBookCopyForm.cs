@@ -12,6 +12,9 @@ using Library.Services;
 
 namespace Library
 {
+    /// <summary>
+    /// The form that let the user add a book copy.
+    /// </summary>
     public partial class AddBookCopyForm : Form
     {
         BookCopyService BCS;
@@ -24,6 +27,11 @@ namespace Library
             InitializeComponent();
         }
 
+        /// <summary>
+        /// The button that adds the book copy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AddBookCopy_Click(object sender, EventArgs e)
         {
             if (cb_Condition.SelectedItem == null)
